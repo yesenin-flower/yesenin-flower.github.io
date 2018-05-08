@@ -36,6 +36,8 @@ p,q分别遍历链表a,b,假设q先到达NULL,此时从a的头发出一个指针
 # 两个链表右对齐打印
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)
 p和q两个指针分别遍历链表a和b,假如q先到达0(即a比b长),此时由a头发出t,打印完链表a.
+
 p继续移动到0,并打印空格.
+
 从b头发出指针s打印链表b
 

@@ -158,11 +158,34 @@ void A1046() {
 		cout<<tmp<<endl;
         }
 }
+
+void B1033() {
+	int keyboards[256] = {0};
+	memset(keyboards,0,sizeof(keyboards));
+	string str;
+	cin>>str;
+	for (int i = 0; i < str.size(); ++i) {
+		char c = str[i];
+		if (c >= 'A' && c <= 'Z') c = c - 'A' + 'a';
+		keyboards[c] = 1;
+	}
+	cin>>str;
+	for (int i = 0; i < str.size(); ++i) {
+		char c = str[i];
+		if (c >= 'A' && c <= 'Z') {
+			c = c - 'A' + 'a';
+			if (!keyboards[c] && !keyboards['+'])
+				cout<<str[i];
+		} else if (!keyboards[c]) 
+			cout<<str[i];
+	}
+}
 int main() {
 	//cout<<PATB1001();
 	//cout<<PATB1032();
 	//cout<<Codeup1928();
 	//B1008();
 	//B1018();
-	A1046();
+	//A1046();
+	B1033();
 }
