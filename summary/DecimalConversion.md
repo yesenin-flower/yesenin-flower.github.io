@@ -1,18 +1,15 @@
 # 反转整数(溢出)
 
-输入数值范围是 $[−2^31,  2^31 − 1]$。根据这个假设，如果反转后的整数溢出，则返回 0。
+输入数值范围是 $ [−2^31,  2^31 − 1] $。根据这个假设，如果反转后的整数溢出，则返回 0。
 
-注意
+注意判断溢出的方法。
 
 ```cpp
 int reverse(int x) {
         int t = 0;
-        
         while(x!=0){
-            
             if (t>INT_MAX/10|t<INT_MIN/10)
                 return 0;
-            
             t = t*10 + x%10;
             x /= 10;
         }
@@ -63,4 +60,14 @@ int NumberOf1(int n)//有符号的n
 }
 ```
 
-# 
+#数组中只出现一次的数
+
+```cpp
+int singleNumber(vector<int>& nums) {
+    int ret = 0;
+    for (int i = 0; i<nums.size(); ++i) {
+        ret ^= nums[i];
+    }
+    return ret;
+}
+```
