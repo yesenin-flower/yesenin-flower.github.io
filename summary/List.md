@@ -31,23 +31,6 @@ int removeDuplicates(vector<int>& nums) {
     return cur+1;
 }
 ```
-# 数组数字加一
-
-```cpp
-vector<int> plusOne(vector<int>& digits) {
-        int m = 1;
-        for ( int i = digits.size() - 1; i>=0; --i ) {
-            m += digits[i];
-            digits[i] = m % 10;
-            m = m / 10;
-            if ( m == 0 ) break;
-        }
-        if ( m == 1 )
-            digits.insert(digits.begin(), m);
-        return digits;
-}
-```
-
 # 合并有序数组
 
 ```cpp

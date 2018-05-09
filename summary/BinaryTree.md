@@ -48,19 +48,21 @@ vector<vector<int>> levelOrderBottom(TreeNode* root) {
 ```
 # 判断平衡二叉树
 
-    bool isBalanced(TreeNode* root) {
-        if (root != NULL) {
-            if (abs(dfs(root->left) - dfs(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right)) return true;
-            return false;
-        }
-        return true;
+```cpp
+bool isBalanced(TreeNode* root) {
+    if (root != NULL) {
+        if (abs(dfs(root->left) - dfs(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right)) return true;
+        return false;
     }
-    int dfs(TreeNode* root) {
-        if (root == NULL) return 0;
-        int d1 = dfs(root->left);
-        int d2 = dfs(root->right);
-        return d1 < d2 ? d2+1 : d1+1;
-    }
+    return true;
+}
+int dfs(TreeNode* root) {
+    if (root == NULL) return 0;
+    int d1 = dfs(root->left);
+    int d2 = dfs(root->right);
+    return d1 < d2 ? d2+1 : d1+1;
+}
+```
 # 最小深度
 
 ```cpp
