@@ -8,6 +8,10 @@
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)
 设两个初始化指向头结点的指针p, q.p每次前进两个结点, q每次前进一个结点, 这样当p到达链表尾巴的时候, q到达了中间.复杂度O(n)
 
+# 回文链表
+
+找中点，再原地反转链表，并比较是否相等。
+
 # 逆序打印链表
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)
 使用递归(即让系统使用栈), 时间复杂度O(n)
