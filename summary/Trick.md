@@ -31,3 +31,10 @@ bool isIsomorphic(string s, string t) {
     return true;
 }
 ```
+# NIM游戏
+
+```cpp
+bool canWinNim(int n) {
+    return n % 4 != 0;
+}
+```
