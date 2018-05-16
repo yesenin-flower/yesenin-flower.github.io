@@ -133,3 +133,45 @@ int trailingZeroes(int n, int p) {
 因此 求 阶乘后的0：
 
 要求末尾有多少个零，则该数应为x*10k 的形式等于x*（2k *5k），也就是求该数分解质因子后有几个5就行
+
+# NIM游戏
+
+```cpp
+bool canWinNim(int n) {
+    return n % 4 != 0;
+}
+```
+
+# 回旋镖的数量
+
+```cpp
+int numberOfBoomerangs(vector<pair<int, int>>& points) {
+    int res = 0;
+    for (int i = 0; i < points.size(); ++i) {
+        unordered_map<int, int> m;
+        for (int j = 0; j < points.size(); ++j) {
+            int a = points[i].first - points[j].first;
+            int b = points[i].second - points[j].second;
+            ++m[a * a + b * b];
+        }
+        for (auto it = m.begin(); it != m.end(); ++it) {
+            res += it->second * (it->second - 1);
+        }
+    }
+    return res;
+}
+```
+# 第N个数字
+
+```cpp
+int findNthDigit(int n) {
+    long digit = 1, ith = 1, base = 9;  
+    while(n > base*digit)  
+    {  
+        n -= base*(digit++);  
+        ith += base;  
+        base *= 10;  
+    }  
+    return to_string(ith+(n-1)/digit)[(n-1)%digit]-'0';
+}
+```

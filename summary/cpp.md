@@ -148,13 +148,22 @@ ss<<item;
 ss.str();
 
 //string to int
-atoi(str.c_str())
+atoi(str.c_str());
+
+//string to long
+stol(s.c_str());
+
+//int to char
+a + '0'
 ```
 
 # 常用函数
 
 ```cpp
-memset(list,value,sizeof(list));
+typename a[k];
+typename b[k];
+memset(a,value,sizeof(a));
+memcpy(b,a,sizeof(int)*k); 
 
 //algorithm
 max(x, y);
@@ -162,10 +171,11 @@ min(x, y);
 swap(x, y);
 abs(x);
 reverse(it1, it2);
-fill(list, list + k, value);
+fill(a, a + k, value);
 sort(it1, it2, cmp);
 lower_bound(first, last, val); //[first, last) 第一个值>= val的元素
 upper_bound(first, last, val); //[first, last) 第一个值> val的元素
+count(s.begin(),s.end(),'char');
 ```
 
 

@@ -92,3 +92,50 @@ int getSum(int a, int b) {
     return getSum(sum,i);  
 }
 ```
+# 十六进制
+
+```cpp
+char* hex = "0123456789abcdef";  
+string toHex(int num) {  
+    return toHexEx(num);  
+}  
+  
+string toHexEx(unsigned int num) {  
+    string s;  
+    if (num > 15) {  
+        unsigned int sub = num % 16;  
+        s += hex[sub];  
+        return toHexEx(num >> 4) + s;  
+    } else {  
+        s += hex[num];  
+        return s;  
+    }  
+} 
+```
+# 汉明距离
+
+```cpp
+int hammingDistance(int x, int y) {
+    int cnt = 0;
+    
+    while (x != 0 || y != 0) {
+        if ((x & 1) ^ (y & 1)) ++cnt;
+        x>>=1;
+        y>>=1;
+    }
+    return cnt;
+}
+```
+
+# 补数
+
+```cpp
+int findComplement(int num) {
+     int mask = 1, temp = num;
+     while(temp > 0) {
+          mask = mask << 1;
+          temp = temp >> 1;
+     }
+     return num^(mask-1);
+}
+```

@@ -56,18 +56,79 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
 
 还有一个比较特别的情况就是 nums[i] < nums[i - 2]，只修改 nums[i - 1] = nums[i] 不能令数组成为非递减，只能通过修改 nums[i] = nums[i - 1] 才行。
 
-如 [4,3,2,3]
-
 ```cpp
 public boolean checkPossibility(int[] nums) {
     int cnt = 0;
     for(int i = 1; i < nums.length; i++){
         if(nums[i] < nums[i - 1]){
             cnt++;
-            if(i - 2 >= 0 && nums[i - 2] > nums[i]) nums[i] = nums[i-1];
+            if(i - 2 >= 0 && nums[i - 2] > nums[i]) 
+              	nums[i] = nums[i-1];
             else nums[i - 1] = nums[i];
         }
     }
     return cnt <= 1;
+}
+```
+# [找到所有数组中消失的数字](https://www.cnblogs.com/grandyang/p/6222149.html)
+
+```cpp
+vector<int> findDisappearedNumbers(vector<int>& nums) {
+    vector<int> res;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] != nums[nums[i] - 1]) {
+            swap(nums[i], nums[nums[i] - 1]);
+            --i;
+        }
+    }
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] != i + 1) {
+            res.push_back(i + 1);
+        }
+    }
+    return res;
+}
+```
+# [最小移动次数使数组元素相等](https://www.cnblogs.com/grandyang/p/6053827.html)
+
+```cpp
+int minMoves(vector<int>& nums) {
+    int mn = INT_MAX, res = 0;
+    for (int num : nums) mn = min(mn, num);
+    for (int num : nums) res += num - mn;
+    return res;
+}
+```
+
+```cpp
+int minMoves(vector<int>& nums) {
+    int mn = INT_MAX, sum = 0, res = 0;
+    for (int num : nums) {
+        mn = min(mn, num);
+        sum += num;
+    }
+    return sum - mn * nums.size();
+}
+```
+
+# 相对名次
+
+```cpp
+vector<string> findRelativeRanks(vector<int>& nums) {
+    vector<int> rank;
+    for(int i=0; i<nums.size(); ++i) rank.push_back(i);
+
+    sort(rank.begin(), rank.end(), [&](int a, int b){return nums[a] > nums[b];});
+    vector<string> ranks(nums.size());
+
+    for(int i=3; i<nums.size(); ++i){
+        ranks[rank[i]] = std::to_string(i+1);
+    }
+
+    if(nums.size() > 0) ranks[rank[0]] = "Gold Medal";
+    if(nums.size() > 1) ranks[rank[1]] = "Silver Medal";
+    if(nums.size() > 2) ranks[rank[2]] = "Bronze Medal";
+
+    return ranks;
 }
 ```
