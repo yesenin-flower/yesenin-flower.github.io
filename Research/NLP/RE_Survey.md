@@ -69,12 +69,12 @@ e.g. Top leaders of Italy’s left-wing government were in Venice.
 
 用句子的句法特征，比如noun phrases (NP), verb phrases (VP), prepositional phrases (PP), POS tags(NN, VB, IN, etc.)构建解析树。
 
-
-![](https://ws3.sinaimg.cn/large/006tNc79ly1frkdy8hr8sj30ug14aamh.jpg)
-
 关系的表达：
 
 ![](https://ws2.sinaimg.cn/large/006tNc79ly1frke0am0uhj30ug0diwi2.jpg)
+
+
+![](https://ws3.sinaimg.cn/large/006tNc79ly1frkdy8hr8sj30ug14aamh.jpg)
 
 See: [Syntactic Tree Kernel](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Syntactic_Tree_Kernel.md)
 
@@ -118,12 +118,11 @@ Zhu and Ghahramani<sup id="a10">[10](#f10)</sup>标注和为标注的实体转�
 
 ## Clustering based approaches			
 
-					1. The named entities in the text corpora are tagged
-
-					2. Co-occurring named entity pairs are formed and their contexts are recorded
-					3. Context similarities among the pairs identified in the step 2, are computed
-					4. Using the similarity values computed in previous step, the pairs are clustered
-					5. As each of these clusters represent one relation, a label is automatically assigned to each cluster describing the relation type represented by it
+1. The named entities in the text corpora are tagged
+2. Co-occurring named entity pairs are formed and their contexts are recorded
+3. Context similarities among the pairs identified in the step 2, are computed
+4. Using the similarity values computed in previous step, the pairs are clustered
+5. As each of these clusters represent one relation, a label is automatically assigned to each cluster describing the relation type represented by it
 
 
 # Distant Supervision
