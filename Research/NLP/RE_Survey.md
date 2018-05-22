@@ -29,13 +29,13 @@ Automatic Content Extraction (ACE), 有关系的type和subtype
 
 两个要素：Feature & Classifier
 
-Kambhatla[^1] maximum entropy classifier + features:
+Kambhatla<sup id="a1">[1](#f1)</sup> maximum entropy classifier + features:
 
 e.g. 	Top leaders of Italy’s left-wing government were in Venice.
 
 ![](https://ws1.sinaimg.cn/large/006tNc79ly1frjyeq7juwj30uw0fuwj9.jpg)
 
-Zhou[^2] SVM classifier + features:
+Zhou<sup id="a2">[2](#f2)</sup> SVM classifier + features:
 
 1. Word based features: SP之间的词，前后的词，headwords，SP是否是包含关系
 2. **Base phrase chunking based features**: phrase heads， 前后的phrase heads，连接SP的phrase labels的路径
@@ -43,11 +43,11 @@ Zhou[^2] SVM classifier + features:
 
 Phrase 效果非常好，因为ACE中的数据大部分是短距离关系。
 
-Nguyen[^3] 提出 core tree 来表示关系。包含SP再依赖树上的最短路径和最短路径上结点到句子keywords的路径。 core tree 的子树作为特征。
+Nguyen<sup id="a3">[3](#f3)</sup> 提出 core tree 来表示关系。包含SP再依赖树上的最短路径和最短路径上结点到句子keywords的路径。 core tree 的子树作为特征。
 
-Chan and Roth[^4] 提出syntactico-semantic structures. 主要是部分ACE关系里的表达有规律。		
+Chan and Roth<sup id="a4">[4](#f4)</sup> 提出syntactico-semantic structures. 主要是部分ACE关系里的表达有规律。		
 
-Kambhatla[^5] Class Imbalance 无关系的SP远大于有关系的。所以用一组clasifier 投票的方法来提高召回。
+Kambhatla<sup id="a5">[5](#f5)</sup> Class Imbalance 无关系的SP远大于有关系的。所以用一组clasifier 投票的方法来提高召回。
 
 ## Kernel Methods
 
@@ -55,7 +55,7 @@ Kambhatla[^5] Class Imbalance 无关系的SP远大于有关系的。所以用一
 
 ### Sequence Kernel
 
-Bunescu and Mooney[^6] 每个关系表示成一系列的特征向量，每个词变成一个feature vector。目标是设计一个kernel function来发现一个subsequences(想办法用Features找pattern)。
+Bunescu and Mooney<sup id="a6">[6](#f6)</sup>每个关系表示成一系列的特征向量，每个词变成一个feature vector。目标是设计一个kernel function来发现一个subsequences(想办法用Features找pattern)。
 
 Feature: 
 
@@ -75,13 +75,13 @@ See: [Syntactic Tree Kernel](https://github.com/Moirai7/blog/blob/master/Researc
 
 ![](https://ws4.sinaimg.cn/large/006tNc79ly1frjzk5kulcj30fy0ckwfq.jpg)
 
-Culotta and Sorensen[^7] + Zelenko[^8] 提出一个计算相似度方法：依赖树上每个结点都扩展为POS tag, chunk tag等。比较两个结点，如果有important features一样，就认为两个结点相似。
+Culotta and Sorensen<sup id="a7">[7](#f7)</sup> + Zelenko<sup id="a8">[8](#f8)</sup> 提出一个计算相似度方法：依赖树上每个结点都扩展为POS tag, chunk tag等。比较两个结点，如果有important features一样，就认为两个结点相似。
 
 ![](https://ws1.sinaimg.cn/large/006tNc79ly1frjzoigc7aj30ec0dctap.jpg)	
 
 ### 	Dependency Graph Path Kernel
 
-Bunescu and Mooney[^9] 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is :
+Bunescu and Mooney<sup id="a9">[9](#f9)</sup> 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is :
 
 
 leaders were in Venice。但完全使用路径会让数据很稀疏，所以每个词都加了各种tag。所有的路径都是一个feature。
@@ -106,7 +106,7 @@ See: [Active Learning](https://github.com/Moirai7/blog/blob/master/Research/NLP/
 
 ## Label Propagation Method
 
-Zhu and Ghahramani[^10] 标注和为标注的实体转化为图中的结点，边为结点的相似度。
+Zhu and Ghahramani<sup id="a10">[10](#f10)</sup>标注和为标注的实体转化为图中的结点，边为结点的相似度。
 
 # Unsupervised Relation Extraction
 
@@ -122,17 +122,17 @@ Zhu and Ghahramani[^10] 标注和为标注的实体转化为图中的结点，�
 
 # Distant Supervision
 
-Mintz[^11] 给文章自动标注，组合监督和半监督两种思路。噪声很多，但大量数据可以抵消这些噪声。
+Mintz<sup id="a11">[11](#f11)</sup> 给文章自动标注，组合监督和半监督两种思路。噪声很多，但大量数据可以抵消这些噪声。
 
 假设：如果两个实体存在一个关系，那么任何包含这两实体的句子都可能表述此关系。而Freebase上没有关联的两个实体就作为negative instance。
 
-Surdeanu[^12] 提出 MIML-RE 解决overlapping relation的问题，给一个实体对不同instances建模多个潜在关系标签及实体对标签的依赖关系。entity pair level classifiers学会不可能出现在一个句子中的label(e.g. 出生地和配偶)，以及可能出现在一起两个label(e.g. 首都和包含于)。
+Surdeanu<sup id="a12">[12](#f12)</sup> 提出 MIML-RE 解决overlapping relation的问题，给一个实体对不同instances建模多个潜在关系标签及实体对标签的依赖关系。entity pair level classifiers学会不可能出现在一个句子中的label(e.g. 出生地和配偶)，以及可能出现在一起两个label(e.g. 首都和包含于)。
 
-没有知识库的话，距离监督很难实现，因为需要大量的spo三元组。Zhang[^13] 提出Ontological Smoothing，假设种子中至少有一部分是正确的。生成relation of interest和知识库的mapping，再用mapping生成种子的训练数据，然后用距离监督抽取关系。
+没有知识库的话，距离监督很难实现，因为需要大量的spo三元组。Zhang<sup id="a13">[13](#f13)</sup> 提出Ontological Smoothing，假设种子中至少有一部分是正确的。生成relation of interest和知识库的mapping，再用mapping生成种子的训练数据，然后用距离监督抽取关系。
 
-Nguyen<sup id="a13">[13](#f13)</sup>联合 distant & direct supervison。把不同数据源的realtion 类型关联起来，创建一个距离监督标注的数据集，再分别对数据源用人工标注和距离监督训练不同分类器，用这些分类器的联合概率作为最终概率。
+Nguyen<sup id="a14">[14](#f14)</sup>联合 distant & direct supervison。把不同数据源的realtion 类型关联起来，创建一个距离监督标注的数据集，再分别对数据源用人工标注和距离监督训练不同分类器，用这些分类器的联合概率作为最终概率。
 
-Angeli<sup id="a14">[14](#f14)</sup> 主动学习 + 距离监督。效果比 MIML-RE 好。
+Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIML-RE 好。
 
 ----
 
@@ -160,6 +160,8 @@ Angeli<sup id="a14">[14](#f14)</sup> 主动学习 + 距离监督。效果比 MIM
 
 <b id = 'f12'>12</b>Mihai Surdeanu, Julie Tibshirani, Ramesh Nallapati, and Christopher D Manning. Multi-instance multi-label learning for relation extraction.[↩](#a12)
 
-<b id = 'f13'>13 </b>Truc-Vien T Nguyen and Alessandro Moschitti. Joint distant and direct supervision for relation extraction. [↩](#a13)
+<b id = 'f13'>13 </b> Congle Zhang, Raphael Ho↵mann, and Daniel S Weld. Ontological smoothing for relation extraction with minimal supervision.[↩](#a13)
 
-<b id = 'f14'>14</b>Razvan Bunescu and Raymond Mooney. Learning to extract relations from the web using minimal supervision. [↩](#a14)
+<b id = 'f14'>14 </b>Truc-Vien T Nguyen and Alessandro Moschitti. Joint distant and direct supervision for relation extraction. [↩](#a14)
+
+<b id = 'f15'>15</b>Razvan Bunescu and Raymond Mooney. Learning to extract relations from the web using minimal supervision. [↩](#a15)
