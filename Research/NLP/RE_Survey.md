@@ -67,6 +67,15 @@ e.g. Top leaders of Italy’s left-wing government were in Venice.
 
 ### Syntactic Tree Kernel
 
+用句子的句法特征，比如noun phrases (NP), verb phrases (VP), prepositional phrases (PP), POS tags(NN, VB, IN, etc.)构建解析树。
+
+
+![](https://ws3.sinaimg.cn/large/006tNc79ly1frkdy8hr8sj30ug14aamh.jpg)
+
+关系的表达：
+
+![](https://ws2.sinaimg.cn/large/006tNc79ly1frke0am0uhj30ug0diwi2.jpg)
+
 See: [Syntactic Tree Kernel](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Syntactic_Tree_Kernel.md)
 
 ### Dependency Tree Kernel
@@ -81,10 +90,7 @@ Culotta and Sorensen<sup id="a7">[7](#f7)</sup> + Zelenko<sup id="a8">[8](#f8)</
 
 ### 	Dependency Graph Path Kernel
 
-Bunescu and Mooney<sup id="a9">[9](#f9)</sup> 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is :
-
-
-leaders were in Venice。但完全使用路径会让数据很稀疏，所以每个词都加了各种tag。所有的路径都是一个feature。
+Bunescu and Mooney<sup id="a9">[9](#f9)</sup> 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is : leaders were in Venice。但完全使用路径会让数据很稀疏，所以每个词都加了各种tag。所有的路径都是一个feature。
 
 ![](https://ws1.sinaimg.cn/large/006tNc79ly1frjzve51jkj30mg04et94.jpg)
 
@@ -160,7 +166,7 @@ Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIM
 
 <b id = 'f12'>12</b>Mihai Surdeanu, Julie Tibshirani, Ramesh Nallapati, and Christopher D Manning. Multi-instance multi-label learning for relation extraction.[↩](#a12)
 
-<b id = 'f13'>13 </b> Congle Zhang, Raphael Ho↵mann, and Daniel S Weld. Ontological smoothing for relation extraction with minimal supervision.[↩](#a13)
+<b id = 'f13'>13 </b> Congle Zhang, Raphael Hoffmann, and Daniel S Weld. Ontological smoothing for relation extraction with minimal supervision.[↩](#a13)
 
 <b id = 'f14'>14 </b>Truc-Vien T Nguyen and Alessandro Moschitti. Joint distant and direct supervision for relation extraction. [↩](#a14)
 
