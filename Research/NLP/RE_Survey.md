@@ -122,33 +122,44 @@ Zhu and Ghahramani[^10] 标注和为标注的实体转化为图中的结点，�
 
 # Distant Supervision
 
+Mintz[^11] 给文章自动标注，组合监督和半监督两种思路。噪声很多，但大量数据可以抵消这些噪声。
 
-​	
+假设：如果两个实体存在一个关系，那么任何包含这两实体的句子都可能表述此关系。而Freebase上没有关联的两个实体就作为negative instance。
 
+Surdeanu[^12] 提出 MIML-RE 解决overlapping relation的问题，给一个实体对不同instances建模多个潜在关系标签及实体对标签的依赖关系。entity pair level classifiers学会不可能出现在一个句子中的label(e.g. 出生地和配偶)，以及可能出现在一起两个label(e.g. 首都和包含于)。
 
-​			
-​		
-​	
+没有知识库的话，距离监督很难实现，因为需要大量的spo三元组。Zhang[^13] 提出Ontological Smoothing，假设种子中至少有一部分是正确的。生成relation of interest和知识库的mapping，再用mapping生成种子的训练数据，然后用距离监督抽取关系。
 
+Nguyen<sup id="a13">[13](#f13)</sup>联合 distant & direct supervison。把不同数据源的realtion 类型关联起来，创建一个距离监督标注的数据集，再分别对数据源用人工标注和距离监督训练不同分类器，用这些分类器的联合概率作为最终概率。
 
-​		
-​	
+Angeli<sup id="a14">[14](#f14)</sup> 主动学习 + 距离监督。效果比 MIML-RE 好。
 
+----
 
+<b id = 'f1'>1</b>N. Kambhatla. Combining lexical, syntactic, and semantic features with maximum entropy models for extracting relations. [↩](#a1)
 
+<b id = 'f2'>2</b>Zhou GuoDong, Su Jian, Zhang Jie, and Zhang Min. Exploring various knowledge in relation extraction.[↩](#a2)
 
+<b id = 'f3'>3</b>Dat PT Nguyen, Yutaka Matsuo, and Mitsuru Ishizuka. Relation extraction from wikipedia using subtree mining. [↩](#a3)
 
+<b id = 'f4'>4</b>Yee Seng Chan and Dan Roth. Exploiting syntactico-semantic structures for relation extraction. [↩](#a4)
 
+<b id = 'f5'>5</b>Nanda Kambhatla. Minority vote: at-least-n voting improves recall for extracting relations. [↩](#a5)
 
+<b id = 'f6'>6</b>Raymond J Mooney and Razvan C Bunescu. Subsequence kernels for relation extraction. [↩](#a6)
 
+<b id = 'f7'>7</b>Aron Culotta and Je↵rey Sorensen. Dependency tree kernels for relation extraction. [↩](#a7)
 
-[^1]: N. Kambhatla. Combining lexical, syntactic, and semantic features with maximum entropy models for extracting relations. In Proceedings of the ACL 2004, 2004.
-[^2]: Zhou GuoDong, Su Jian, Zhang Jie, and Zhang Min. Exploring various knowledge in relation extraction.
-[^3]: Dat PT Nguyen, Yutaka Matsuo, and Mitsuru Ishizuka. Relation extraction from wikipedia using subtree mining. In Proceedings of the National Conference on Artificial Intelligence, volume 22, page 1414. Menlo Park, CA; Cambridge, MA; London; AAAI Press; MIT Press; 1999, 2007.
-[^4]: Yee Seng Chan and Dan Roth. Exploiting syntactico-semantic structures for relation extraction. In Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies-Volume 1, pages 551–560. Association for Computational Linguistics, 2011.
-[^5]: Nanda Kambhatla. Minority vote: at-least-n voting improves recall for extracting relations. In Proceedings of the COLING/ACL on Main conference poster sessions, pages 460–466. Association for Computational Linguistics,2006.
-[^6]: Raymond J Mooney and Razvan C Bunescu. Subsequence kernels for relation extraction. In Advances in neural information processing systems, pages 171–178, 2005.
-[^7]: Aron Culotta and Je↵rey Sorensen. Dependency tree kernels for relation extraction. In Proceedings of the 42nd Annual Meeting on Association for Computational Linguistics, page 423. Association for Computational Linguistics, 2004.
-[^8]: Dmitry Zelenko, Chinatsu Aone, and Anthony Richardella. Kernel methods for relation extraction. The Journal of Machine Learning Research, 3:1083–1106, 2003.
-[^9]:  Razvan C Bunescu and Raymond J Mooney. A shortest path dependency kernel for relation extraction. In Proceedings of the conference on Human Language Technology and Empirical Methods in Natural Language Processing, pages 724–731. Association for Computational Linguistics, 2005.
-[^10]: Zhu Xiaojin and Ghahramani Zoubin. Learning from labeled and unlabeled data with label propagation. In CMU CALD tech report CMUCALD-02-107, 2002.
+<b id = 'f8'>8</b>Dmitry Zelenko, Chinatsu Aone, and Anthony Richardella. Kernel methods for relation extraction. [↩](#a8)
+
+<b id = 'f9'> 9</b>Razvan C Bunescu and Raymond J Mooney. A shortest path dependency kernel for relation extraction. [↩](#a9)
+
+<b id = 'f10'>10</b>Zhu Xiaojin and Ghahramani Zoubin. Learning from labeled and unlabeled data with label propagation. [↩](#a10)
+
+<b id = 'f11'>11</b>Mike Mintz, Steven Bills, Rion Snow, and Dan Jurafsky. Distant supervision for relation extraction without labeled data.[↩](#a11)
+
+<b id = 'f12'>12</b>Mihai Surdeanu, Julie Tibshirani, Ramesh Nallapati, and Christopher D Manning. Multi-instance multi-label learning for relation extraction.[↩](#a12)
+
+<b id = 'f13'>13 </b>Truc-Vien T Nguyen and Alessandro Moschitti. Joint distant and direct supervision for relation extraction. [↩](#a13)
+
+<b id = 'f14'>14</b>Razvan Bunescu and Raymond Mooney. Learning to extract relations from the web using minimal supervision. [↩](#a14)
