@@ -1,4 +1,19 @@
-[TOC]
+* [数据集](#数据集)
+* [Supervised Approaches](#supervised-approaches)
+     * [Feature-based Methods](#feature-based-methods)
+     * [Kernel Methods](#kernel-methods)
+        * [Sequence Kernel](#sequence-kernel)
+        * [Syntactic Tree Kernel](#syntactic-tree-kernel)
+        * [Dependency Tree Kernel](#dependency-tree-kernel)
+        * [Dependency Graph Path Kernel](#dependency-graph-path-kernel)
+        * [Composite Kernels](#composite-kernels)
+* [Semi-supervised Approaches](#semi-supervised-approaches)
+     * [Bootstrapping Approaches](#bootstrapping-approaches)
+     * [Active Learning](#active-learning)
+     * [Label Propagation Method](#label-propagation-method)
+* [Unsupervised Relation Extraction](#unsupervised-relation-extraction)
+     * [Clustering based approaches](#clustering-based-approaches)
+* [Distant Supervision](#distant-supervision)
 
 # 数据集
 
@@ -81,14 +96,37 @@ leaders were in Venice。但完全使用路径会让数据很稀疏，所以每�
 
 ## Bootstrapping Approaches
 
-Pattern Relation Duality 基于DIPRE算法：
+Pattern Relation Duality: Pattern包含命名实体，前缀后缀等。 bootstrapping的性能受种子的影响很大。基于DIPRE / SnowBall算法：
 
 ![](https://ws4.sinaimg.cn/large/006tNc79ly1frk2iolv44j30v8072myn.jpg)
 
+## Active Learning
 
-Pattern包含命名实体
+See: [Active Learning](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Active_Learning.md)		
+
+## Label Propagation Method
+
+Zhu and Ghahramani[^10] 标注和为标注的实体转化为图中的结点，边为结点的相似度。
+
+# Unsupervised Relation Extraction
+
+## Clustering based approaches			
+
+					1. The named entities in the text corpora are tagged
+
+					2. Co-occurring named entity pairs are formed and their contexts are recorded
+					3. Context similarities among the pairs identified in the step 2, are computed
+					4. Using the similarity values computed in previous step, the pairs are clustered
+					5. As each of these clusters represent one relation, a label is automatically assigned to each cluster describing the relation type represented by it
 
 
+# Distant Supervision
+
+
+​	
+
+
+​			
 ​		
 ​	
 
@@ -113,3 +151,4 @@ Pattern包含命名实体
 [^7]: Aron Culotta and Je↵rey Sorensen. Dependency tree kernels for relation extraction. In Proceedings of the 42nd Annual Meeting on Association for Computational Linguistics, page 423. Association for Computational Linguistics, 2004.
 [^8]: Dmitry Zelenko, Chinatsu Aone, and Anthony Richardella. Kernel methods for relation extraction. The Journal of Machine Learning Research, 3:1083–1106, 2003.
 [^9]:  Razvan C Bunescu and Raymond J Mooney. A shortest path dependency kernel for relation extraction. In Proceedings of the conference on Human Language Technology and Empirical Methods in Natural Language Processing, pages 724–731. Association for Computational Linguistics, 2005.
+[^10]: Zhu Xiaojin and Ghahramani Zoubin. Learning from labeled and unlabeled data with label propagation. In CMU CALD tech report CMUCALD-02-107, 2002.
