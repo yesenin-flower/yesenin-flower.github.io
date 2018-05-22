@@ -1,6 +1,12 @@
 # 旋转数组
 
-前n-k个reverse，后k个reverse，再全局reverse
+将包含* n* 个元素的数组向右旋转 *k *步。
+
+例如，如果  *n* = 7 ,  *k* = 3，给定数组  `[1,2,3,4,5,6,7]`  ，向右旋转后的结果为 `[5,6,7,1,2,3,4]`。
+
+前n-k个reverse，后k个reverse`[4,3,2,1,7,6,5]`
+
+再全局reverse
 
 # Two Sum 输入有序数组
 
@@ -32,6 +38,8 @@ int removeDuplicates(vector<int>& nums) {
 }
 ```
 # 合并有序数组
+
+从后往前合并。
 
 ```cpp
 void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
@@ -118,7 +126,8 @@ vector<string> findRelativeRanks(vector<int>& nums) {
     vector<int> rank;
     for(int i=0; i<nums.size(); ++i) rank.push_back(i);
 
-    sort(rank.begin(), rank.end(), [&](int a, int b){return nums[a] > nums[b];});
+    sort(rank.begin(), rank.end(), 
+         [&](int a, int b){return nums[a] > nums[b];});
     vector<string> ranks(nums.size());
 
     for(int i=3; i<nums.size(); ++i){

@@ -22,8 +22,8 @@
 
 # 链表中环的入口结点
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)
-还是使用俩指针p和q, p扫描的步长为1, q扫描的步长为2.它们的相遇点在环中间.\\
-那么当p和q在meet处相遇的时候, 从head处再发出一个步长为1的指针r, 可以知道, r和q会在entry处相遇!
+还是使用俩指针p和q, p扫描的步长为1, q扫描的步长为2.它们的相遇点在环中间.\
+那么当p和q在meet处相遇的时候, 从head处再发出一个步长为1的指针r, 可以知道, r和q(快的指针)会在entry处相遇!
 
 # 判断两个单链表是否相交
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)

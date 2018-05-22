@@ -175,3 +175,57 @@ int findNthDigit(int n) {
     return to_string(ith+(n-1)/digit)[(n-1)%digit]-'0';
 }
 ```
+# 随机数
+
+rand3()生成 1- 3 的随机数，用其实现一个rand7()。
+
+```cpp
+int rand6() {
+	int a = rand3();
+	int b = rand3();
+	return 3 * (a - 1) + b;
+}
+int rand7() {
+    int a;
+    do {
+      a = rand9();
+    } while(a > 7);
+  	
+    return a;
+}
+```
+
+注意：
+
+A. 类似的，有rand7生成rand5，就一直摇rand7，直到出现1-5。可以用等比数列正面，一定是等概率的。
+
+B. 两个生成随机数的函数Randa， Randb。Randa和Randb分别产生1到a的随机数和1到b的随机数，a，b不相等。用Randa实现Randb：
+
+1. 用Randa 构造Randak，如3就构造3\*1，3\*2...3\*k。
+
+   构造方法是  Randa2 = a * (Randa – 1) + Randa， 表示生成1到a2 随机数的函数。如果a2 仍小于b，继教构造 Randa3 = a * (Randa2 – 1) + Randa…直到ak > b。
+
+2. 用下面这个生成randb，一直摇Randak，直到出现的值是b的倍数
+
+   ```cpp
+   int Randb(){
+       int x = ~(1<<31); // max int
+       while(x > b*(ak/b)) // b(ak/b)表示最接近A且小于A的b的倍数
+           x = Randak();
+       return x%b + 1;
+   }
+   ```
+
+C. 同理可构造Randab，生成1到a*b的随机数。
+
+```cpp
+Randab = b * (Randa - 1) + Randb;
+Randab = a * (Randb - 1) + Randa;
+```
+
+D. 一般化，有一个随机生成a到b的函数， 用它去实现一个随机生成c到d的函数。可转化为一个生成1, b-a+1 的函数，实现1, d-c+1的函数。
+
+```cpp
+Randabk = (b-a+q) * (Randab - a) + Randab - a + 1;
+```
+

@@ -66,7 +66,7 @@ int dfs(TreeNode* root) {
 # 最小深度
 
 ```cpp
-int dfs2(TreeNode* root) {
+int dfs(TreeNode* root) {
     if (root == NULL) return 0;
     int left = dfs2(root->left);
     int right = dfs2(root->right);
@@ -94,14 +94,15 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 }
 ```
 
-# 路径之和（可从中间开始）
+# 路径之和
+
+找出从上到下路径和等于sum的路径数，可从中间开始，可不到叶子结点。
 
 ```cpp
 int pathSum(TreeNode* root, int sum) {
     if(!root) return 0;
     return sumUp(root, 0, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
 }
-
 int sumUp(TreeNode* root, int pre, int& sum){
     if(!root) return 0;
     int current = pre + root->val;
