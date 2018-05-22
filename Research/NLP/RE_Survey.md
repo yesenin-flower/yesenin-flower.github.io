@@ -52,10 +52,47 @@ e.g. Top leaders of Italy’s left-wing government were in Venice.
 
 ### Syntactic Tree Kernel
 
-See: []()
+See: [Syntactic Tree Kernel](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Syntactic_Tree_Kernel.md)
+
+### Dependency Tree Kernel
+
+依存树：句子中词的语法关系。除了head，每个词有一个parent，词到parent形成有向边。
+
+![](https://ws4.sinaimg.cn/large/006tNc79ly1frjzk5kulcj30fy0ckwfq.jpg)
+
+Culotta and Sorensen[^7] + Zelenko[^8] 提出一个计算相似度方法：依赖树上每个结点都扩展为POS tag, chunk tag等。比较两个结点，如果有important features一样，就认为两个结点相似。
+
+![](https://ws1.sinaimg.cn/large/006tNc79ly1frjzoigc7aj30ec0dctap.jpg)	
+
+### 	Dependency Graph Path Kernel
+
+Bunescu and Mooney[^9] 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is :
 
 
-​			
+leaders were in Venice。但完全使用路径会让数据很稀疏，所以每个词都加了各种tag。所有的路径都是一个feature。
+
+![](https://ws1.sinaimg.cn/large/006tNc79ly1frjzve51jkj30mg04et94.jpg)
+
+### Composite Kernels
+
+组合Syntactic Tree Kernel & Sequence Kernel / tokenization, sentence parsing and deep dependency analysis/ relation topics: sum, product, linear combination.
+
+# Semi-supervised Approaches
+
+## Bootstrapping Approaches
+
+Pattern Relation Duality 基于DIPRE算法：
+
+![](https://ws4.sinaimg.cn/large/006tNc79ly1frk2iolv44j30v8072myn.jpg)
+
+
+Pattern包含命名实体
+
+
+​		
+​	
+
+
 ​		
 ​	
 
@@ -73,3 +110,6 @@ See: []()
 [^4]: Yee Seng Chan and Dan Roth. Exploiting syntactico-semantic structures for relation extraction. In Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies-Volume 1, pages 551–560. Association for Computational Linguistics, 2011.
 [^5]: Nanda Kambhatla. Minority vote: at-least-n voting improves recall for extracting relations. In Proceedings of the COLING/ACL on Main conference poster sessions, pages 460–466. Association for Computational Linguistics,2006.
 [^6]: Raymond J Mooney and Razvan C Bunescu. Subsequence kernels for relation extraction. In Advances in neural information processing systems, pages 171–178, 2005.
+[^7]: Aron Culotta and Je↵rey Sorensen. Dependency tree kernels for relation extraction. In Proceedings of the 42nd Annual Meeting on Association for Computational Linguistics, page 423. Association for Computational Linguistics, 2004.
+[^8]: Dmitry Zelenko, Chinatsu Aone, and Anthony Richardella. Kernel methods for relation extraction. The Journal of Machine Learning Research, 3:1083–1106, 2003.
+[^9]:  Razvan C Bunescu and Raymond J Mooney. A shortest path dependency kernel for relation extraction. In Proceedings of the conference on Human Language Technology and Empirical Methods in Natural Language Processing, pages 724–731. Association for Computational Linguistics, 2005.
