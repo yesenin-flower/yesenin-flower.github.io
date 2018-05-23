@@ -15,13 +15,13 @@
         * [BiLSTM Attention](#bilstm-attention)
         * [Multi-Level Attention CNN](#multi-level-attention-cnn)
 
-* [Semi-supervised Approaches](#semi-supervised-approaches)
+*    [Semi-supervised Approaches](#semi-supervised-approaches)
      * [Bootstrapping Approaches](#bootstrapping-approaches)
      * [Active Learning](#active-learning)
      * [Label Propagation Method](#label-propagation-method)
-* [Unsupervised Relation Extraction](#unsupervised-relation-extraction)
+*    [Unsupervised Relation Extraction](#unsupervised-relation-extraction)
      * [Clustering based approaches](#clustering-based-approaches)
-* [Distant Supervision](#distant-supervision)
+*    [Distant Supervision](#distant-supervision)
      * [MIML-RE](#miml-re)
      * [NN](#nn-1)
         * [Piecewise Convolutional Neural Networks](#piecewise-convolutional-neural-networks)
@@ -48,6 +48,8 @@ NYT+FreeBase:
 - 53 types
 - train data: 522611 sentences; 需要注意的是，这里面有近80%的句子的标签为NA
 - test data: 172448 sentences;
+
+Message Understanding Conference (MUC-7) 
 
 # Supervised Approaches
 
@@ -104,6 +106,10 @@ e.g. Top leaders of Italy’s left-wing government were in Venice.
 
 ![](https://ws3.sinaimg.cn/large/006tNc79ly1frkdy8hr8sj30ug14aamh.jpg)
 
+计算相似度方法：
+
+![](https://ws3.sinaimg.cn/large/006tNc79ly1frlaij3sbuj31gu0rejxc.jpg)
+
 See: [Syntactic Tree Kernel](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Syntactic_Tree_Kernel.md)
 
 ### Dependency Tree Kernel
@@ -112,13 +118,13 @@ See: [Syntactic Tree Kernel](https://github.com/Moirai7/blog/blob/master/Researc
 
 ![](https://ws4.sinaimg.cn/large/006tNc79ly1frjzk5kulcj30fy0ckwfq.jpg)
 
-Culotta and Sorensen<sup id="a7">[7](#f7)</sup> + Zelenko<sup id="a8">[8](#f8)</sup> 提出一个计算相似度方法：依赖树上每个结点都扩展为POS tag, chunk tag等。比较两个结点，如果有important features一样，就认为两个结点相似。
+Culotta and Sorensen<sup id="a7">[7](#f7)</sup> + Zelenko<sup id="a8">[8](#f8)</sup> 提出一个计算相似度方法：依赖树上每个结点都扩展为Word, POS, Generalized POS, Chunk tag, Entity type, Entity-level, Relation argument等。比较两个结点，如果有important features一样，就认为两个结点相似。
 
 ![](https://ws1.sinaimg.cn/large/006tNc79ly1frjzoigc7aj30ec0dctap.jpg)	
 
 ### 	Dependency Graph Path Kernel
 
-Bunescu and Mooney<sup id="a9">[9](#f9)</sup> 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is : leaders were in Venice。但完全使用路径会让数据很稀疏，所以每个词都加了各种tag。所有的路径都是一个feature。
+Bunescu and Mooney<sup id="a9">[9](#f9)</sup> 计算SP在依赖树上的路径。如\<leaders, Venice>, the shortest path is : leaders were in Venice。但完全使用路径会让数据很稀疏，所以最短路径上结点都加上 POS,Generalized POS, Entity type etc。所有的路径都是一个feature。
 
 ![](https://ws1.sinaimg.cn/large/006tNc79ly1frjzve51jkj30mg04et94.jpg)
 
@@ -189,11 +195,33 @@ Attention Layer, 其实就是一个对LSTM的每一个step的输出做一个加�
 
 ## Bootstrapping Approaches
 
-Pattern Relation Duality: Pattern包含命名实体，前缀后缀等。 bootstrapping的性能受种子的影响很大。基于DIPRE / SnowBall算法：
+Pattern Relation Duality: Pattern包含命名实体，前缀后缀等。 bootstrapping的性能受种子的影响很大。
+
+DIPRE  (Brin, 1998)算法：
 
 ![](https://ws4.sinaimg.cn/large/006tNc79ly1frk2iolv44j30v8072myn.jpg)
 
+SnowBall (Agichtein & Gravano, 2000)算法：
+
+![](https://ws3.sinaimg.cn/large/006tNc79ly1frlaocyv9wj31cq0dy40h.jpg)
+
+KnowItAll (Etzioni et al. 2005)算法：
+
+​	基于 general Noun Phrase (NP) chunker 手写pattern
+
+TextRunner (Banko et al. 2007)算法：
+
+​	没有预定义关系，自动抽取关系。
+
+![](https://ws4.sinaimg.cn/large/006tNc79ly1frlaqd48haj31h013e4fl.jpg)
+
+**总结：**
+
+![](https://ws4.sinaimg.cn/large/006tNc79ly1frlavp6buqj31e40pqwiz.jpg)
+
 ## Active Learning
+
+训练多个分类器，对instances 预测，用KL散度计算所有分类器最不确定的instance，然后给这个instance做标注，最后放回到训练集中
 
 See: [Active Learning](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Active_Learning.md)		
 
@@ -240,7 +268,7 @@ Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIM
 
 ![img](http://7xotye.com1.z0.glb.clouddn.com/blog/relation-extraction/pcnn-1.png)
 
-输入仍然是一个sentence，Input Layer依然是word embedding + position embedding, 后面接卷积操作。 之后的Pooling层并没有直接使用全局的Max Pooling, 而是局部的max pooling. 文中把一个句子分为三部分，以两个entity为边界把句子分为三段，然后卷积之后对每一段取max pooling, 这样可以得到三个值，相比传统的max-pooling 每个卷积核只能得到一个值，这样可以更加充分有效的得到句子特征信息。经过softmax 就可以计算每一个类别的概率了。
+输入仍然是一个sentence，Input Layer依然是word embedding(word2vec) + position embedding, 后面接卷积操作。 之后的Pooling层并没有直接使用全局的Max Pooling, 而是局部的max pooling. 文中把一个句子分为三部分，以两个entity为边界把句子分为三段，然后卷积之后对每一段取max pooling, 这样可以得到三个值，相比传统的max-pooling 每个卷积核只能得到一个值，这样可以更加充分有效的得到句子特征信息。经过softmax 就可以计算每一个类别的概率了。
 
 前面是一个instance级别的，根据MIML定义，需要计算bag的label，因此取bag里instance概率最大的作为bag概率。
 
@@ -282,6 +310,17 @@ Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIM
 > - Word-Relation的相关度，同一个word在不同的relation下有不同的重要性。()
 > - 多标签分类(MIMLCNN, Memory Network)
 > - relation之间的依赖性(Memory Network)
+
+-----
+
+总体流程，主动学习 + MIMC_RE：
+
+* 对关系P，找出一堆SO及其instances，分为训练集和测试集
+* 对训练集和测试集所有数据，每个instance先算PCNN特征。输入为word embedding(word2vec) + position embedding + POS等。
+* 每个SO的instances是一个bag，用训练集训练一个global分类器
+* 每个SO的instances是一个bag，训练集每个bag里的instances有放回抽样，用[Multi-instance Multi-label CNNs](#multi-instance-multi-label-cnns)或[Selective Attention over Instances](#selective-attention-over-instances)的思路，训练多个local分类器。
+* 用主动学习的思路，local分类器打分，选实例，人工标注。
+* 人工标注的实例，加入到训练集中，重新训练global分类器，并用测试集判断准确召回，到达阈值后结束。
 
 ----
 
