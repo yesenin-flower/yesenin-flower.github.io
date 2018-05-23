@@ -226,11 +226,11 @@ Surdeanu<sup id="a12">[12](#f12)</sup> 提出 MIML-RE 解决overlapping relation
 
 ![](https://ws1.sinaimg.cn/large/006tNc79ly1frl15bflzkj30kk0si0wn.jpg)
 
-没有知识库的话，距离监督很难实现，因为需要大量的spo三元组。Zhang<sup id="a13">[13](#f13)</sup> 提出Ontological Smoothing，假设种子中至少有一部分是正确的。生成relation of interest和知识库的mapping，再用mapping生成种子的训练数据，然后用距离监督抽取关系。
+<!--没有知识库的话，距离监督很难实现，因为需要大量的spo三元组。Zhang<sup id="a13">[13](#f13)</sup> 提出Ontological Smoothing，假设种子中至少有一部分是正确的。生成relation of interest和知识库的mapping，再用mapping生成种子的训练数据，然后用距离监督抽取关系。
 
 Nguyen<sup id="a14">[14](#f14)</sup>联合 distant & direct supervison。把不同数据源的realtion 类型关联起来，创建一个距离监督标注的数据集，再分别对数据源用人工标注和距离监督训练不同分类器，用这些分类器的联合概率作为最终概率。
 
-Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIML-RE 好。
+Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIML-RE 好。-->
 
 ## NN
 
