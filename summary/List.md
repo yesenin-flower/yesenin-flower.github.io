@@ -141,3 +141,94 @@ vector<string> findRelativeRanks(vector<int>& nums) {
     return ranks;
 }
 ```
+# 寻找数组的中心索引
+
+```cpp
+int pivotIndex(vector<int>& nums) {
+    int n = nums.size();
+    int sum = 0;
+    for(int ii = 0; ii < n; ii ++) {
+        sum += nums[ii];
+    }
+    int leftSum = 0;
+    int rightSum = sum;
+    for(int ii = 0; ii < n; ii ++) {
+        leftSum += ii > 0 ? nums[ii - 1] : 0;
+        rightSum -= nums[ii];
+        if(leftSum == rightSum) {
+            return ii;
+        }
+    }
+    return -1;
+}
+```
+# 词典中最长的单词
+
+```cpp
+string longestWord(vector<string>& words) {
+    unordered_set<string> s;
+    for (auto w : words) {
+        s.insert(w);
+    }
+    string res = "";
+    for (auto w : words){
+        bool check = true;
+        for (int i = 1 ; i < w.size(); ++i) {
+            if (s.find(w.substr(0, i)) == s.end()) {
+                check = false;
+                break;
+            }
+        }
+        if (check && (res.size() < w.size() || (res.size() == w.size() && w < res))) {
+            res = w; 
+        }
+        
+    }
+    
+    return res;
+}
+```
+# 最短无序连续子数组
+
+```cpp
+int findUnsortedSubarray(vector<int>& nums) {
+    vector<int > nums2(nums);
+    sort(nums2.begin(), nums2.end());
+    
+    int begin = 0, end = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] != nums2[i]) {
+            begin = i;
+            break;
+        }
+    }
+    for (int i = nums.size() - 1; i >= 0; --i) {
+        if (nums[i] != nums2[i]) {
+            end = i;
+            break;
+        }
+    }
+    return end == 0? 0 : end - begin + 1;
+}
+```
+# 最长和谐子序列
+
+```cpp
+int findLHS(vector<int>& nums) {
+    map<int, int> mp;
+    for (int n : nums) {
+        if (mp.find(n) == mp.end()) mp[n] = 1;
+        else  ++mp[n];
+    }
+    int max = 0;
+    for (auto p : mp) {
+        int key = p.first;
+        if (mp.find(key - 1) == mp.end()) continue;
+        else if (max < mp[key-1] + mp[key]) max = mp[key-1] + mp[key];
+        if (mp.find(key + 1) == mp.end()) continue;
+        else if (max < mp[key+1] + mp[key]) max = mp[key+1] + mp[key];
+    }
+    return max;
+}
+```
+

@@ -170,6 +170,8 @@ max(x, y);
 min(x, y);
 swap(x, y);
 abs(x);
+floor(x);
+ceil(x);
 reverse(it1, it2);
 fill(a, a + k, value);
 sort(it1, it2, cmp);

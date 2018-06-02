@@ -139,3 +139,19 @@ int findComplement(int num) {
      return num^(mask-1);
 }
 ```
+
+# 二进制位交替
+
+```cpp
+bool hasAlternatingBits(int n) {
+    int last = n & 1;
+    n >>= 1;
+    while (n) {
+        int t = (n & 1);
+        if (t == last) return false;
+        last = t;
+        n >>= 1;
+    }
+    return true;
+}
+```

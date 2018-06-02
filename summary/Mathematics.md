@@ -229,3 +229,38 @@ D. 一般化，有一个随机生成a到b的函数， 用它去实现一个随�
 Randabk = (b-a+q) * (Randab - a) + Randab - a + 1;
 ```
 
+# 最大三角形面积
+
+[面积](https://en.wikipedia.org/wiki/Shoelace_formula):
+
+![{\displaystyle \mathbf {A} ={\frac {1}{2}}{\begin{vmatrix}1&1&1\\x_{1}&x_{2}&x_{3}\\y_{1}&y_{2}&y_{3}\end{vmatrix}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/940282e9e70fada00cd4eba14532d09c6c9d3c54)
+
+# 两个矩形重叠
+
+```cpp
+bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) {
+    return Math.max(rec1[0],rec2[0])<Math.min(rec1[2],rec2[2]) && Math.max(rec1[1],rec2[1])<Math.min(rec1[3],rec2[3]);
+}
+```
+
+# 最大回文数乘积
+
+```cpp
+int largestPalindrome(int n) {
+    if (n == 1) return 9;
+    int maxn = pow(10, n) - 1;
+    for (int i = maxn; i > maxn / 10; --i) {
+        string s = to_string(i);
+        reverse(s.begin(),s.end());
+        s = to_string(i)+s;
+        unsigned long pa = stol(s.c_str());
+        int paj = pa / maxn;
+        for (int j = maxn; paj < maxn; --j) {
+            if (pa % j == 0) {
+                return pa % 1337;
+            }
+            paj = pa / j;
+        }
+    }
+}
+```

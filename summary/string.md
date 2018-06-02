@@ -51,3 +51,39 @@ bool isIsomorphic(string s, string t) {
 }
 ```
 
+# 最常见的单词
+
+这个题注意用stringstream讲句子按空格分割。
+
+```cpp
+    string mostCommonWord(string paragraph, vector<string>& banned) {  
+        unordered_set<string> banned_words;         // for efficiency  
+        for (string &b : banned) {  
+            banned_words.insert(b);  
+        }  
+        unordered_map<string, int> hash;            // string -> appear count  
+        stringstream ss(paragraph);  
+        string s;  
+        while (ss >> s) {  
+            if (!isalpha(s.back())) {               // remove the punctuation  
+                s.pop_back();  
+            }  
+            for (int i = 0; i < s.length(); ++i) {  // convert to lower case  
+                s[i] = tolower(s[i]);  
+            }  
+            if (banned_words.count(s) == 0) {       // check whether it is banned  
+                ++hash[s];  
+            }  
+        }  
+        int max_count = 0;                          // find the max appearance  
+        string ret = "";  
+        for (auto it = hash.begin(); it != hash.end(); ++it) {  
+            if (it->second > max_count) {  
+                max_count = it->second;  
+                ret = it->first;  
+            }  
+        }  
+        return ret;  
+    }
+```
+

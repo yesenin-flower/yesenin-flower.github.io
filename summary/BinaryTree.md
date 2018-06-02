@@ -198,3 +198,149 @@ void dfs(TreeNode* root) {
     dfs(root->left);
 }
 ```
+
+#  根据二叉树创建字符串
+
+```
+输入: 二叉树: [1,2,3,4]
+       1
+     /   \
+    2     3
+   /    
+  4     
+
+输出: "1(2(4))(3)"
+
+解释: 原本将是“1(2(4)())(3())”，在你省略所有不必要的空括号对之后，它将是“1(2(4))(3)”。
+```
+
+```cpp
+    string tree2str(TreeNode* t) {  
+        PreOrderTraversal(t);  
+        return ans;  
+    } 
+	string ans;  
+    void PreOrderTraversal(TreeNode* root)//前序遍历  
+    {  
+        int left = 0;  
+        if(root)  
+        {  
+            ans += to_string(root->val) ;  
+            if(root->left != NULL)  
+            {  
+                left = 1;//标志位，是否有左节点  
+                ans += '(';  
+                PreOrderTraversal(root->left);  
+                ans += ')';  
+            }  
+            if(root->right != NULL)  
+            {  
+                if(left == 0)//如果没有左节点就直接到又节点，说明应该输出一个()  
+                    ans += "()";  
+                ans += '(';  
+                PreOrderTraversal(root->right);  
+                ans += ')';  
+            }  
+        }  
+    }  
+```
+
+# 两数之和  - 输入 BST
+
+利用哈希表
+
+```cpp
+    bool findTarget(TreeNode* root, int k) {
+        if (!root) return false;
+        unordered_set<int> s;
+        return helper(root, k, s);
+    }
+    bool helper(TreeNode* node, int k, unordered_set<int>& s) {
+        if (!node) return false;
+        if (s.count(k - node->val)) return true;
+        s.insert(node->val);
+        return helper(node->left, k, s) || helper(node->right, k, s);
+    }
+```
+
+# 修剪二叉搜索树
+
+```cpp
+    TreeNode* trimBST(TreeNode* root, int L, int R) {
+        if( root == NULL )
+            return NULL;
+        if( root->val < L  )return trimBST(root->right,L,R);
+        
+        if(root->val > R )return trimBST(root->left,L,R);
+        
+        root->left = trimBST(root->left,L,R);
+        root->right = trimBST(root->right,L,R);
+           
+        return root;
+        
+    }
+```
+
+#  最长同值路径
+
+```cpp
+int longestUnivaluePath(TreeNode* root) {
+    if (root == NULL) return 0;
+    int c = dfs(root->left, root->val, 0) + dfs(root->right,root->val, 0);
+    if (c > high) high = c;
+    longestUnivaluePath(root->left);
+    longestUnivaluePath(root->right);
+    return high;
+}
+int high = 0;
+int dfs(TreeNode* root, int pre, int c) {
+    if (root == NULL) return c;
+    if (root->val == pre) ++c;
+    else return c;
+    int l = dfs(root->left, pre, c);
+    int r = dfs(root->right, pre, c);
+    return max(l,r);
+}
+```
+
+# 二叉搜索树结点最小距离
+
+```cpp
+int minDiffInBST(TreeNode* root) {
+    dfs(root);
+    int _min = INT_MAX;
+    for (int i = 1; i < res.size(); ++i) {
+        //cout<<res[i] - res[i - 1] <<" "<<_min<<endl;
+        if (res[i] - res[i - 1] < _min)
+            _min = res[i] - res[i - 1];
+    }
+    return _min;
+}
+vector<int> res;
+void dfs(TreeNode* root) {
+    if (root == NULL) return;
+    dfs(root->left);
+    res.push_back(root->val);
+    dfs(root->right);
+}
+```
+
+# 二叉树中第二小的节点
+
+给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 `2` 或 `0`。如果一个节点有两个子节点的话，那么这个节点的值不大于它的子节点的值。 
+
+```cpp
+int findSecondMinimumValue(TreeNode* root) {
+    int m = INT_MAX;
+    dfs(root, root->val, m);
+    return m == INT_MAX ? -1 : m;
+}
+void dfs(TreeNode* root, int m1, int& m2) {
+    if (root == NULL) return;
+    
+    if (root->val > m1 && root->val < m2) m2 = root->val;
+    else if (root->val >= m2) return;
+    dfs(root->left, m1, m2);
+    dfs(root->right, m1, m2);
+}
+```

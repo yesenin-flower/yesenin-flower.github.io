@@ -180,6 +180,24 @@ void B1033() {
 			cout<<str[i];
 	}
 }
+
+void test() {
+	string p = "Bob hit a ball, the hit BALL flew far after it was hit.";
+	stringstream ss(p);
+	string s;  
+        while (ss >> s) {  
+	    cout<<s<<endl;
+            if (!isalpha(s.back())) {               // remove the punctuation  
+                s.pop_back();  
+            }  
+            for (int i = 0; i < s.length(); ++i) {  // convert to lower case  
+                s[i] = tolower(s[i]);  
+            }  
+            if (banned_words.count(s) == 0) {       // check whether it is banned  
+                ++hash[s];  
+            }  
+        }  
+}
 int main() {
 	//cout<<PATB1001();
 	//cout<<PATB1032();
@@ -187,5 +205,6 @@ int main() {
 	//B1008();
 	//B1018();
 	//A1046();
-	B1033();
+	//B1033();
+	test();
 }
