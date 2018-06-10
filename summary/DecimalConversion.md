@@ -68,6 +68,15 @@ int NumberOf1(int n)//有符号的n
 }
 ```
 
+```cpp
+vector<int> countBits(int num) {
+    vector<int> res(num+1,0);
+    for(int i=1;i<=num;i++){
+        res[i]=res[i&(i-1)]+1;
+    }
+    return res; 
+}
+```
 # 数组中只出现一次的数
 
 ```cpp

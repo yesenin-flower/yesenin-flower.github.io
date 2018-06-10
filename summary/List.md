@@ -232,3 +232,37 @@ int findLHS(vector<int>& nums) {
 }
 ```
 
+# 全排列
+
+```cpp
+void dfs(vector<int>& nums, bool used[], vector<int> tmp, vector<vector<int>>& res) {
+    if (tmp.size() >= nums.size()) {
+        res.push_back(tmp);
+        return;
+    }
+    
+    for (int i = 0; i < nums.size(); ++i) {
+        if (!used[i]) {
+            tmp.push_back(nums[i]);
+            used[i] = 1;
+            dfs(nums, used, tmp, res);
+            tmp.pop_back();
+            used[i] = 0;
+        }
+    }
+}
+```
+# 子集
+
+```cpp
+void dfs(vector<int>& nums, vector<vector<int>>& res, vector<int> tmp, int index) {
+    if (index >= nums.size()) return;
+  
+    dfs(nums, res, tmp, index + 1);          
+    tmp.push_back(nums[index]);
+    res.push_back(tmp);
+    dfs(nums, res, tmp, index+ 1);
+
+    return;
+}
+```

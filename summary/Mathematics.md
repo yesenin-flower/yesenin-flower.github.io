@@ -264,3 +264,54 @@ int largestPalindrome(int n) {
     }
 }
 ```
+# zigzag
+
+```cpp
+string convert(string s, int numRows) {
+    if (nRows <= 1) return s;
+    string res = "";
+    int size = 2 * nRows - 2;
+    for (int i = 0; i < nRows; ++i) {
+        for (int j = i; j < s.size(); j += size) {
+            res += s[j];
+            int tmp = j + size - 2 * i;
+            if (i != 0 && i != nRows - 1 && tmp < s.size()) res += s[tmp];
+        }
+    }
+    return res;
+}
+```
+# 加密解密
+
+```cpp
+// Encodes a URL to a shortened URL.
+string encode(string longUrl) {
+    int K;
+    if (urltoindex.find(longUrl) != urltoindex.end()) {
+        K = urltoindex[longUrl];
+    } else K = ++size;
+    urltoindex[longUrl] = K;
+    indextourl[K] = longUrl;
+    
+    string res = "";
+    while (K) {
+        res += s[K % 62];
+        K /= 62;
+    }
+    return res;
+}
+
+// Decodes a shortened URL to its original URL.
+string decode(string shortUrl) {
+    int K = s.find_first_of(shortUrl[0]);
+    for (int i = 1; i < shortUrl.size(); ++i) {
+        K = K*62 + s.find_first_of(shortUrl[i]);
+    }
+    return indextourl[K];
+}
+
+string s="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+int size = 0;
+map<string, int> urltoindex;
+map<int, string> indextourl;
+```

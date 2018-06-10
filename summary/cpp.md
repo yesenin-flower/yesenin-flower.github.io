@@ -134,8 +134,8 @@ str.erase(str.begin(), str.end());	//O(N)
 str.clear();						//O(1)
 str.substr(pos, len);				//O(len)
 str.replace(pos, len, str2);		//O(N)
-str.find(str2);						//O(nm)
-str.find_first_of(c, pos);
+str.find(str2, pos);						//O(nm)
+str.find_first_of(c, pos);			//c中任意字符
 str.find_first_not_of(c, pos);
 str.find_last_of(c, pos);
 

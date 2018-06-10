@@ -32,3 +32,20 @@ int maxAreaOfIsland(vector<vector<int>>& grid)
     return mx;  
 } 
 ```
+
+# 生成括号
+
+```cpp
+void dfs(int n, int r, int l, string tmp, vector<string>& res) {
+    if (r == l && r== n) {
+        res.push_back(tmp);
+        return;
+    }
+    if(r < n) {
+        dfs(n, r+1, l, tmp+"(", res); 
+    }
+    if (l < r) {
+        dfs(n, r, l+1, tmp+")", res); 
+    }
+}
+```

@@ -42,3 +42,43 @@ vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
     return ans;
 }
 ```
+# 最大二叉树
+
+```cpp
+TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+    TreeNode* root;
+    if (nums.size() == 0)  return root;
+    
+    stack<TreeNode*> s;
+    root = new TreeNode(nums[0]);
+    s.push(root);
+    
+    for (int i = 1; i < nums.size(); ++i) {
+        TreeNode* tmp = new TreeNode(nums[i]);
+        
+        if (s.top()->val  > nums[i]) {
+            s.top()->right = tmp;
+            s.push(tmp);
+        } else {
+            TreeNode* top;
+            while (!s.empty() && s.top()->val < nums[i]) {
+                top = s.top();
+                s.pop();
+            }       
+            tmp->left = top;
+            if (!s.empty()) {
+                s.top()->right = tmp;
+                s.push(tmp);
+            }  
+            else {
+                s.push(tmp);
+            }
+        }
+    }
+    while (!s.empty()) {
+        root = s.top();
+        s.pop();
+    }
+    return root;
+}
+```

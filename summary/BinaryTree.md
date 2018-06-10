@@ -344,3 +344,60 @@ void dfs(TreeNode* root, int m1, int& m2) {
     dfs(root->right, m1, m2);
 }
 ```
+
+# 打印二叉树
+
+```cpp
+vector<vector<string>> printTree(TreeNode* root) {  
+    if (root == NULL) {  
+        return {};  
+    }  
+    int height = getHeight(root);  
+    int width = pow(2,height)-1;  
+    vector<vector<string>> ret(height, vector<string>(width, ""));  
+    printTree(root, 0, 0, width - 1, ret);  
+    return ret;  
+}  
+int getHeight(TreeNode *root) {  
+    if (root == NULL) {  
+        return 0;  
+    }  
+    return max(getHeight(root->left), getHeight(root->right)) + 1;  
+}  
+void printTree(TreeNode *node, int level, int left, int right, vector<vector<string>> &ret) {  
+    if (node == NULL) {  
+        return;  
+    }  
+    int mid = left + (right - left) / 2;  
+    ret[level][mid] = to_string(node->val);  
+    printTree(node->left, level + 1, left, mid - 1, ret);       // print the left subtree  
+    printTree(node->right, level + 1, mid + 1, right, ret);     // print the right subtree  
+} 
+```
+
+# 二叉搜索树迭代器
+
+```Cpp
+BSTIterator(TreeNode *root) {
+    push(root);
+}
+/** @return whether we have a next smallest number */
+bool hasNext() {
+    return !s.empty();
+}
+/** @return the next smallest number */
+int next() {
+    TreeNode * tmp = s.top();
+    s.pop();  
+    push(tmp->right);  
+    return tmp->val;
+}
+private:
+stack<TreeNode *> s;
+void push(TreeNode *root) {
+    while (root != NULL) {
+        s.push(root);
+        root = root->left;
+    }
+}
+```

@@ -221,9 +221,7 @@ TextRunner (Banko et al. 2007)算法：
 
 ## Active Learning
 
-训练多个分类器，对instances 预测，用KL散度计算所有分类器最不确定的instance，然后给这个instance做标注，最后放回到训练集中
-
-See: [Active Learning](https://github.com/Moirai7/blog/blob/master/Research/NLP/RE_Active_Learning.md)		
+训练多个分类器，对instances 预测，用KL散度计算所有分类器最不确定的instance，然后给这个instance做标注，最后放回到训练集中	
 
 ## Label Propagation Method
 
@@ -313,7 +311,7 @@ Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIM
 
 -----
 
-总体流程，主动学习 + MIMC_RE：
+总体流程，主动学习 + MIML_RE：
 
 * 对关系P，找出一堆SO及其instances，分为训练集和测试集
 * 对训练集和测试集所有数据，每个instance先算PCNN特征。输入为word embedding(word2vec) + position embedding + POS等。
