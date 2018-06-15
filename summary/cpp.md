@@ -1,7 +1,7 @@
 # vector
 
 ```cpp
-vector<typename> v;
+vector<typename> v(list, list+length);
 vector<pair<int,int> > vp;//注意>>是位移符号
 vector<int> va[10];//10个vector<int>
 
@@ -14,7 +14,6 @@ v.size();								//O(1)
 v.clear();								//O(N)
 
 sort(v.begin(),v.end());
-
 ```
 
 # set 
@@ -105,6 +104,38 @@ struct name {
   	}
 };
 priority_queue<name> pq;
+```
+
+# Heap
+
+```cpp
+vector<int> ivec;
+make_heap(ivec.begin(), ivec.end());
+//第三个参数传入greater<int>()得到最小堆
+make_heap(_First, _Last, _Comp);	
+
+//先在容器里push，再在heap里push
+ivec.push_back(99); 
+push_heap(ivec.begin(), ivec.end());  
+
+//先在heap里pop，再在容器里pop
+pop_heap(ivec.begin(), ivec.end());
+ivec.pop_back();  
+```
+
+# deque
+
+```cpp
+deque<typename> q;
+
+q.push_back(item);
+q.push_front(item);
+q.pop_back();
+q.pop_front();
+q.front();
+q.back();
+q.empty();
+q.size();
 ```
 
 # pair

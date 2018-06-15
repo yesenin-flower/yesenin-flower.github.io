@@ -250,37 +250,34 @@ void dfs(TreeNode* root) {
 利用哈希表
 
 ```cpp
-    bool findTarget(TreeNode* root, int k) {
-        if (!root) return false;
-        unordered_set<int> s;
-        return helper(root, k, s);
-    }
-    bool helper(TreeNode* node, int k, unordered_set<int>& s) {
-        if (!node) return false;
-        if (s.count(k - node->val)) return true;
-        s.insert(node->val);
-        return helper(node->left, k, s) || helper(node->right, k, s);
-    }
+bool findTarget(TreeNode* root, int k) {
+    if (!root) return false;
+    unordered_set<int> s;
+    return helper(root, k, s);
+}
+bool helper(TreeNode* node, int k, unordered_set<int>& s) {
+    if (!node) return false;
+    if (s.count(k - node->val)) return true;
+    s.insert(node->val);
+    return helper(node->left, k, s) || helper(node->right, k, s);
+}
 ```
-
 # 修剪二叉搜索树
 
 ```cpp
-    TreeNode* trimBST(TreeNode* root, int L, int R) {
-        if( root == NULL )
-            return NULL;
-        if( root->val < L  )return trimBST(root->right,L,R);
-        
-        if(root->val > R )return trimBST(root->left,L,R);
-        
-        root->left = trimBST(root->left,L,R);
-        root->right = trimBST(root->right,L,R);
-           
-        return root;
-        
-    }
+TreeNode* trimBST(TreeNode* root, int L, int R) {
+    if( root == NULL )
+        return NULL;
+    if( root->val < L  )return trimBST(root->right,L,R);
+    
+    if(root->val > R )return trimBST(root->left,L,R);
+    
+    root->left = trimBST(root->left,L,R);
+    root->right = trimBST(root->right,L,R);
+       
+    return root;
+}
 ```
-
 #  最长同值路径
 
 ```cpp

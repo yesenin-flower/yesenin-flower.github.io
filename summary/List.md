@@ -190,6 +190,22 @@ int minMoves(vector<int>& nums) {
 }
 ```
 
+# 子数组最大平均数
+
+```cpp
+double findMaxAverage(vector<int>& nums, int k) {
+    int before = 0;
+    for (int i = 0; i < k; ++i) {
+        before += nums[i];
+    }
+    double maxs = before;
+    for (int i = k; i < nums.size(); ++i) {
+        before = before - nums[i - k] + nums[i];
+        if (maxs < before) maxs = before;
+    }
+    return maxs / k;
+}
+```
 # 相对名次
 
 ```cpp
