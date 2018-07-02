@@ -180,7 +180,7 @@ int findNthDigit(int n) {
 rand3()生成 1- 3 的随机数，用其实现一个rand7()。
 
 ```cpp
-int rand6() {
+int rand9() {
 	int a = rand3();
 	int b = rand3();
 	return 3 * (a - 1) + b;
@@ -197,7 +197,7 @@ int rand7() {
 
 注意：
 
-A. 类似的，有rand7生成rand5，就一直摇rand7，直到出现1-5。可以用等比数列正面，一定是等概率的。
+A. 类似的，有rand7生成rand5，就一直摇rand7，直到出现1-5。可以用等比数列证明，一定是等概率的。
 
 B. 两个生成随机数的函数Randa， Randb。Randa和Randb分别产生1到a的随机数和1到b的随机数，a，b不相等。用Randa实现Randb：
 
@@ -315,3 +315,7 @@ int size = 0;
 map<string, int> urltoindex;
 map<int, string> indextourl;
 ```
+
+# 旋转图像
+
+先对角线，再对折

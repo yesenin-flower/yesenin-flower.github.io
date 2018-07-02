@@ -281,7 +281,7 @@ Angeli<sup id="a15">[15](#f15)</sup> 主动学习 + 距离监督。效果比 MIM
 为了能够充分的利用bag内的信息，我们可以对所有instance取加权: 
 
 - Average: 直接取平均:  ，这种将所有instance同等对待的方式还是有缺陷，放大了噪音影响。
-- Attention: 目标是增加positive instance的权重，减小noise instance的权重。但是并不知道每个instance的groud truth，但是知道每个bag的label，因此就可以用instance 与 该relation label的相关度大小引入Attention
+- Attention: 目标是增加positive instance的权重，减小noise instance的权重。但是并不知道每个instance的groud truth，只知道每个bag的label，因此就可以用instance 与 该relation label的相关度大小引入Attention
 
 ### Multi-instance Multi-label CNNs
 

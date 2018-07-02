@@ -182,7 +182,7 @@ void helper(TreeNode* root, int low, int high, int& res) {
 }
 ```
 
-# 二叉搜索树累加
+# 累加二叉搜索树
 
 ```cpp
 TreeNode* convertBST(TreeNode* root) {
@@ -300,28 +300,6 @@ int dfs(TreeNode* root, int pre, int c) {
 }
 ```
 
-# 二叉搜索树结点最小距离
-
-```cpp
-int minDiffInBST(TreeNode* root) {
-    dfs(root);
-    int _min = INT_MAX;
-    for (int i = 1; i < res.size(); ++i) {
-        //cout<<res[i] - res[i - 1] <<" "<<_min<<endl;
-        if (res[i] - res[i - 1] < _min)
-            _min = res[i] - res[i - 1];
-    }
-    return _min;
-}
-vector<int> res;
-void dfs(TreeNode* root) {
-    if (root == NULL) return;
-    dfs(root->left);
-    res.push_back(root->val);
-    dfs(root->right);
-}
-```
-
 # 二叉树中第二小的节点
 
 给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 `2` 或 `0`。如果一个节点有两个子节点的话，那么这个节点的值不大于它的子节点的值。 
@@ -396,5 +374,23 @@ void push(TreeNode *root) {
         s.push(root);
         root = root->left;
     }
+}
+```
+#  完全二叉树的节点个数
+
+```cpp
+int countNodes(TreeNode* root) {
+    int hLeft = leftHeight(root);
+    int hRight = rightHeight(root);
+    if (hLeft == hRight) return pow(2, hLeft) - 1;
+    return countNodes(root->left) + countNodes(root->right) + 1;
+}
+int leftHeight(TreeNode* root) {
+    if (!root) return 0;
+    return 1 + leftHeight(root->left);
+}
+int rightHeight(TreeNode* root) {
+    if (!root) return 0;
+    return 1 + rightHeight(root->right);
 }
 ```
