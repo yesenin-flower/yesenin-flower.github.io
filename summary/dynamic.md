@@ -27,3 +27,21 @@ int climbStairs(int n) {
     return dp[n-1];
 }
 ```
+# 盛最多水的容器
+
+```cpp
+
+int maxArea(vector<int>& height) {
+    int len = height.size();
+    int left = 0, right = len - 1;
+    int maxx = 0,temp;
+    while (left<right&&left<len-1 && right>=0)
+    {
+       temp = min(height[left], height[right])*(right - left);
+       if (temp > maxx)maxx = temp;
+        if (height[left] < height[right])left++;
+        else right--;
+    }
+    return maxx;
+}
+```

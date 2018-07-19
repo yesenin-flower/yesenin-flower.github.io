@@ -33,6 +33,41 @@ bool repeatedSubstringPattern(string str) {
     return dp[n]&&dp[n]%(n-dp[n])==0;
 }
 ```
+# [最长回文子串](https://blog.csdn.net/camellhf/article/details/70663406)
+
+```cpp
+string longestPalindrome(string s) {
+    string ps = "$#";
+    for (char c : s) {
+        ps += c;
+        ps += '#';
+    }
+    ps += '\0';
+
+    vector<int> p(ps.size());
+    int id = 0, mx = 0;
+    int start = 0, maxLen = 0;
+
+    for (int i = 1; i < ps.size(); i++) {
+        p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
+
+        while (ps[i + p[i]] == ps[i - p[i]]) 
+            p[i]++;
+
+        if (i + p[i] > mx) {
+            id = i;
+            mx = i + p[i];
+        }
+
+        if (p[i] - 1 > maxLen) {
+            start = (i - p[i]) / 2;
+            maxLen = p[i] - 1;
+        }
+    }
+
+    return s.substr(start, maxLen);        
+}
+```
 # 同构字符串
 
 原字符串中的每个字符可由另外一个字符替代，可以被其本身替代，相同的字符一定要被同一个字符替代，且一个字符不能被多个字符替代，即不能出现一对多的映射。
@@ -56,34 +91,34 @@ bool isIsomorphic(string s, string t) {
 这个题注意用stringstream讲句子按空格分割。
 
 ```cpp
-    string mostCommonWord(string paragraph, vector<string>& banned) {  
-        unordered_set<string> banned_words;         // for efficiency  
-        for (string &b : banned) {  
-            banned_words.insert(b);  
+string mostCommonWord(string paragraph, vector<string>& banned) {  
+    unordered_set<string> banned_words;         // for efficiency  
+    for (string &b : banned) {  
+        banned_words.insert(b);  
+    }  
+    unordered_map<string, int> hash;            // string -> appear count  
+    stringstream ss(paragraph);  
+    string s;  
+    while (ss >> s) {  
+        if (!isalpha(s.back())) {       // remove the punctuation  
+            s.pop_back();  
         }  
-        unordered_map<string, int> hash;            // string -> appear count  
-        stringstream ss(paragraph);  
-        string s;  
-        while (ss >> s) {  
-            if (!isalpha(s.back())) {               // remove the punctuation  
-                s.pop_back();  
-            }  
-            for (int i = 0; i < s.length(); ++i) {  // convert to lower case  
-                s[i] = tolower(s[i]);  
-            }  
-            if (banned_words.count(s) == 0) {       // check whether it is banned  
-                ++hash[s];  
-            }  
+        for (int i = 0; i < s.length(); ++i) {  // convert to lower case  
+            s[i] = tolower(s[i]);  
         }  
-        int max_count = 0;                          // find the max appearance  
-        string ret = "";  
-        for (auto it = hash.begin(); it != hash.end(); ++it) {  
-            if (it->second > max_count) {  
-                max_count = it->second;  
-                ret = it->first;  
-            }  
+        if (banned_words.count(s) == 0) {       // check whether it is banned  
+            ++hash[s];  
         }  
-        return ret;  
-    }
+    }  
+    int max_count = 0;                          // find the max appearance  
+    string ret = "";  
+    for (auto it = hash.begin(); it != hash.end(); ++it) {  
+       if (it->second > max_count) {  
+           max_count = it->second;  
+           ret = it->first;  
+       }  
+    }  
+    return ret;  
+}
 ```
 

@@ -22,10 +22,29 @@
 
 # 链表中环的入口结点
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)
-还是使用俩指针p和q, p扫描的步长为1, q扫描的步长为2.它们的相遇点在环中间.
+还是使用俩指针fast和slow, slow扫描的步长为1, fast扫描的步长为2.它们的相遇点在环中间.
 
-那么当p和q在meet处相遇的时候, 从head处再发出一个步长为1的指针r, 可以知道, r和q(快的指针)会在entry处相遇!
+那么当fast和slow在meet处相遇的时候, 从head处再发出一个步长为1的指针r, 可以知道, r和slow会在entry处相遇!
 
+```cpp
+ListNode *detectCycle(ListNode *head) {
+    if (head == NULL) return head;
+    
+    ListNode *fast = head, *slow = head;
+    do {
+        if (fast == NULL || fast->next == NULL) return NULL;
+        fast = fast->next->next;
+        slow = slow->next;
+    } while (fast != slow);
+    
+    slow = head;
+    while (fast != slow) {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    return fast;
+}
+```
 # 判断两个单链表是否相交
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)
 两个指针遍历这两个链表,如果他们的尾结点相同,则必定相交.复杂度O(m+n)
@@ -46,3 +65,107 @@ p继续移动到0,并打印空格.
 
 从b头发出指针s打印链表b
 
+# 复制链表
+
+```cpp
+RandomListNode *copyRandomList(RandomListNode *head) {
+    RandomListNode *cur = head, *newhead = new RandomListNode(-1);
+    RandomListNode *pre = newhead;
+    
+    map<RandomListNode*, RandomListNode*> oldtonew;
+    while (cur != NULL) {
+        RandomListNode *tmp = new RandomListNode(cur->label);
+        pre->next = tmp;
+        pre = tmp;
+        oldtonew[cur] = tmp;
+        cur = cur->next;
+    }
+    pre->next = NULL;
+    
+    cur = head;
+    pre = newhead->next;
+    while (cur != NULL) {
+        if (cur->random != NULL) {
+            pre->random = oldtonew[cur->random];
+        }
+        cur = cur->next;
+        pre = pre->next;
+    }
+    return newhead->next;
+}
+```
+
+```java
+private void copyNext(RandomListNode head) {
+    while (head != null) {
+        RandomListNode newNode = new RandomListNode(head.label);
+        newNode.random = head.random;
+        newNode.next = head.next;
+        head.next = newNode;
+        head = head.next.next;
+    }
+}
+
+private void copyRandom(RandomListNode head) {
+    while (head != null) {
+        if (head.next.random != null) {
+            head.next.random = head.random.next;
+        }
+        head = head.next.next;
+    }
+}
+
+private RandomListNode splitList(RandomListNode head) {
+    RandomListNode newHead = head.next;
+    while (head != null) {
+        RandomListNode temp = head.next;
+        head.next = temp.next;
+        head = head.next;
+        if (temp.next != null) {
+            temp.next = temp.next.next;
+        }
+    }
+    return newHead;
+}
+
+public RandomListNode copyRandomList(RandomListNode head) {
+    if (head == null) {
+        return null;
+    }
+    copyNext(head);
+    copyRandom(head);
+    return splitList(head);
+}
+```
+
+#  重排链表
+
+```
+给定链表 1->2->3->4, 重新排列为 1->4->2->3.
+给定链表 1->2->3->4->5, 重新排列为 1->5->2->4->3.
+```
+
+```cpp
+void reorderList(ListNode* head) {
+    if(!head || !head->next) return;
+    ListNode *slow = head, *fast = head, *p=head, *q=head;
+    while(fast->next && fast->next->next)
+        slow = slow->next, fast = fast->next->next;
+    fast = slow->next, slow->next = NULL;
+    p = fast, q = fast->next, fast->next = NULL;
+    while(q)
+    {
+        auto tem = q->next;
+        q->next = p;
+        p = q, q = tem;
+    }
+    q = head;
+    while(q && p)
+    {
+        auto tem1 = q->next, tem2 = p->next;
+        p->next = q->next;
+        q->next = p;
+        q = tem1, p = tem2;
+    }
+}
+```

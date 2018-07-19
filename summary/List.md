@@ -322,6 +322,14 @@ int findLHS(vector<int>& nums) {
 # 全排列
 
 ```cpp
+vector<vector<int>> permute(vector<int>& nums) {
+    vector<vector<int>> res;
+    vector<int> tmp;
+    bool used[nums.size()];
+    fill(used, used+nums.size(), false);
+    dfs(nums,  used, tmp, res);
+    return res;
+}
 void dfs(vector<int>& nums, bool used[], vector<int> tmp, vector<vector<int>>& res) {
     if (tmp.size() >= nums.size()) {
         res.push_back(tmp);
@@ -339,6 +347,31 @@ void dfs(vector<int>& nums, bool used[], vector<int> tmp, vector<vector<int>>& r
     }
 }
 ```
+```cpp
+vector<vector<int> > permuteUnique(vector<int> &num) {
+    vector<vector<int> > res;
+    vector<int> out;
+    vector<int> visited(num.size(), 0);
+    sort(num.begin(), num.end());
+    permuteUniqueDFS(num, 0, visited, out, res);
+    return res;
+}
+void permuteUniqueDFS(vector<int> &num, int level, vector<int> &visited, vector<int> &out, vector<vector<int> > &res) {
+    if (level >= num.size()) res.push_back(out);
+    else {
+        for (int i = 0; i < num.size(); ++i) {
+            if (visited[i] == 0) {
+                if (i > 0 && num[i] == num[i - 1] && visited[i - 1] == 0) continue;
+                visited[i] = 1;
+                out.push_back(num[i]);
+                permuteUniqueDFS(num, level + 1, visited, out, res);
+                out.pop_back();
+                visited[i] = 0;
+            }
+        }
+    }
+}
+```
 # 子集
 
 ```cpp
@@ -351,6 +384,71 @@ void dfs(vector<int>& nums, vector<vector<int>>& res, vector<int> tmp, int index
     dfs(nums, res, tmp, index+ 1);
 
     return;
+}
+```
+
+#  组合总和
+
+```cpp
+vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>> res;
+    vector<int> item;
+    dfs(candidates,target,0,item,res);
+    return res;
+}
+//candidates无重复数，且每个candidate可重复
+void dfs(vector<int>& candidates, int target, int start, vector<int> item, vector<vector<int>>& res) {
+    if (target < 0) return;
+    else if (target == 0) {
+        res.push_back(item);
+        return;
+    }
+    for (int i = start; i < candidates.size(); ++i) {
+        item.push_back(candidates[i]);
+        dfs(candidates, target - candidates[i], i, item, res);
+        item.pop_back();
+    }
+}
+//candidates有重复数，且每个candidate不可重复
+void dfs2(vector<int>& candidates, int target, int start, vector<int> item, vector<vector<int>>& res) {
+    if (target < 0) return;
+    else if (target == 0) {
+        res.push_back(item);
+        return;
+    }
+    for (int i = start; i < candidates.size(); ++i) {
+        //同一层中，后面的数和前面相同的时候，会出现重复，直接continue
+        if (i != start && candidates[i] == candidates[i-1])
+            continue;
+        item.push_back(candidates[i]);
+        dfs(candidates, target - candidates[i], i+1, item, res);
+        item.pop_back();
+    }
+}
+```
+# [下一个排列](https://blog.csdn.net/NoMasp/article/details/49913627)
+
+```cpp
+void nextPermutation(vector<int>& nums) {
+    int index = nums.size() - 1;
+    while(nums[index] <= nums[index-1]) {
+        --index;
+    }
+    if(index == 0) {
+        sort(nums.begin(), nums.end());
+        return ;
+    }
+    int second = INT_MAX, secondIndex = INT_MAX;
+    for(int i = nums.size() - 1; i >= index - 1; -- i) {
+        if(nums[i] > nums[index - 1]) {
+            if(nums[i] < second) {
+                second = nums[i];
+                secondIndex = i;
+            }               
+        }               
+    }  
+    swap(nums[index-1],nums[secondIndex]);
+    sort(nums.begin()+index, nums.end());   
 }
 ```
 
