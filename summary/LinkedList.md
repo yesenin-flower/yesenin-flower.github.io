@@ -65,7 +65,7 @@ p继续移动到0,并打印空格.
 
 从b头发出指针s打印链表b
 
-# 复制链表
+# 复制带随机指针的链表
 
 ```cpp
 RandomListNode *copyRandomList(RandomListNode *head) {
@@ -143,6 +143,9 @@ public RandomListNode copyRandomList(RandomListNode head) {
 ```
 给定链表 1->2->3->4, 重新排列为 1->4->2->3.
 给定链表 1->2->3->4->5, 重新排列为 1->5->2->4->3.
+给定一个单链表 L：L0→L1→…→Ln-1→Ln ，
+将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→…
+先找中点，翻转后半段，再合并
 ```
 
 ```cpp
@@ -167,5 +170,32 @@ void reorderList(ListNode* head) {
         q->next = p;
         q = tem1, p = tem2;
     }
+}
+```
+# 两数之和
+
+```cpp
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    stack<int> s1, s2;
+    while (l1) {
+        s1.push(l1->val);
+        l1 = l1->next;
+    }
+    while (l2) {
+        s2.push(l2->val);
+        l2 = l2->next;
+    }
+    int sum = 0;
+    ListNode *res = new ListNode(0);
+    while (!s1.empty() || !s2.empty()) {
+        if (!s1.empty()) {sum += s1.top(); s1.pop();}
+        if (!s2.empty()) {sum += s2.top(); s2.pop();}
+        res->val = sum % 10;
+        ListNode *head = new ListNode(sum / 10);
+        head->next = res;
+        res = head;
+        sum /= 10;
+    }
+    return res->val == 0 ? res->next : res;
 }
 ```
