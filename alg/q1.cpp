@@ -1,3 +1,7 @@
+'''
+
+'''
+
 #include<iostream>
 #include<fstream>
 #include<sstream>
@@ -19,7 +23,7 @@ struct order {
 int main() {
 	priority_queue<order> orders;
 
-	ifstream in("a.txt");
+	ifstream in("test/a.txt");
 	if (!in.is_open()) return 1;
 	string line = "";
 	while (getline(in, line)){
@@ -44,7 +48,7 @@ int main() {
 	}
 
 	
-	ofstream out("b.txt");
+	ofstream out("test/b.txt");
 	if (!out.is_open()) return 1;
 	while (!orders.empty()) {
 		auto order = orders.top();

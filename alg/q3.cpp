@@ -1,3 +1,11 @@
+'''
+问题3：输入一个词典termDict.txt，每行一个单词，同时输入一个不含空格的字符串，例如：ilovedthisgame，输出包含空格的英文句子，例如I love this game。
+要求：
+	•	编码实现该函数，如果有多种可能输出，输出所有可能
+	•	建议先考虑整体流程，再进行优化，若时间有限，可使用部分伪代码
+	•	分析并讨论：如果有多种可能输出，如何选择最有可能的输出
+
+'''
 #include<iostream>
 #include<fstream>
 #include<sstream>
@@ -8,7 +16,7 @@ using namespace std;
 
 set<string> readFile() {
 	set<string> res;
-	ifstream in("termDict.txt");
+	ifstream in("test/termDict.txt");
 	if (!in.is_open()) return res;
 	string line = "";
 	while (getline(in, line)){
