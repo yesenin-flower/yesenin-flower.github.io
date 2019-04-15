@@ -320,3 +320,28 @@ map<int, string> indextourl;
 
 先对角线，再对折
 
+# 公平的糖果交换
+
+```cpp
+    vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+        int sumsa = 0, sumsb = 0;
+        for (auto i : A) {
+            sumsa += i;
+        }
+        for (auto i : B) {
+            sumsb += i;
+        }
+        int diff = (sumsb - sumsa)/2;
+        vector<int> res;
+        
+        for (auto i : A) {
+            if (find(B.begin(), B.end(), diff+i) != B.end()) {
+                res.push_back(i);
+                res.push_back(diff+i);
+                return res;
+            }
+        }
+        return res;
+    }
+
+```
