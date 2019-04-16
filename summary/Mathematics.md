@@ -408,3 +408,57 @@ int reachNumber(int target) {
     }
 }
 ```
+## 公平的糖果交换
+
+```cpp
+    vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+        int sumsa = 0, sumsb = 0;
+        for (auto i : A) {
+            sumsa += i;
+        }
+        for (auto i : B) {
+            sumsb += i;
+        }
+        int diff = (sumsb - sumsa)/2;
+        vector<int> res;
+        
+        for (auto i : A) {
+            if (find(B.begin(), B.end(), diff+i) != B.end()) {
+                res.push_back(i);
+                res.push_back(diff+i);
+                return res;
+            }
+        }
+        return res;
+    }
+
+```
+
+## 三维形体的表面积
+
+```cpp
+    int surfaceArea(vector<vector<int>>& grid) {
+        int n = grid.size(); if(n<=0) return 0;
+        int m = grid[0].size(); if(m<=0) return 0;
+        
+        int res = 0;
+        int dx[] = {1, 0, -1, 0};
+        int dy[] = {0, 1, 0, -1};
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                //计算位置i，j贡献的表面积
+                if(grid[i][j]<=0) continue;
+                int tmp = 2+grid[i][j]*4; 
+                for(int k=0; k<4; k++){
+                    int tx=i+dx[k], ty=j+dy[k];
+                    if(tx>=0 && tx<n && ty>=0 && ty<m){
+                        tmp -= min(grid[i][j], grid[tx][ty]);
+                    }
+                }
+                res += tmp;
+            }
+        }
+        
+        return res;
+    }
+```
