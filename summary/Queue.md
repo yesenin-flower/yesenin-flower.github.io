@@ -1,4 +1,4 @@
-# [滑动窗口最大值](https://segmentfault.com/a/1190000003903509)
+## [滑动窗口最大值](https://segmentfault.com/a/1190000003903509)
 
 ```cpp
 vector<int> maxSlidingWindow(vector<int>& nums, int k) {

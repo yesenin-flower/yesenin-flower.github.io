@@ -1,4 +1,5 @@
-# 求绝对众数
+## 求绝对众数
+
 绝对众数是指在数列 a中出现次数严格大于 N / 2 的数。
 1. 快速排序之后在数列中间的数是绝对众数。
 2. 摩尔投票法 
@@ -21,12 +22,9 @@ int majorityElement(vector<int>& nums) {
     return m;
 }
 ```
-# 求众数
+## 求众数
 
-
-# 计数质数
-
-![](https://img-blog.csdn.net/20160201110938143)
+## 计数质数
 
 ```cpp
 int countPrimes(int n) {
@@ -48,7 +46,7 @@ int countPrimes(int n) {
     return count;
 }
 ```
-# 快乐数
+## 快乐数
 
 发现当在迭代循环判断是否为1的过程中时，若进入了这种无限循环，最终都会出现4，故一旦遇见4即可知道进入了无限循环，判断是非快乐数字，减少了时间复杂度。
 
@@ -67,21 +65,21 @@ bool isHappy(int n) {
     return true;
 }
 ```
-# 最大公约数
+## 最大公约数
 
 gcd(a, b) = gcd(b, a %b)
 
-# 最小公倍数
+## 最小公倍数
 
 lcm(a, b) = a * b / gcd(a, b)
 
-# 质因子
+## 质因子
 
 先计算10010以内的素数。
 
 素数从小到大循环计算是否是NUM的因子(== 0)，有多少个。
 
-# 大整数 — 用数组存储
+## 大整数 — 用数组存储
 
 ```cpp
 vector<int> plusOne(vector<int>& digits) {
@@ -98,7 +96,7 @@ vector<int> plusOne(vector<int>& digits) {
 }
 ```
 
-# 组合数
+## 组合数
 
 ![](https://ws1.sinaimg.cn/large/006tKfTcly1fr5fl5294rj308g01u74e.jpg)
 
@@ -116,7 +114,7 @@ long long c(long long n, long long m) {
 }
 ```
 
-# 阶乘后的0
+## 阶乘后的0
 
 n!有多少个质因子p，
 
@@ -134,7 +132,7 @@ int trailingZeroes(int n, int p) {
 
 要求末尾有多少个零，则该数应为x*10k 的形式等于x*（2k *5k），也就是求该数分解质因子后有几个5就行
 
-# NIM游戏
+## NIM游戏
 
 ```cpp
 bool canWinNim(int n) {
@@ -142,7 +140,7 @@ bool canWinNim(int n) {
 }
 ```
 
-# 回旋镖的数量
+## 回旋镖的数量
 
 ```cpp
 int numberOfBoomerangs(vector<pair<int, int>>& points) {
@@ -161,7 +159,7 @@ int numberOfBoomerangs(vector<pair<int, int>>& points) {
     return res;
 }
 ```
-# 第N个数字
+## 第N个数字
 
 ```cpp
 int findNthDigit(int n) {
@@ -175,7 +173,7 @@ int findNthDigit(int n) {
     return to_string(ith+(n-1)/digit)[(n-1)%digit]-'0';
 }
 ```
-# 随机数
+## 随机数
 
 rand3()生成 1- 3 的随机数，用其实现一个rand7()。
 
@@ -229,13 +227,13 @@ D. 一般化，有一个随机生成a到b的函数， 用它去实现一个随�
 Randabk = (b-a+q) * (Randab - a) + Randab - a + 1;
 ```
 
-# 最大三角形面积
+## 最大三角形面积
 
 [面积](https://en.wikipedia.org/wiki/Shoelace_formula):
 
 ![{\displaystyle \mathbf {A} ={\frac {1}{2}}{\begin{vmatrix}1&1&1\\x_{1}&x_{2}&x_{3}\\y_{1}&y_{2}&y_{3}\end{vmatrix}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/940282e9e70fada00cd4eba14532d09c6c9d3c54)
 
-# 两个矩形重叠
+## 两个矩形重叠
 
 ```cpp
 bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) {
@@ -243,7 +241,7 @@ bool isRectangleOverlap(vector<int>& rec1, vector<int>& rec2) {
 }
 ```
 
-# 最大回文数乘积
+## 最大回文数乘积
 
 ```cpp
 int largestPalindrome(int n) {
@@ -264,7 +262,7 @@ int largestPalindrome(int n) {
     }
 }
 ```
-# zigzag
+## zigzag
 
 ```cpp
 string convert(string s, int numRows) {
@@ -281,7 +279,7 @@ string convert(string s, int numRows) {
     return res;
 }
 ```
-# 加密解密
+## 加密解密
 
 ```cpp
 // Encodes a URL to a shortened URL.
@@ -316,7 +314,97 @@ map<string, int> urltoindex;
 map<int, string> indextourl;
 ```
 
-# 旋转图像
+## 旋转图像
 
 先对角线，再对折
 
+## [平方数之和](https://leetcode-cn.com/problems/sum-of-square-numbers/)
+
+```cpp
+bool judgeSquareSum(int c) {
+    int high = sqrt(c), low = 0;
+    
+    while (low <= high) { 
+        int _h = high * high;
+        int _l = low * low;
+        if (_h + _l == c) {
+            return true;
+        } else if (_h + _l > c) {
+            --high;
+        } else {
+            ++low;
+        }
+    }
+    return false;
+}
+```
+## [到达终点数字](https://leetcode-cn.com/problems/reach-a-number/)
+
+ 首先由于对称性，target是正是负影响不大。
+
+因为比如达到target=2=1-2+3.
+
+如果是-2，那就是-2=-1+2-3
+
+所以相当于是完全对称的一个选择。
+
+那么不妨设这个target是正的（用abs函数）
+
+所以我们尽量往右移动就可以达到目的地。
+
+假设1+2+3+...+k=sum
+
+如果sum=target，毫无疑问那么k就是最终答案。#1
+
+如果sum>target，而且sum-target是一个偶数，那么我们可以翻转一个数字的符号来完成等式。
+
+比如sum-target=4，那么我们把2变成-2，那么sum减小了4.
+
+这是由于（1+2+3+...k）-（1-2+3...k）=4
+
+也就是可以归结为：
+
+当sum-target为偶数，1+...-（sum-target）/2+...+k=target，那么答案依然是k。#2
+
+当sum-target为奇数，那么sum-target+1是一个偶数
+
+类似#2的证明，1+...-(sum-target+1)/2+...k=target-1
+
+此时再考虑k的奇偶性。
+
+如果k是偶数并且k>sum-target+1
+
+那么1+...-(sum-target+1)/2+....-(k/2)...+k+(k+1)=target
+
+由#2相似可证，相当于在1+2....+k+(k+1)减去了sum-target+1和k。
+
+等价于sum+（k+1）-sum+target-1-k====>target也就是答案是k+1.#3
+
+如果k=sum-target+1，由#3可知依然是k+1.#4
+
+如果k是奇数：
+
+1+2+...-(sum-target+1)/2.....+k-(k+1)+(k+2)=sum-(sum-target+1)+1=target,
+
+因此答案是k+2.#5
+
+```cpp
+int reachNumber(int target) {
+    int t=abs(target);
+    int s=0;
+    int dis=0;
+    while(dis<t){
+        s++;
+        dis+=s;
+    }
+    int dt=dis-t;
+    if(dt%2==0)
+        return s;
+    else{
+        if(s%2==0)
+            return s+1;
+        else
+            return s+2;
+    }
+}
+```

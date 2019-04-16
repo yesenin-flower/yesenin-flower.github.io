@@ -1,4 +1,4 @@
-# 重复叠加字符串匹配
+## [重复叠加字符串匹配](https://leetcode-cn.com/problems/repeated-string-match/)
 
 ```cpp
 int repeatedStringMatch(string A, string B) {
@@ -12,7 +12,7 @@ int repeatedStringMatch(string A, string B) {
 }
 ```
 
-# [重复子串](https://blog.csdn.net/qq_33583069/article/details/51922494)
+## [重复子串](https://blog.csdn.net/qq_33583069/article/details/51922494)
 
 “KMP算法”，常用于在一个文本串S内查找一个模式串P 的出现位置。
 
@@ -33,7 +33,7 @@ bool repeatedSubstringPattern(string str) {
     return dp[n]&&dp[n]%(n-dp[n])==0;
 }
 ```
-# [最长回文子串](https://blog.csdn.net/camellhf/article/details/70663406)
+## [最长回文子串](https://blog.csdn.net/camellhf/article/details/70663406)
 
 ```cpp
 string longestPalindrome(string s) {
@@ -68,7 +68,7 @@ string longestPalindrome(string s) {
     return s.substr(start, maxLen);        
 }
 ```
-# 同构字符串
+## 同构字符串
 
 原字符串中的每个字符可由另外一个字符替代，可以被其本身替代，相同的字符一定要被同一个字符替代，且一个字符不能被多个字符替代，即不能出现一对多的映射。
 
@@ -86,7 +86,7 @@ bool isIsomorphic(string s, string t) {
 }
 ```
 
-# 最常见的单词
+## 最常见的单词
 
 这个题注意用stringstream讲句子按空格分割。
 
@@ -122,3 +122,6 @@ string mostCommonWord(string paragraph, vector<string>& banned) {
 }
 ```
 
+## [计数二进制子串](https://leetcode-cn.com/problems/count-binary-substrings/)
+
+先统计连续的0和1分别有多少个，如：111100011000，得到4323；在4323中的任意相邻两个数字，取小的一个加起来，就是3+2+2 = 7.

@@ -1,4 +1,4 @@
-# 旋转数组
+## 旋转数组
 
 将包含* n* 个元素的数组向右旋转 *k *步。
 
@@ -8,7 +8,7 @@
 
 再全局reverse
 
-# Two Sum 输入有序数组
+## Two Sum 输入有序数组
 
 1. 分治
    第一个数字肯定要小于目标值target，那么我们每次用二分法来搜索target - numbers[i]即可
@@ -76,7 +76,7 @@ int triangleNumber(vector<int>& nums) {
     return res;
 }
 ```
-# HASHTABLE
+## HASHTABLE
 
 如果要求index，就用hashtable做。
 
@@ -87,7 +87,7 @@ int triangleNumber(vector<int>& nums) {
 | 18   | 四数之和         |
 |      |              |
 
-# 数组最长公共前缀
+## 数组最长公共前缀
 
 ```
 输入: ["flower","flow","flight"]
@@ -96,7 +96,7 @@ int triangleNumber(vector<int>& nums) {
 
 先排序，第一个和最后一个元素的相同前缀就是整个数组的最长公共前缀
 
-# 删除排序数组中的重复项+移除某个元素+移动零
+## 删除排序数组中的重复项+移除某个元素+移动零
 
 ```cpp
 int removeDuplicates(vector<int>& nums) {
@@ -108,7 +108,7 @@ int removeDuplicates(vector<int>& nums) {
     return cur+1;
 }
 ```
-# 合并有序数组
+## 合并有序数组
 
 从后往前合并。
 
@@ -127,7 +127,7 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
 }
 ```
 
-# 修改一个值得到非递减数列
+## 修改一个值得到非递减数列
 
 在出现 nums[i] < nums[i - 1] 时，需要考虑的是应该修改数组的哪个数，使得本次修改能使 i 之前的数组成为非递减数组，并且 **不影响后续的操作**。
 
@@ -149,7 +149,7 @@ public boolean checkPossibility(int[] nums) {
     return cnt <= 1;
 }
 ```
-# [找到所有数组中消失的数字](https://www.cnblogs.com/grandyang/p/6222149.html)
+## [找到所有数组中消失的数字](https://www.cnblogs.com/grandyang/p/6222149.html)
 
 ```cpp
 vector<int> findDisappearedNumbers(vector<int>& nums) {
@@ -168,7 +168,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
     return res;
 }
 ```
-# [最小移动次数使数组元素相等](https://www.cnblogs.com/grandyang/p/6053827.html)
+## [最小移动次数使数组元素相等](https://www.cnblogs.com/grandyang/p/6053827.html)
 
 ```cpp
 int minMoves(vector<int>& nums) {
@@ -190,7 +190,7 @@ int minMoves(vector<int>& nums) {
 }
 ```
 
-# 子数组最大平均数
+## 子数组最大平均数
 
 ```cpp
 double findMaxAverage(vector<int>& nums, int k) {
@@ -206,15 +206,32 @@ double findMaxAverage(vector<int>& nums, int k) {
     return maxs / k;
 }
 ```
-# 相对名次
+## [供暖器](https://leetcode-cn.com/problems/heaters/)
+
+```cpp
+int findRadius(vector<int>& houses, vector<int>& heaters) {
+    sort(houses.begin(), houses.end());
+    sort(heaters.begin(),heaters.end());
+    
+    int i = 0, index = 0, max_dis = 0;
+    while (i < houses.size() && index < heaters.size()) {
+        while (index + 1 < heaters.size() && (abs(heaters[index+1] - houses[i]) <= abs(heaters[index] - houses[i]))) {
+            index++;
+        }
+        max_dis = max(max_dis, abs(heaters[index] - houses[i]));
+        ++i;
+    }
+    return max_dis;
+}
+```
+## 相对名次
 
 ```cpp
 vector<string> findRelativeRanks(vector<int>& nums) {
     vector<int> rank;
     for(int i=0; i<nums.size(); ++i) rank.push_back(i);
 
-    sort(rank.begin(), rank.end(), 
-         [&](int a, int b){return nums[a] > nums[b];});
+    sort(rank.begin(), rank.end(), [&](int a, int b){return nums[a] > nums[b];});
     vector<string> ranks(nums.size());
 
     for(int i=3; i<nums.size(); ++i){
@@ -228,7 +245,7 @@ vector<string> findRelativeRanks(vector<int>& nums) {
     return ranks;
 }
 ```
-# 寻找数组的中心索引
+## 寻找数组的中心索引
 
 ```cpp
 int pivotIndex(vector<int>& nums) {
@@ -249,7 +266,7 @@ int pivotIndex(vector<int>& nums) {
     return -1;
 }
 ```
-# 词典中最长的单词
+## 词典中最长的单词
 
 ```cpp
 string longestWord(vector<string>& words) {
@@ -275,7 +292,7 @@ string longestWord(vector<string>& words) {
     return res;
 }
 ```
-# 最短无序连续子数组
+## 最短无序连续子数组
 
 ```cpp
 int findUnsortedSubarray(vector<int>& nums) {
@@ -298,7 +315,7 @@ int findUnsortedSubarray(vector<int>& nums) {
     return end == 0? 0 : end - begin + 1;
 }
 ```
-# 最长和谐子序列
+## 最长和谐子序列
 
 ```cpp
 int findLHS(vector<int>& nums) {
@@ -319,7 +336,7 @@ int findLHS(vector<int>& nums) {
 }
 ```
 
-# 全排列
+## 全排列
 
 ```cpp
 vector<vector<int>> permute(vector<int>& nums) {
@@ -372,7 +389,7 @@ void permuteUniqueDFS(vector<int> &num, int level, vector<int> &visited, vector<
     }
 }
 ```
-# 子集
+## 子集
 
 ```cpp
 void dfs(vector<int>& nums, vector<vector<int>>& res, vector<int> tmp, int index) {
@@ -387,7 +404,7 @@ void dfs(vector<int>& nums, vector<vector<int>>& res, vector<int> tmp, int index
 }
 ```
 
-#  组合总和
+## 组合总和
 
 ```cpp
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
@@ -426,7 +443,7 @@ void dfs2(vector<int>& candidates, int target, int start, vector<int> item, vect
     }
 }
 ```
-# [下一个排列](https://blog.csdn.net/NoMasp/article/details/49913627)
+## [下一个排列](https://blog.csdn.net/NoMasp/article/details/49913627)
 
 ```cpp
 void nextPermutation(vector<int>& nums) {
@@ -452,3 +469,26 @@ void nextPermutation(vector<int>& nums) {
 }
 ```
 
+#### [到最近的人的最大距离](https://leetcode-cn.com/problems/maximize-distance-to-closest-person/)
+
+```cpp
+int maxDistToClosest(vector<int>& seats) {
+    int m = 1, n = 1;
+    int first = -1, end = -1;
+    
+    for (int i = 0; i < seats.size(); ++i) {
+        if (first == -1 && seats[i] == 1) {
+            first = i;end = i;
+        } 
+        else if (first != -1 && seats[i] == 1) 
+            end = i;
+        if (seats[i] == 0 && i > 0 && seats[i]== seats[i-1]) ++n;
+        else n=1;
+        m = max(n, m);
+    }
+    end = seats.size()-end-1;
+    m = (m+1)/2;
+    //cout<<first<<" "<<m<<" "<<end<<endl;
+    return m >= first ? m >= end ? m: end: first;
+}
+```

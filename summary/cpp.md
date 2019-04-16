@@ -1,7 +1,8 @@
-# vector
+## vector
 
 ```cpp
 vector<typename> v(list, list+length);
+vector<int> v = {0,1};
 vector<pair<int,int> > vp;//注意>>是位移符号
 vector<int> va[10];//10个vector<int>
 
@@ -9,14 +10,14 @@ v.push_back(item);
 v.insert(v.begin()+k,item);				//O(N)
 v.erase(v.begin()+k);					//O(N)
 v.erase(v.begin()+k,v.begin()+k2);		//O(N)
-v.popback();							//O(1)
+v.pop_back();							//O(1)
 v.size();								//O(1)
 v.clear();								//O(N)
 
 sort(v.begin(),v.end());
 ```
 
-# set 
+ ## set
 
 自动递增，去重
 
@@ -33,10 +34,11 @@ if (it != s.end())
 	s.erase(it, s.end());
 ```
 
-# map
+## map
 
 ```cpp
 map<typename1, typename2> mp;
+map<typename1, typename2> tmp(mp);
 
 mp[key] = value;
 mp.erase(key);
@@ -55,7 +57,7 @@ vector v(map.begin(),map.end());
 sort(v.begin(),v.end(),less_second);
 ```
 
-# stack
+## stack
 
 ```cpp
 stack<typename> s;
@@ -67,7 +69,7 @@ s.size();
 s.empty();
 ```
 
-# queue
+## queue
 
 ```cpp
 queue<typename> q;
@@ -80,7 +82,7 @@ q.empty();
 q.size();
 ```
 
-# priority_queue
+## priority_queue
 
 ```cpp
 priority_queue<typename> pq;
@@ -90,6 +92,7 @@ pq.top();
 pq.pop();
 pq.empty();
 pq.size();
+
 
 //typename越小优先级越大
 priority_queue<typename, vector<typename>, greater<int> > gpq;
@@ -106,7 +109,7 @@ struct name {
 priority_queue<name> pq;
 ```
 
-# Heap
+## Heap
 
 ```cpp
 vector<int> ivec;
@@ -123,7 +126,7 @@ pop_heap(ivec.begin(), ivec.end());
 ivec.pop_back();  
 ```
 
-# deque
+## deque
 
 ```cpp
 deque<typename> q;
@@ -138,7 +141,7 @@ q.empty();
 q.size();
 ```
 
-# pair
+## pair
 
 ```cpp
 pair<typename,typename> p1(item1, item2);
@@ -149,7 +152,7 @@ p.second = item2;
 p1 <= p2;	//先first后second
 ```
 
-# string
+## string
 
 ```cpp
 string str = "";
@@ -188,7 +191,7 @@ stol(s.c_str());
 a + '0'
 ```
 
-# 常用函数
+## 常用函数
 
 ```cpp
 typename a[k];

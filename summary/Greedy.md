@@ -1,4 +1,4 @@
-# 买卖股票的最佳时机 II
+## 买卖股票的最佳时机 II
 
 给定一个数组，它的第 *i* 个元素是一支给定股票第 *i* 天的价格。
 
@@ -23,3 +23,19 @@ int maxProfit(vector<int>& prices) {
     return max;
 }
 ```
+
+```cpp
+//只能一笔交易时：
+//前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}
+int maxProfit(vector<int>& prices) {
+    if (prices.size()==0) return 0;
+    int _m = 0;
+    int mins = prices[0];
+    for (int i = 1; i < prices.size(); ++i) {
+        if (prices[i] - mins > _m) _m = prices[i] - mins;
+        if (prices[i] < mins) mins = prices[i];
+    }
+    return _m;
+}
+```
+

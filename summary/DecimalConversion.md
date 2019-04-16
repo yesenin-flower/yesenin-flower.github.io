@@ -1,4 +1,4 @@
-# 反转整数(溢出)
+## 反转整数(溢出)
 
 输入数值范围是 $ [−2^31,  2^31 − 1] $。根据这个假设，如果反转后的整数溢出，则返回 0。
 
@@ -11,13 +11,16 @@ int reverse(int x) {
             if (t>INT_MAX/10|t<INT_MIN/10)
                 return 0;
             t = t*10 + x%10;
+            //或者：
+            //if (x < 0 && t > 0) return 0;
+            //else if (x > 0 && t < 0) return 0;
             x /= 10;
         }
         return t;
 }
 ```
 
-# 颠倒二进制位
+## 颠倒二进制位
 
 ```cpp
 uint32_t reverseBits(uint32_t n) {
@@ -49,7 +52,7 @@ uint32_t reverseBits(uint32_t n) {
 
 （负数）10001010<<3=01010000 
 
-# 二进制中1的个数
+## 二进制中1的个数
 
 ```cpp
 int NumberOf1(int n)//有符号的n
@@ -77,7 +80,7 @@ vector<int> countBits(int num) {
     return res; 
 }
 ```
-# 数组中只出现一次的数
+## 数组中只出现一次的数
 
 ```cpp
 int singleNumber(vector<int>& nums) {
@@ -89,7 +92,30 @@ int singleNumber(vector<int>& nums) {
 }
 ```
 
-# 两整数和
+## [缺失数字](https://leetcode-cn.com/problems/missing-number/)
+
+```cpp
+int missingNumber(vector<int>& nums) {
+    int n = nums.size();
+    int sum = n * (n + 1) / 2;
+    
+    for (int i = 0; i < nums.size(); ++i) {
+        sum -= nums[i];
+    }
+    return sum;
+}
+//
+int missingNumber(vector<int>& nums) {
+    int ret = 0;
+    for (int i = 0; i<nums.size(); ++i) {
+        ret ^= nums[i];
+        ret ^= i;
+    }
+    ret ^= nums.size();
+    return ret;
+}
+```
+## 两整数和
 
 ```cpp
 int getSum(int a, int b) {
@@ -101,7 +127,7 @@ int getSum(int a, int b) {
     return getSum(sum,i);  
 }
 ```
-# 十六进制
+## 十六进制
 
 ```cpp
 char* hex = "0123456789abcdef";  
@@ -121,7 +147,7 @@ string toHexEx(unsigned int num) {
     }  
 } 
 ```
-# 汉明距离
+## 汉明距离
 
 ```cpp
 int hammingDistance(int x, int y) {
@@ -136,7 +162,7 @@ int hammingDistance(int x, int y) {
 }
 ```
 
-# 补数
+## 补数
 
 ```cpp
 int findComplement(int num) {
@@ -149,7 +175,7 @@ int findComplement(int num) {
 }
 ```
 
-# 二进制位交替
+## 二进制位交替
 
 ```cpp
 bool hasAlternatingBits(int n) {
@@ -165,7 +191,7 @@ bool hasAlternatingBits(int n) {
 }
 ```
 
-#  汉明距离总和
+## 汉明距离总和
 
 ```cpp
 int totalHammingDistance(vector<int>& nums) {
@@ -181,7 +207,7 @@ int totalHammingDistance(vector<int>& nums) {
 }
 ```
 
-# 两数相除
+## 两数相除
 
 ```cpp
 int divide(int dividend, int divisor) {

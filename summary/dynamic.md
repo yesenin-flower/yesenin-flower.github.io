@@ -1,4 +1,4 @@
-# [ 打家劫舍](http://www.cnblogs.com/grandyang/p/4383632.html)
+## [打家劫舍](https://leetcode-cn.com/problems/house-robber/)
 
 每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，**如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警**。
 
@@ -13,7 +13,20 @@
 
 dp[i] = max(num[i] + dp[i - 2], dp[i - 1])
 
-# 爬楼梯
+```cpp
+int rob(vector<int>& num) {
+    if (num.size() <= 1) return num.empty() ? 0 : num[0];
+    
+    vector<int> dp = {num[0], max(num[0], num[1])};
+    
+    for (int i = 2; i < num.size(); ++i) {
+        dp.push_back(max(num[i] + dp[i - 2], dp[i - 1]));
+    }
+    
+    return dp.back();
+}
+```
+## 爬楼梯
 
 ```cpp
 int climbStairs(int n) {
@@ -27,7 +40,7 @@ int climbStairs(int n) {
     return dp[n-1];
 }
 ```
-# 盛最多水的容器
+## 盛最多水的容器
 
 ```cpp
 
