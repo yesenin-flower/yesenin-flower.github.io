@@ -469,7 +469,7 @@ void nextPermutation(vector<int>& nums) {
 }
 ```
 
-#### [到最近的人的最大距离](https://leetcode-cn.com/problems/maximize-distance-to-closest-person/)
+## [到最近的人的最大距离](https://leetcode-cn.com/problems/maximize-distance-to-closest-person/)
 
 ```cpp
 int maxDistToClosest(vector<int>& seats) {
@@ -490,5 +490,37 @@ int maxDistToClosest(vector<int>& seats) {
     m = (m+1)/2;
     //cout<<first<<" "<<m<<" "<<end<<endl;
     return m >= first ? m >= end ? m: end: first;
+}
+```
+## [将数组分成和相等的三个部分](https://leetcode-cn.com/problems/partition-array-into-three-parts-with-equal-sum/)
+
+```cpp
+bool canThreePartsEqualSum(vector<int>& A) {
+    int sums[A.size()] = {0};
+    sums[0] = A[0];
+    for(int i = 1; i < A.size(); ++i) {
+        sums[i] = sums[i-1] + A[i];
+    }
+    if (sums[A.size() - 1] % 3 != 0) return false;
+    int avg = sums[A.size() - 1] / 3;
+    int i = 0, j = A.size() - 1;
+    while (sums[i] != avg && i + 1 < j) ++i;
+    while (sums[A.size() - 1] - sums[j-1] != avg && i + 1 < j) --j;
+    
+    return sums[i] == avg && sums[A.size() - 1] - sums[j-1] == avg;
+}
+```
+##  [总持续时间可被 60 整除的歌曲](https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/)
+
+```cpp
+int numPairsDivisibleBy60(vector<int>& time) {
+    if(time.size() < 2) return 0;
+    int c[60]{0};
+    for(int t : time)
+        c[t % 60]++;
+    int ans = c[0] * (c[0] - 1) / 2 + c[30] * (c[30] - 1) / 2;
+    for(int i = 1; i < 30; i++)
+        ans += c[i] * c[60 - i];
+    return ans;
 }
 ```

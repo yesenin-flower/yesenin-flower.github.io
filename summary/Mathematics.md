@@ -69,6 +69,13 @@ bool isHappy(int n) {
 
 gcd(a, b) = gcd(b, a %b)
 
+```cpp
+int gcd(int a, int b) {
+    if (b == 0) 
+        return a; 
+    return gcd(b, a % b);
+}
+```
 ## 最小公倍数
 
 lcm(a, b) = a * b / gcd(a, b)
@@ -340,7 +347,7 @@ bool judgeSquareSum(int c) {
 ```
 ## [到达终点数字](https://leetcode-cn.com/problems/reach-a-number/)
 
- 首先由于对称性，target是正是负影响不大。
+首先由于对称性，target是正是负影响不大。
 
 因为比如达到target=2=1-2+3.
 
@@ -378,7 +385,7 @@ bool judgeSquareSum(int c) {
 
 由#2相似可证，相当于在1+2....+k+(k+1)减去了sum-target+1和k。
 
-等价于sum+（k+1）-sum+target-1-k====>target也就是答案是k+1.#3
+等价于sum+（k+1）-sum+target-1-k=>target也就是答案是k+1.#3
 
 如果k=sum-target+1，由#3可知依然是k+1.#4
 
@@ -461,4 +468,29 @@ int reachNumber(int target) {
         
         return res;
     }
+```
+
+## [最小差值 I](https://leetcode-cn.com/problems/smallest-range-i/)
+
+```cpp
+int smallestRangeI(vector<int>& A, int K) {
+    if(A.length<1){
+        return 0;
+    }
+    int max=A[0];
+    int min=A[0];
+    for(int i=1;i<A.length;i++){
+        if(A[i]>max){
+            max=A[i];
+        }            
+        if(A[i]<min){
+            min=A[i];
+        }
+    }
+    if(max-min<K*2){
+        return 0;
+    }else{
+        return max-min-K*2;      
+    }  
+}
 ```

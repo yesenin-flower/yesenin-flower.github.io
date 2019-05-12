@@ -1,4 +1,4 @@
-# 对称二叉树
+## 对称二叉树
 
 ```cpp
 bool isSymmetric(TreeNode* root) {
@@ -19,7 +19,7 @@ bool dfs(TreeNode* left, TreeNode* right) {
     return false;
 }
 ```
-# 层次遍历
+## 层次遍历
 
 ```cpp
 vector<vector<int>> levelOrderBottom(TreeNode* root) {
@@ -46,7 +46,7 @@ vector<vector<int>> levelOrderBottom(TreeNode* root) {
     return res;
 }
 ```
-# 判断平衡二叉树
+## 判断平衡二叉树
 
 ```cpp
 bool isBalanced(TreeNode* root) {
@@ -63,7 +63,7 @@ int dfs(TreeNode* root) {
     return d1 < d2 ? d2+1 : d1+1;
 }
 ```
-# 最小深度
+## 最小深度
 
 ```cpp
 int dfs(TreeNode* root) {
@@ -74,7 +74,7 @@ int dfs(TreeNode* root) {
 }
 ```
 
-# 二叉搜索树的最近公共祖先
+## 二叉搜索树的最近公共祖先
 
 ```cpp
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
@@ -94,7 +94,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 }
 ```
 
-# 路径之和
+## 路径之和
 
 找出从上到下路径和等于sum的路径数，可从中间开始，可不到叶子结点。
 
@@ -109,7 +109,7 @@ int sumUp(TreeNode* root, int pre, int& sum){
     return (current == sum) + sumUp(root->left, current, sum) + sumUp(root->right, current, sum);
 }
 ```
-#  二进制手表
+## 二进制手表
 
 ```cpp
 void DFS(int len, int k, int curIndex, int val, vector<int>& vec)  
@@ -138,7 +138,7 @@ vector<string> readBinaryWatch(int num) {
     return ans;  
 } 
 ```
-# 二叉搜索树众数
+## 二叉搜索树众数
 
 ```cpp
 vector<int> findMode(TreeNode* root) {
@@ -165,7 +165,7 @@ void inorder(TreeNode* node, TreeNode*& pre, int& cnt, int& mx, vector<int>& res
 }
 ```
 
-#  二叉搜索树最小绝对差
+## 二叉搜索树最小绝对差
 
 ```cpp
 int getMinimumDifference(TreeNode* root) {
@@ -182,7 +182,7 @@ void helper(TreeNode* root, int low, int high, int& res) {
 }
 ```
 
-# 累加二叉搜索树
+## 累加二叉搜索树
 
 ```cpp
 TreeNode* convertBST(TreeNode* root) {
@@ -199,7 +199,7 @@ void dfs(TreeNode* root) {
 }
 ```
 
-#  根据二叉树创建字符串
+## 根据二叉树创建字符串
 
 ```
 输入: 二叉树: [1,2,3,4]
@@ -245,7 +245,7 @@ void dfs(TreeNode* root) {
     }  
 ```
 
-# 两数之和  - 输入 BST
+## 两数之和  - 输入 BST
 
 利用哈希表
 
@@ -262,7 +262,7 @@ bool helper(TreeNode* node, int k, unordered_set<int>& s) {
     return helper(node->left, k, s) || helper(node->right, k, s);
 }
 ```
-# 修剪二叉搜索树
+## 修剪二叉搜索树
 
 ```cpp
 TreeNode* trimBST(TreeNode* root, int L, int R) {
@@ -278,7 +278,7 @@ TreeNode* trimBST(TreeNode* root, int L, int R) {
     return root;
 }
 ```
-#  最长同值路径
+## 最长同值路径
 
 ```cpp
 int longestUnivaluePath(TreeNode* root) {
@@ -300,7 +300,7 @@ int dfs(TreeNode* root, int pre, int c) {
 }
 ```
 
-# 二叉树中第二小的节点
+## 二叉树中第二小的节点
 
 给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 `2` 或 `0`。如果一个节点有两个子节点的话，那么这个节点的值不大于它的子节点的值。 
 
@@ -320,7 +320,7 @@ void dfs(TreeNode* root, int m1, int& m2) {
 }
 ```
 
-# 打印二叉树
+## 打印二叉树
 
 ```cpp
 vector<vector<string>> printTree(TreeNode* root) {  
@@ -350,7 +350,7 @@ void printTree(TreeNode *node, int level, int left, int right, vector<vector<str
 } 
 ```
 
-# 二叉搜索树迭代器
+## 二叉搜索树迭代器
 
 ```Cpp
 BSTIterator(TreeNode *root) {
@@ -376,7 +376,7 @@ void push(TreeNode *root) {
     }
 }
 ```
-#  完全二叉树的节点个数
+## 完全二叉树的节点个数
 
 ```cpp
 int countNodes(TreeNode* root) {
@@ -395,3 +395,18 @@ int rightHeight(TreeNode* root) {
 }
 ```
 
+## [递增顺序查找树](https://leetcode-cn.com/problems/increasing-order-search-tree/)
+
+```cpp
+TreeNode* increasingBST(TreeNode* root) {
+    return dfs(root, NULL);
+}
+TreeNode* dfs(TreeNode* root, TreeNode* pre) {
+    if (root == NULL) return pre;
+    
+    TreeNode* tmp = dfs(root->left, root);
+    root->left = NULL;
+    root->right = dfs(root->right, pre);
+    return tmp;
+}
+```

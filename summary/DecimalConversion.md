@@ -1,4 +1,4 @@
-## 反转整数(溢出)
+##  反转整数(溢出)
 
 输入数值范围是 $ [−2^31,  2^31 − 1] $。根据这个假设，如果反转后的整数溢出，则返回 0。
 
@@ -20,7 +20,7 @@ int reverse(int x) {
 }
 ```
 
-## 颠倒二进制位
+##  颠倒二进制位
 
 ```cpp
 uint32_t reverseBits(uint32_t n) {
@@ -52,7 +52,7 @@ uint32_t reverseBits(uint32_t n) {
 
 （负数）10001010<<3=01010000 
 
-## 二进制中1的个数
+##  二进制中1的个数
 
 ```cpp
 int NumberOf1(int n)//有符号的n
@@ -80,7 +80,7 @@ vector<int> countBits(int num) {
     return res; 
 }
 ```
-## 数组中只出现一次的数
+##  数组中只出现一次的数
 
 ```cpp
 int singleNumber(vector<int>& nums) {
@@ -92,7 +92,7 @@ int singleNumber(vector<int>& nums) {
 }
 ```
 
-## [缺失数字](https://leetcode-cn.com/problems/missing-number/)
+##  [缺失数字](https://leetcode-cn.com/problems/missing-number/)
 
 ```cpp
 int missingNumber(vector<int>& nums) {
@@ -115,7 +115,7 @@ int missingNumber(vector<int>& nums) {
     return ret;
 }
 ```
-## 两整数和
+##  两整数和
 
 ```cpp
 int getSum(int a, int b) {
@@ -127,7 +127,7 @@ int getSum(int a, int b) {
     return getSum(sum,i);  
 }
 ```
-## 十六进制
+##  十六进制
 
 ```cpp
 char* hex = "0123456789abcdef";  
@@ -147,7 +147,7 @@ string toHexEx(unsigned int num) {
     }  
 } 
 ```
-## 汉明距离
+##  汉明距离
 
 ```cpp
 int hammingDistance(int x, int y) {
@@ -162,7 +162,7 @@ int hammingDistance(int x, int y) {
 }
 ```
 
-## 补数
+##  补数
 
 ```cpp
 int findComplement(int num) {
@@ -175,7 +175,7 @@ int findComplement(int num) {
 }
 ```
 
-## 二进制位交替
+##  二进制位交替
 
 ```cpp
 bool hasAlternatingBits(int n) {
@@ -191,7 +191,7 @@ bool hasAlternatingBits(int n) {
 }
 ```
 
-## 汉明距离总和
+##  汉明距离总和
 
 ```cpp
 int totalHammingDistance(vector<int>& nums) {
@@ -207,7 +207,7 @@ int totalHammingDistance(vector<int>& nums) {
 }
 ```
 
-## 两数相除
+##  两数相除
 
 ```cpp
 int divide(int dividend, int divisor) {
@@ -224,5 +224,22 @@ int divide(int dividend, int divisor) {
     }
     if ((dividend < 0) ^ (divisor < 0)) res = -res;
     return res > INT_MAX ? INT_MAX : res;
+}
+```
+
+##  [可被 5 整除的二进制前缀](https://leetcode-cn.com/problems/binary-prefix-divisible-by-5/)
+
+数值 * 2 那么他 % 5 的 商 * 2 余数 * 2 由于 商 * 除数的部分 根本不影响 取模的操作 所以只要存下 余数 供下一个值使用就可以了 这样就能避免数值溢出了
+
+```cpp
+vector<bool> prefixesDivBy5(vector<int>& A) {
+    int sums = 0;
+    vector<bool> res;
+    for (int i = 0; i < A.size(); ++i) {
+        sums = (sums<<1) + A[i];
+        res.push_back(sums % 5 == 0);
+        sums %= 5;
+    }
+    return res;
 }
 ```
