@@ -20,7 +20,7 @@ Amazon Alexa语音错误的翻译导致的*skill squatting*， 利用这些error
 4. 不同地区的人口音会犯相同的错，attacker可以利用地区特点来构建skill
 5. 其他medium也有相似的问题
 
-### <font color=#00ffff>CommanderSong: A Systematic Approach for Practical Adversarial Voice Recognition</font>
+### <font color=#ffff>CommanderSong: A Systematic Approach for Practical Adversarial Voice Recognition</font>
 
 在音乐里加噪音(命令)影响automatic speech recognition (ASR) systems的识别 他针对的是KALDI，
 
@@ -61,7 +61,7 @@ For the complex end-to-end deep learning speech recognizing system, CommanderSon
 1. Third-Party Cookie ，当你访问的网站里需要访问其他网站的资源，就会建立其他网站（第三方）的cookies。浏览器可以block这些cookies，也可以用扩展程序，以及same-site cookies（直接访问的网站有一个ss cookies的tag，如果简介访问，那么ss cookies不能用。比如我电脑有支付宝的cookies和直接访问时的ss cookies，用其他商户跳转到支付宝，就不能用ss cookies的信息）
 2. 框架检测使用的policies和效果
 
-###<font color=#00ffff>[Effective Detection of Multimedia Protocol Tunneling using Machine Learning](<https://blog.csdn.net/qq_30050175/article/details/88392535>)</font>
+###<font color=#ffff>[Effective Detection of Multimedia Protocol Tunneling using Machine Learning](<https://blog.csdn.net/qq_30050175/article/details/88392535>)</font>
 
 existing multimedia protocol tunneling(MPT) systems不能区分covert channel or not,  在审查的时候不安全，提供一种寻找covert channel的方法。multimedia protocol tunneling：多媒体协议隧道：通过将数据调制到多媒体应用程序输入中创建隐蔽通道。隐蔽信道建立在公开的信道中，公开信道传递合法信息，而隐蔽信道对所传信息进行特殊地编码、译码，从而传输传输非法或私密而不被人发现；利用网络隐蔽信道进行扩散攻击和信息泄漏技术，对计算机网络的安全构成巨大威胁
 
@@ -111,13 +111,13 @@ Charm, a system solution that facilitates dynamic analysis of device drivers of 
 
 嵌入式系统软件的测试方法perform security testing of complete real-world embedded firmware. 
 
-### <font color=#00ffff>Acquisitional Rule-based Engine for Discovering Internet-of-Things Devices</font>
+### <font color=#ffff>Acquisitional Rule-based Engine for Discovering Internet-of-Things Devices</font>
 
 an Acquisitional Rule-based Engine (ARE), which can automatically generate rules for discovering and annotating IoT devices without any training data. ARE builds device rules by leveraging application-layer response data from IoT devices and product descriptions in relevant websites for device annotations. 用频繁项集算法找到rules
 
 -----
 
-### <font color=#00ffff>FlowCog: Context-aware Semantics Extraction and Analysis of Information Flow Leaks in Android Apps</font>
+### <font color=#ffff>FlowCog: Context-aware Semantics Extraction and Analysis of Information Flow Leaks in Android Apps</font>
 
 FlowCog statically finds all the Android views that are related to the given flow via control or data dependencies, and then extracts semantics, such as texts and images, from these views and associated layouts. Next, FlowCog adopts a natural language processing (NLP) approach to infer whether the extracted semantics are correlated with the given flow. Android访问私人信息是否合法取决于应用是否向用户提供了足够的解释，FlowCog从Android视图中抽取相关的语义，再用NLP方法推断语义与给定流是否相关。
 
@@ -126,15 +126,17 @@ FlowCog statically finds all the Android views that are related to the given flo
 3. TF-IDF+svm/boosting
 4. word2vec+similarity
 
-### <font color=#00ffff>Sensitive Information Tracking in Commodity IoT</font>
+### <font color=#ffff>Sensitive Information Tracking in Commodity IoT</font>
 
 SainT, a static taint analysis tool for IoT applications. SainT operates in three phases; (a) translation of platform-specific IoT source code into an intermediate representation (IR), (b) identifying sensitive sources and sinks, and (c) performing static analysis to identify sensitive data flows. 
+
+1. backward:广播找到所有接受不了的worklist，用path-/context-sensitivity去掉一部分path
 
 ### <font color=#00ffff>Enabling Refinable Cross-Host Attack Investigation with Efficient Data Flow Tagging and Tracking</font>
 
 an efficient data flow tagging and tracking mechanism that enables practical cross-host attack investigations. 分布式系统多个结点数据泄露
 
-1. 设计了新的tag方法DIFT，构建Global and Local Tags
+1. 设计了tag方法DIFT，构建Global and Local Tags
 2. link tag propagation between 2 hosts via socket communication(TCP: counter-based, UDP: tag-embedding based)
 3. 找到错误结点
 
@@ -146,6 +148,87 @@ an efficient data flow tagging and tracking mechanism that enables practical cro
 2. 通过时间顺序，backward找到之前的结点，forward找到之后的结点
 3. Log-based: 不改变依赖的情况下删除event；去掉重复的连续事件
 4. graph-based: 使用global context来剪枝；FD方法如果交叉事件不改变global dependence；SD方法不引入source nodes的新依赖
+
+----
+
+### <font color=#ffff>Unveiling and Quantifying Facebook Exploitation of Sensitive Personal Data for Advertising Purposes</font>
+
+This paper quantifies the portion of Facebook users in the European Union (EU) who were labeled with interests linked to potentially sensitive personal data in the period prior to when GDPR went into effect.
+
+1. interest是否sensitive。定义5项sensitive interest 算其他interest和他们的semantic 相似度
+2. 用户被关注了哪些sensitive interest，通过like、ad、app等
+3. 分析ad compaign
+
+### <font color=#ffff>Analysis of Privacy Protections in Fitness Tracking Social Networks -or- You can run, but can you hide?</font>
+
+1. Fitness Tracking公布了敏感的地理位置如军队
+
+2. 给你两个点，你可以根据半径猜出真正的地点 Least square circle fit algorithm(如果有endpoint错了就全错了、慢等)
+
+3. 新方法：
+
+   a. 根据不同的r，找candidate center
+
+   b. 算置信度
+
+   c. Jitters in GPS，两个点距离小于阈值认为是一个点
+
+   d. 规则排除错误center
+
+### <font color=#ffff>AttriGuard: A Practical Defense Against Attribute Inference Attacks via Adversarial Machine Learning</font>
+
+
+
+### <font color=#00ffff>Polisis: Automated Analysis and Presentation of Privacy Policies Using Deep Learning</font>
+
+an automated framework for privacy **poli**cy analys**is** (Polisis). It enables scalable, dynamic, and multi-dimensional queries on natural language privacy policies.
+
+1. privacy policies的问答系统
+2. html数据整合问答
+3. 聚集多个分类器（相同cnn结构）：info type、purpose、collection mode结果得到segment分类
+4. structured query在data里得到policy segment并分类得到segment类别
+5. unstructured query+segment分类算最终的answer
+
+----
+
+### Plug and Prey? Measuring the Commoditization of Cybercrime via Online Anonymous Markets
+
+Which parts of cybercrime value chains are successfully commoditized, and which are not? What kind of revenue do criminal business-to-business (B2B) services generate and how fast are they growing?
+
+Linear Support Vector Machine (SVM) classifier
+
+### Reading Thieves' Cant: Automatically Identifying and Understanding Dark Jargons from Cybercrime Marketplaces
+
+利用不同语料库的词含义不同word2vec
+
+### Schrödinger’s RAT: Profiling the Stakeholders in the Remote Access Trojan Ecosystem
+
+Remote Access Trojans (RATs) are a class of malware that give an attacker direct, interactive access to a victim’s personal computer, allowing the attacker to steal private data stored on the machine, spy on the victim in real-time using the camera and microphone, and interact directly with the victim via a dialog box. RATs have been used for surveillance, information theft, and extortion of victims.
+
+report on the attackers and victims for two popular RATs, njRAT and DarkComet. Using the malware repository VirusTotal, we find all instances of these RATs and identify the domain names of the controllers. We then register those domains that have expired and direct them to our measurement infrastructure, allowing us to determine the victims of these campaigns. 
+
+### The aftermath of a crypto-ransomware attack at a large academic institution
+
+analysis of the technological, productivity, and personal and social impact of ransomware attacks, including previously unaccounted secondary costs. We suggest strategies for comprehensive cyber-response plans that include human factors, and highlight the importance of communication. We conclude with a Ransomware Process for Organizations diagram summarizing the additional contributing factors beyond those relevant to individual infections.
+
+-----
+
+###MoonShine: Optimizing OS Fuzzer Seed Selection with Trace Distillation
+
+1. Explicit Dependencies:构建行为依赖图，result nodes存储1) value returned, 2) return type (pointer, int, or semantic) and 3) the call in the trace which produced the result；Argument nodes 存储the value of the argument, the type, and the call to which the argument belongs
+2. implicit dependency: identify the collection of read and write dependencies by performing control flow analysis on the target kernel. MoonShine’s implicit dependency tracker is build on Smatch；MoonShine tracks write dependencies by registering a Unary Operator Hook and Assignment Hook. 
+
+### QSYM : A Practical Concolic Execution Engine Tailored for Hybrid Fuzzing
+
+整合fuzzing and concolic execution
+
+### Automatic Heap Layout Manipulation for Exploitation
+
+Heap layout manipulation is integral to exploiting heap-based memory corruption vulnerabilities. In this paper we present the first automatic approach to the problem, based on pseudo-random black-box search.
+
+### FUZE: Towards Facilitating Exploit Generation for Kernel Use-After-Free Vulnerabilities
+
+a new framework to facilitate the process of kernel UAF exploitation. The design principle behind this technique is that we expect the ease of crafting an exploit could augment a security analyst with the ability to expedite exploitability evaluation. Technically, FUZE utilizes kernel fuzzing along with symbolic execution to identify, analyze and evaluate the system calls valuable and useful for kernel UAF exploitation.
 
 ---
 
@@ -168,59 +251,9 @@ Tor是互联网上用于保护您隐私最有力的工具之一，而Tor Hidden 
 
 Zcash有shielded pool，通过value 找到此pool里的数据交换链
 
-----
+------
 
-
-
-----
-
-### **The Battle for New York: A Case Study of Applied Digital Threat Modeling at the Enterprise Level.** 
-
-### **SAQL: A Stream-based Query System for Real-Time Abnormal System Behavior Detection.** 
-
----
-
-### **Efail: Breaking S/MIME and OpenPGP Email Encryption using Exfiltration Channels.** 
-
-### **The Dangers of Key Reuse: Practical Attacks on IPsec IKE.** 
-
-### **One&Done: A Single-Decryption EM-Based Attack on OpenSSL's Constant-Time Blinded RSA**
-
-### **DATA - Differential Address Trace Analysis: Finding Address-based Side-Channels in Binaries.** 
-
-----
-
-### **Practical Accountability of Secret Processes.** 
-
-### **DIZK: A Distributed Zero Knowledge Proof System.**
-
----
-
-### **NetHide: Secure and Practical Network Topology Obfuscation.**
-
-### **Towards a Secure Zero-rating Framework with Three Parties.** 
-
----
-
-### A Sense of Time for JavaScript and Node.js: First-Class Timeouts as a Cure for Event Handler Poisoning
-
-First-Class Timeouts, which incorporates timeouts at the EDA framework level.
-
-### Rampart: Protecting Web Applications from CPU-Exhaustion Denial-of-Service Attacks
-
-Rampart detects and stops sophisticated CPU-exhaustion DoS attacks using statistical methods and function-level program profiling. Furthermore, it synthesizes and deploys filters to block subsequent attacks, and it adaptively updates them to minimize any potentially negative impact on legitimate users.
-
-### <font color=#00ffff>NAVEX: Precise and Scalable Exploit Generation for Dynamic Web Applications</font>
-
-通过网页动态生成的url，找到可能被注入等攻击的页面
-
-### Freezing the Web: A Study of ReDoS Vulnerabilities in JavaScript-based Web Servers
-
-analyzing the exploitability of deployed servers. The basic idea is to search for previously unknown vulnerabilities in popular libraries, hypothesize how these libraries may be used by servers, and to then craft targeted exploits.
-
-----
-
-###Better managed than memorized? Studying the Impact of Managers on Password Strength and Reuse
+### Better managed than memorized? Studying the Impact of Managers on Password Strength and Reuse
 
 password重用率高，主要是数据集
 
@@ -241,6 +274,74 @@ human memory naturally adapts according to an estimate of how often a password w
 
 access control focus on IoT capabilities (i.e., certain actions that devices can perform), rather than on a per-device granularity. 
 
+----
+
+### The Battle for New York: A Case Study of Applied Digital Threat Modeling at the Enterprise Level. 
+
+introduce formalized threat modeling to New York City Cyber Command: the primary digital defense organization for the most populous city in the United States.
+
+### **SAQL: A Stream-based Query System for Real-Time Abnormal System Behavior Detection.** 
+
+a novel stream-based query system that takes as input, a real-time event feed aggregated from multiple hosts in an enterprise, and provides an anomaly query engine that queries the event feed to identify abnormal behaviors based on the specified anomalies.
+
+---
+
+### Efail: Breaking S/MIME and OpenPGP Email Encryption using Exfiltration Channels.
+
+We use CBC/CFB gadgets to inject malicious plaintext snippets into encrypted emails. These snippets abuse existing and standard conforming backchannels to exfiltrate the full plaintext after decryption. 
+
+### The Dangers of Key Reuse: Practical Attacks on IPsec IKE
+
+reusing a key pair across different versions and modes of IKE can lead to cross-protocol authentication bypasses, enabling the impersonation of a victim host or network by attackers. We exploit a Bleichenbacher oracle in an IKEv1 mode, where RSA encrypted nonces are used for authentication. 
+
+### One&Done: A Single-Decryption EM-Based Attack on OpenSSL's Constant-Time Blinded RSA
+
+the first side channel attack approach that, without relying on the cache organization and/or timing, retrieves the secret exponent from a single decryption on arbitrary ciphertext in a modern (current version of OpenSSL) fixed-window constant-time implementation of RSA.
+
+### DATA - Differential Address Trace Analysis: Finding Address-based Side-Channels in Binaries.
+
+DATA, a differential address trace analysis framework that detects address-based side-channel leaks in program binaries.
+
+----
+
+### Practical Accountability of Secret Processes.
+
+法律领域court
+
+### DIZK: A Distributed Zero Knowledge Proof System.
+
+ a system that distributes the generation of a zero knowledge proof across machines in a compute cluster. 
+
+分布式 scalable parallel
+
+---
+
+### NetHide: Secure and Practical Network Topology Obfuscation.
+
+a network topology obfuscation framework that mitigates LFAs while preserving the practicality of path tracing tools. The key idea behind NetHide is to formulate network obfuscation as a multi-objective optimization problem that allows for a flexible tradeoff between security (encoded as hard constraints) and usability (encoded as soft constraints). 
+
+### Towards a Secure Zero-rating Framework with Three Parties.
+
+ secure, backward compatible, zero-rating framework, called ZFree, which only allows network traffic authorized by the correct CP to be zero-rated.
+
+---
+
+### A Sense of Time for JavaScript and Node.js: First-Class Timeouts as a Cure for Event Handler Poisoning
+
+First-Class Timeouts, which incorporates timeouts at the EDA framework level.
+
+### Rampart: Protecting Web Applications from CPU-Exhaustion Denial-of-Service Attacks
+
+Rampart detects and stops sophisticated CPU-exhaustion DoS attacks using statistical methods and function-level program profiling. Furthermore, it synthesizes and deploys filters to block subsequent attacks, and it adaptively updates them to minimize any potentially negative impact on legitimate users.
+
+### <font color=#00ffff>NAVEX: Precise and Scalable Exploit Generation for Dynamic Web Applications</font>
+
+通过网页动态生成的url，找到可能被注入等攻击的页面
+
+### Freezing the Web: A Study of ReDoS Vulnerabilities in JavaScript-based Web Servers
+
+analyzing the exploitability of deployed servers. The basic idea is to search for previously unknown vulnerabilities in popular libraries, hypothesize how these libraries may be used by servers, and to then craft targeted exploits.
+
 ------
 
 #### ACES: Automatic Compartments for Embedded System 
@@ -259,15 +360,53 @@ an automated approach, based on model checking and symbolic execution, to analyz
 
 Guarder ensures the desired randomization entropy, and provides an unprecedented level of security guarantee by combining all security features of existing allocators, with overhead that is comparable to performance-oriented allocators. 
 
+---
+
+### The Secure Socket API: TLS as an Operating System Service
+
+### Return Of Bleichenbacher's Oracle Threat (ROBOT)
+
+### Bamboozling Certificate Authorities with BGP
+
+### The Broken Shield: Measuring Revocation Effectiveness in the Windows Code-Signing PKI
+
+---
+
+### Debloating Software through Piece-Wise Compilation and Loading
+
+### Precise and Accurate Patch Presence Test for Binaries
+
+### From Patching Delays to Infection Symptoms: Using Risk Profiles for an Early Discovery of Vulnerabilities Exploited in the Wild
+
+### Understanding the Reproducibility of Crowd-reported Security Vulnerabilities
+
+----
+
+### Malicious Management Unit: Why Stopping Cache Attacks in Software is Harder Than You Think
+
+### Translation Leak-aside Buffer: Defeating Cache Side-channel Protections with TLB Attacks
+
+### Meltdown: Reading Kernel Memory from User Space
+
+### Foreshadow: Extracting the Keys to the Intel SGX Kingdom with Transient Out-of-Order Execution
+
+----
+
+### We Still Don't Have Secure Cross-Domain Requests: an Empirical Study of CORS
+
+### **End-to-End Measurements of Email Spoofing Attacks**
+
+### **Who Is Answering My Queries: Understanding and Characterizing Interception of the DNS Resolution Path**
+
+### **End-Users Get Maneuvered: Empirical Analysis of Redirection Hijacking in Content Delivery Networks.** 
+
+---
+
+### **The Guard's Dilemma: Efficient Code-Reuse Attacks Against Intel SGX.**
+
+### **A Bad Dream: Subverting Trusted Platform Module While You Are Sleeping.**
 
 
-#TODO
 
-1. CommanderSong: A Systematic Approach for Practical Adversarial Voice Recognition **认真读一次**
-2. Effective Detection of Multimedia Protocol Tunneling using Machine Learning：不需要label
-3. ATtention Spanned: Comprehensive Vulnerability Analysis of AT Commands Within the Android Ecosystem
-4. Acquisitional Rule-based Engine for Discovering Internet-of-Things Devices
-5. FlowCog: Context-aware Semantics Extraction and Analysis of Information Flow Leaks in Android Apps
-6. Sensitive Information Tracking in Commodity IoT
-7. Dependence-Preserving Data Compaction for Scalable Forensic Analysis
+
 
