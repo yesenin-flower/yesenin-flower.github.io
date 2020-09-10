@@ -177,7 +177,7 @@ This paper quantifies the portion of Facebook users in the European Union (EU) w
 
 ### <font color=#ffff>AttriGuard: A Practical Defense Against Attribute Inference Attacks via Adversarial Machine Learning</font>
 
-
+![](https://ws4.sinaimg.cn/large/006tNc79ly1g3b8vt0ct3j30gj0neq9v.jpg)
 
 ### <font color=#00ffff>Polisis: Automated Analysis and Presentation of Privacy Policies Using Deep Learning</font>
 
@@ -250,6 +250,46 @@ Tor是互联网上用于保护您隐私最有力的工具之一，而Tor Hidden 
 ### An Empirical Analysis of Anonymity in Zcash
 
 Zcash有shielded pool，通过value 找到此pool里的数据交换链
+
+----
+
+### SAD THUG: Structural Anomaly Detection for Transmissions of High-value Information Using Graphics
+
+malware employed for targeted attacks has been using similar techniques for many years. In this paper, we show that these methods result in structural changes to the respective files. Thus, infections with these malware families can be detected by identifying image files with an unusual structure. We developed a structural anomaly detection approach that is based on this insight.
+
+1. 大部分malware使用structural image: append,segment injection,byte stuffing.
+2. 使用文件构建有向图，训练分类
+
+### FANCI : Feature-based Automated NXDomain Classification and Intelligence
+
+detecting infections with domain generation algorithm (DGA) based malware by monitoring non-existent domain (NXD) responses in DNS traffic. 
+
+1. Structural Features：Domain Name Length、Number of Subdomains等等
+2. Linguistic Features：Contains Digits、Vowel Ratio等
+3. Statistical Features：N-Gram Frequency Distribution、Entropy
+
+### An Empirical Study of Web Resource Manipulation in Real-world Mobile Applications
+
+we first define the problem as cross-principal manipulation (XPM) of Web resources, and then design an automated tool named XPMChecker to detect XPM behaviors in apps.
+
+1. XPM：第三方软件使用了官方cookies。
+2. 找到软件使用的cookies，确定第三方libraries（merkle-tree based）/host app，
+3. 判断软件是否官方，通过google找到子公司，词袋模型算是否是官方
+
+### Fast and Service-preserving Recovery from Malware Infections Using CRIU
+
+a technique for restoring an infected server system running within a Linux container to an uninfected state in a service-preserving manner using Checkpoint/Restore in Userspace (CRIU). We modify the CRIU source code to flexibly integrate with existing malware detection technologies so that it can remove suspected malware processes within a Linux container during a checkpoint/restore event. 
+
+----
+
+### Tackling runtime-based obfuscation in Android with TIRO
+
+1. 找到混淆点，确定参数限制
+2. Java-native
+
+### Discovering Flaws in Security-Focused Static Analysis Tools for Android using Systematic Mutation
+
+evaluates Android static analysis tools to discover, document, and fix, flaws, by leveraging the well-founded practice of mutation analysis.
 
 ------
 
