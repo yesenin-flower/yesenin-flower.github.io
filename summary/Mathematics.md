@@ -321,10 +321,32 @@ map<string, int> urltoindex;
 map<int, string> indextourl;
 ```
 
-## 旋转图像
+## [旋转图像](https://leetcode.com/problems/rotate-image/)
 
 先对角线，再对折
 
+另一种思路，找到对应关系，按对应关系移动
+
+```cpp
+void rotate(vector<vector<int>>& matrix) {
+    int n = matrix.size();
+    for (int i = 0; i < n / 2; ++i) {
+        for (int j = i; j < n - i - 1; ++j) {
+            int prev = matrix[i][j];
+            int r1 = i, c1 = j;
+            for (int k = 0; k < 4; ++k) {
+                int r2 = c1, c2 = n - 1 - r1;
+                //cout<<r1<<" "<<c1<<" "<<r2<<" "<<c2<<endl;
+                int tmp = matrix[r2][c2];
+                matrix[r2][c2] = prev;
+                prev = tmp;
+                r1 = r2;
+                c1 = c2;
+            }
+        }
+    }
+}
+```
 ## [平方数之和](https://leetcode-cn.com/problems/sum-of-square-numbers/)
 
 ```cpp
@@ -494,3 +516,19 @@ int smallestRangeI(vector<int>& A, int K) {
     }  
 }
 ```
+
+### [闰年](https://leetcode.com/problems/day-of-the-week/)
+
+四年一闰，百年不闰，四百年再闰
+
+(year % 4 == 0 && year % 100 !=0)||(year % 400 ==0 )
+
+### [Reveal Cards In Increasing Order](https://leetcode.com/problems/reveal-cards-in-increasing-order/solution/)
+
+[跨过一个未访问过的元素](https://blog.csdn.net/qq_24133491/article/details/84950456)
+
+[反向递推初始序列](https://blog.csdn.net/InNoVaion_yu/article/details/88354023)
+
+###[Pancake Sorting](https://blog.csdn.net/Orientliu96/article/details/103273797)
+
+逐一将目前list中的最大数移到list的最后一位，最终完成变换。

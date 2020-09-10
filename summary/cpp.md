@@ -1,3 +1,5 @@
+
+
 ## vector
 
 ```cpp
@@ -5,6 +7,7 @@ vector<typename> v(list, list+length);
 vector<int> v = {0,1};
 vector<pair<int,int> > vp;//注意>>是位移符号
 vector<int> va[10];//10个vector<int>
+vector<vector <int> > ivec(m ,vector<int>(n,0)); //m*n的二维vector，所有元素初始化为0
 
 v.push_back(item);
 v.insert(v.begin()+k,item);				//O(N)
@@ -15,6 +18,8 @@ v.size();								//O(1)
 v.clear();								//O(N)
 
 sort(v.begin(),v.end());
+sort(freq.begin(), freq.end(), greater<int>());
+find(wordList.begin(), wordList.end(), endWord) == wordList.end()
 ```
 
  ## set
@@ -55,6 +60,10 @@ bool less_second(const typename1& m1, const typename2& m2) {
 }
 vector v(map.begin(),map.end());
 sort(v.begin(),v.end(),less_second);
+
+for(iter = _map.begin(); iter != _map.end(); iter++) {
+  cout << iter->first << " : " << iter->second << endl;
+}
 ```
 
 ## stack
@@ -98,6 +107,9 @@ pq.size();
 priority_queue<typename, vector<typename>, greater<int> > gpq;
 //typename越大优先级越大
 priority_queue<typename, vector<typename>, less<int> > lpq;
+lpq.push();
+lpq.top();
+lpq.top();
 //结构体定义
 struct name {
 	typename t1;

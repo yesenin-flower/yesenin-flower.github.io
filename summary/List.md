@@ -8,74 +8,6 @@
 
 再全局reverse
 
-## Two Sum 输入有序数组
-
-1. 分治
-   第一个数字肯定要小于目标值target，那么我们每次用二分法来搜索target - numbers[i]即可
-2. 两个指针
-   两个指针，一个指向开头，一个指向末尾，然后向中间遍历，如果指向的两个数相加正好等于target的话，直接返回两个指针的位置即可，若小于target，左指针右移一位，若大于target，右指针左移一位，以此类推直至两个指针相遇停止
-
-```cpp
-vector<int> twoSum(vector<int>& numbers, int target) {
-    int sz = numbers.size();
-    int l = 0, r = sz - 1;
-    vector<int> res;
-    while (l < r) {
-        int sum = numbers[l] + numbers[r];
-        if (sum == target) {
-            res.push_back(l+1);
-            res.push_back(r+1);
-            return res;
-        } else if (sum > target){
-            --r;
-        } else if (sum < target){
-            ++l;
-        }
-    }
-    return res;
-}
-```
-```cpp
-vector<vector<int>> threeSum(vector<int>& nums) {
-    vector<vector<int>> res;
-    sort(nums.begin(), nums.end());
-    
-    for (int i = 0; i < nums.size(); ++i) {
-        int j = i + 1;
-        int k = nums.size() - 1;
-        if (i != 0 && nums[i] == nums[i-1]) continue;
-        
-        while (j < k) {
-            if (nums[i] + nums[j] + nums[k] == 0) {
-                res.push_back({nums[i],nums[j],nums[k]});
-                ++j;
-                --k;
-                while (j < k && nums[j] == nums[j-1]) ++j;
-                while (j < k && nums[k] == nums[k+1]) --k;
-            } else if (nums[i] + nums[j] + nums[k] < 0) {
-                ++j;
-            } else {
-                --k;
-            }
-        }
-    }
-    return res;
-}
-```
-```cpp
-int triangleNumber(vector<int>& nums) {
-    sort(nums.begin(), nums.end());
-    int res = 0;
-    for (int i = 0; i < nums.size(); ++i) {
-        for (int j = i + 1; j < nums.size()-1; ++j) {
-            int k = nums.size() - 1;
-            while (j < k && nums[i] + nums[j] <= nums[k]) --k;
-            if (j < k) res += k - j;
-        }
-    }
-    return res;
-}
-```
 ## HASHTABLE
 
 如果要求index，就用hashtable做。
@@ -149,6 +81,21 @@ public boolean checkPossibility(int[] nums) {
     return cnt <= 1;
 }
 ```
+## [Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/)
+
+先排序，找不同
+
+方法二：
+
+分三步骤：1）分别从左和从右，找出第一个非增/非降的位置left和right；2）在区间[left, right]之内找到最大值lmax和最小值rmin；3）将区间[left, right]分别向左和向右扩展，直到其左边的第一个数小于rmin，其右边的第一个数大于lmax。扩展后的区间[left, right]的长度就是题目所求。算法的时间复杂度是O(n)，空间复杂度是O(1)。
+
+方法三：
+使用栈 s 来维持一个递增或递减序列的下标，区间的上下界分别用 start 和 end 记录。
+
+先从左往右遍历一次数组 nums 以确定目标区间的下界，对每一个元素 nums[i]，比较栈顶对应的数组元素 nums[s.top()] 是否大于 nums[i]，若大于则更新 start = min(start, s.top()) 并出栈，重复直到栈为空或 nums[s.top()] <= nums[i]，将当前下标 i 入栈。这样遍历完一次后，start 的值就变成目标区间的上界了。
+
+在对数组从右往左遍历一次，用类似的方法可以确定目标区间的下界 end。
+
 ## [找到所有数组中消失的数字](https://www.cnblogs.com/grandyang/p/6222149.html)
 
 ```cpp
@@ -510,17 +457,48 @@ bool canThreePartsEqualSum(vector<int>& A) {
     return sums[i] == avg && sums[A.size() - 1] - sums[j-1] == avg;
 }
 ```
-##  [总持续时间可被 60 整除的歌曲](https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/)
+##  Cells with Odd Values in a Matrix
 
 ```cpp
-int numPairsDivisibleBy60(vector<int>& time) {
-    if(time.size() < 2) return 0;
-    int c[60]{0};
-    for(int t : time)
-        c[t % 60]++;
-    int ans = c[0] * (c[0] - 1) / 2 + c[30] * (c[30] - 1) / 2;
-    for(int i = 1; i < 30; i++)
-        ans += c[i] * c[60 - i];
-    return ans;
-}
+class Solution {
+public:
+    int oddCells(int n, int m, vector<vector<int>>& indices) {
+        unordered_map<int, int> rows;
+        unordered_map<int, int> cols;
+        
+        for(int i=0; i<indices.size(); i++){
+            rows[indices[i][0]]++;
+            cols[indices[i][1]]++;
+        }
+        int r=0;
+        int c=0;
+        for(int i=0; i<n; i++) if(rows[i]%2) r++;
+        for(int i=0; i<m; i++) if(cols[i]%2) c++;
+        return r*m + c*n - 2*r*c;
+    }
+};
 ```
+
+### [Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+
+[Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
+
+1-n可以作为list的index判断是否出现/出现次数
+
+```cpp
+vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int>  result;
+        for (int i = 0; i < nums.size(); ++i) {
+            int index = abs(nums[i]) - 1;
+            if (nums[index] > 0)
+                nums[index] = -nums[index]; 
+        }
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] > 0) {
+                result.push_back(i+1);
+            }
+        }
+        return result;
+    }
+```
+

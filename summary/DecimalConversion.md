@@ -1,6 +1,6 @@
 ##  反转整数(溢出)
 
-输入数值范围是 $ [−2^31,  2^31 − 1] $。根据这个假设，如果反转后的整数溢出，则返回 0。
+输入数值范围是 $ [−2^{31},  2^{31} − 1] $。根据这个假设，如果反转后的整数溢出，则返回 0。
 
 注意判断溢出的方法。
 
@@ -113,6 +113,24 @@ int missingNumber(vector<int>& nums) {
     }
     ret ^= nums.size();
     return ret;
+}
+```
+[448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+
+```cpp
+vector<int> findDisappearedNumbers(vector<int>& nums) {
+    vector<int>  result;
+    for (int i = 0; i < nums.size(); ++i) {
+        int index = abs(nums[i]) - 1;
+        if (nums[index] > 0)
+            nums[index] = -nums[index]; 
+    }
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] > 0) {
+            result.push_back(i+1);
+        }
+    }
+    return result;
 }
 ```
 ##  两整数和
@@ -243,3 +261,8 @@ vector<bool> prefixesDivBy5(vector<int>& A) {
     return res;
 }
 ```
+
+###[1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://blog.csdn.net/qq_39378221/article/details/107054473)
+
+我们将a,b同时异或b就会发现，只要i到k的元素异或等于0，那么j取i,k之间的任意值都可以满足条件。
+

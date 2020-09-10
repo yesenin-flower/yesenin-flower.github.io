@@ -40,21 +40,20 @@ int climbStairs(int n) {
     return dp[n-1];
 }
 ```
-## 盛最多水的容器
+### [1277. Count Square Submatrices with All Ones](https://blog.csdn.net/XX_123_1_RJ/article/details/104131436)
 
-```cpp
+![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gi2txx5gekj309b08zdgj.jpg)
 
-int maxArea(vector<int>& height) {
-    int len = height.size();
-    int left = 0, right = len - 1;
-    int maxx = 0,temp;
-    while (left<right&&left<len-1 && right>=0)
-    {
-       temp = min(height[left], height[right])*(right - left);
-       if (temp > maxx)maxx = temp;
-        if (height[left] < height[right])left++;
-        else right--;
-    }
-    return maxx;
-}
+dp\[i][j]的值应该是dp\[i-1][j-1]、 dp\[i-1][j] 和 dp\[i][j-1]三值中的最小的一个 然后 +1
+
+```python
+def countSquares(self, A: List[List[int]]) -> int:
+        res = 0
+        for i in range(len(A)):
+            for j in range(len(A[0])):
+                if i and j and A[i][j]:
+                    A[i][j] = min(A[i - 1][j], A[i][j - 1], A[i - 1][j - 1]) + 1
+                res += A[i][j]
+        return res
 ```
+
