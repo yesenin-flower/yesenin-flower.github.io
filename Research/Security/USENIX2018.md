@@ -213,7 +213,7 @@ analysis of the technological, productivity, and personal and social impact of r
 
 -----
 
-###MoonShine: Optimizing OS Fuzzer Seed Selection with Trace Distillation
+### MoonShine: Optimizing OS Fuzzer Seed Selection with Trace Distillation
 
 1. Explicit Dependencies:构建行为依赖图，result nodes存储1) value returned, 2) return type (pointer, int, or semantic) and 3) the call in the trace which produced the result；Argument nodes 存储the value of the argument, the type, and the call to which the argument belongs
 2. implicit dependency: identify the collection of read and write dependencies by performing control flow analysis on the target kernel. MoonShine’s implicit dependency tracker is build on Smatch；MoonShine tracks write dependencies by registering a Unary Operator Hook and Assignment Hook. 
