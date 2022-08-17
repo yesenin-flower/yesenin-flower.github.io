@@ -1,0 +1,44 @@
+---
+layout:     post
+title:      "北京周边游--箭扣长城"
+date:       2016-08-31 12:00:00
+author:     "lan"
+header-img: "img/in-post/2193400-c44f00ca7db5c857.jpg"
+catalog: true
+tags:
+    - Life
+    - Travel
+---
+
+爬箭扣长城的时候，我脑子里想的都是王朔的《玩的就是心跳》。虽然早就知道这是野长城，亦没有奢想过会像爬八达岭一样轻松，但也没想到会这么险。
+有些地方的城墙已经破败了，只留下泥沙和石块拼成的小路。但这条线路，有路还算是好的，鹰飞燕仰、北京结这些地方，路已经毁了，只能手脚并用地爬。本来以为自己是来徒步的，最后却变成了攀岩，“爬”长城这个动词真不是白来的。若都是向上攀就算了，往下爬更是惊险。很多下行路线几近垂直，人“挂”在上面，鼓起勇气往下瞅，却被大石头挡着视线，根本看不见落脚点。箭扣长城已经是野长城的成熟路线了，但所谓的成熟，却是“都有路，但是不能谈好走不好走”。往下爬的时候，人只能紧紧抓住石头或者树枝，脚一点点地试，找到牢固的石块，才敢慢慢往下挪。我们开始也没打探好情况，出门没带绳子，这路线就更加危险。
+有一次，我们下行刚挪到中间，突然下起了雨。见着雨滴越来越密，朋友只能催我往上爬回去。他命令下得果断，但我却盘算着，等雨下完，石头更加湿滑，想下去就更难了。就在我卡在中间，想着能不能在雨变大之前下去的几秒钟，雨势极速变大，我们只能立刻爬上去了。巧的是，当天出门我们也没有带雨衣，两个人只能顶着包（包有防雨罩），呆愣地躲在树下。不远处乌云密布，眼见着风把过云雨吹过来，想着前路漫漫，又无退路可言，加上气温骤降，我只能缩在朋友怀里瑟瑟发抖。后来朋友告诉我，我躲着没有看见，“雨就像线条一样的，就像从云中撒了很多线条，感觉很奇妙。”祸兮福所至，雨将歇之际，远处惊现彩虹，横跨两山之间，伴有蜿蜒的长城，甚是壮观。
+除了路险，爬箭扣长城最好带上手台，尤其是对那些不识路的人。我们没有手台，不知道领队那边的情况，若不是遇见几个老强驴，我们可能就在上面徘徊着，找不到下撤路线了。后来准备回去的时候，有一个驴友联系不上，手台没有回音，电话也打不通。最重要的是，由于有一拨人提前走，领队也没办法统计看看究竟是谁被落下了。等到7点多的样子，我们一车人就只能先走了。天已经黑了，他一个人在里面，也联系不上其他人，想想就觉得危险。所以户外有风险，装备就是命，出行还是要小心。
+
+熟悉的朋友问我：“妹子，你干啥这么拼？”
+答：“年轻嘛，玩的就是心跳。”
+
+![山间小路](http://upload-images.jianshu.io/upload_images/2193400-7c33e4b562449dbf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![山间小路](http://upload-images.jianshu.io/upload_images/2193400-69f537144fafa98c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![攀岩墙](http://upload-images.jianshu.io/upload_images/2193400-8d335f9cfffc3520.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![攀岩](http://upload-images.jianshu.io/upload_images/2193400-f96dfe563066c759.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![攀岩](http://upload-images.jianshu.io/upload_images/2193400-bb46d57d1eaadca1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![攀岩](http://upload-images.jianshu.io/upload_images/2193400-dcf9a1e3d7d4c434.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![攀岩](http://upload-images.jianshu.io/upload_images/2193400-d477a29f0f669f37.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-b85a14b977272775.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-b6ed59db2c50c81c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-3519503c97d073d1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-4a00e2b7a3c058f0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-edcd5c81ccb18f80.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-662e6536e230b399.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-3a0ff44ab97964e2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-d21c9f3dda40719b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-a492cb725145a3dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![壮哉！我大中华](http://upload-images.jianshu.io/upload_images/2193400-60566a2a73e79415.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![路人赋诗](http://upload-images.jianshu.io/upload_images/2193400-de7f7c87dad85285.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+-----
+
+附前几周灵山游记。
+
+丙申年丙申月丙寅日，闻英仙座流星雨将至，携友欲往灵山观之。夜宿山下小屋，友于丑时起，欲赏奇景，云厚故而未能见星空，遂罢。二日，驱车至灵山，突遇暴雨，友曰：今夜必有大雨，搭帐篷夜宿山顶，甚是危险，不若轻装上行，早归为妙。吾不以为然，奈何友乃老驴，遂只能如其所愿。灵山乃京最高峰，路上自有奇景，然吾心有不畅，景虽妙亦不能安吾心。至山顶，果降大雨，风大雨寒，友所述甚然。将离之际，回首眺望，远山皆在缥缈之间。叹曰，国画之精髓或源于此。文章是案头的山水，山水是地上的文章。然鲜有文章可绘山水之妙，惟愿笔下之文能尽彼时之思。
