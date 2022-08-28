@@ -59,7 +59,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: lan
+disqus_username: false
 
 # Netease settings
 netease_comment: false
@@ -82,7 +82,7 @@ sidebar-about-description: "或许你还会想起我，就像想起一朵不重�
 #sidebar-avatar: /img/avatar-hux-ny.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
+featured-tags: false                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
