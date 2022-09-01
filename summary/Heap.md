@@ -1,4 +1,4 @@
-##[数据流中的第K大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
+### [数据流中的第K大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
 
 ```cpp
 KthLargest(int k, vector<int>& nums) {
@@ -11,7 +11,7 @@ KthLargest(int k, vector<int>& nums) {
 int add(int val) {
     addElement(val);
     return arr.top();
-}
+} 
 priority_queue<int, vector<int>, greater<int> > arr;
 int v;
 
@@ -121,6 +121,10 @@ class Solution {
 ```
 
 ```cpp
+//升序队列——小顶堆
+//priority_queue <int,vector<int>,greater<int>> pq;
+//降序队列——大顶堆
+//priority_queue <int,vector<int>,less<int>>pq;
 int findKthLargest(vector<int>& A, int k) {
   //create min heap;
   priority_queue<int,vector<int>,greater<int>> minh;
@@ -134,5 +138,104 @@ int findKthLargest(vector<int>& A, int k) {
   }
   return minh.top();
 }
+```
+
+```cpp
+struct cmp
+{
+    bool operator()(pair<int,int> a,pair<int,int> b)
+    {
+        return a.first < b.first;
+    }
+};
+
+
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,cmp> maxh;
+        for (int i = 0; i < points.size(); ++i) {
+            int tmp = pow(points[i][0],2)+pow(points[i][1],2);
+            maxh.push(make_pair(tmp, i));
+            if(maxh.size()>k)
+                maxh.pop(); 
+        }
+        vector<vector<int>> res;
+        while (!maxh.empty()) {
+            res.push_back(points[maxh.top().second]);
+            maxh.pop();
+        }
+        return res;
+    }
+};
+```
+
+# Maximum Performance of a Team
+
+**Greedy** + **Sliding Window**
+
+1. Sort engineers by their efficiency in descending order.
+2. For each window of K engineers (we can have less than K people in the first k-1 windows), ans is sum(speed) * min(efficiency).
+
+```cpp
+  int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
+    vector<pair<int, int>> es;
+    for (int i = 0; i < n; ++i)
+      es.push_back({efficiency[i], speed[i]});
+    sort(rbegin(es), rend(es));
+    priority_queue<int, vector<int>, greater<int>> q;
+    long sum = 0;
+    long ans = 0;
+    for (int i = 0; i < n; ++i) {
+      if (i >= k) {
+        sum -= q.top();
+        q.pop();
+      }
+      sum += es[i].second;
+      q.push(es[i].second);
+      ans = max(ans, sum * es[i].first);
+    }
+    return ans % static_cast<int>(1e9 + 7);
+  }
+```
+
+### 滑动窗口最大值
+
+#### [跳跃游戏 VI](https://leetcode-cn.com/problems/jump-game-vi/)
+
+```cpp
+int maxResult(vector<int>& nums, int k) {
+    deque<pair<int, int>> dq;
+    dq.push_back({nums[0], 0});
+
+    int ans = nums[0];
+    for (int i = 1; i < nums.size(); i++) {
+        while (!dq.empty() && i - dq.front().second > k) {
+            dq.pop_front();
+        }
+        ans = dq.front().first + nums[i];
+        while (!dq.empty() && dq.back().first <= ans) {
+          //比他先加入的值，肯定先被踢掉，所以直接踢掉
+            dq.pop_back();
+        }
+        dq.push_back({ans, i});
+    }
+    return ans;
+}
+
+int maxResult(vector<int>& nums, int k) {
+        int n = nums.size(), ans = nums[0];
+        priority_queue<pair<int,int>> q;// sum. idx
+        q.push({nums[0], 0});
+        for(int i = 1; i < n; ++i) 
+        {
+            while(i-q.top().second > k)//这些位置，不能跳到 i 位置
+                q.pop();
+            //能调过来的位置，选最大的，跳到 i
+            ans = q.top().first + nums[i];// 到 i位置的最优选择
+            q.push({ans, i});//存入优先队列
+        }
+        return ans;
+    }
 ```
 

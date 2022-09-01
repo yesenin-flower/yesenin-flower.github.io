@@ -1,4 +1,22 @@
-## [01 Matrix](https://leetcode.com/problems/01-matrix/)
+运用场景:
+
+1. 分层遍历
+
+   1.1 一层层的遍历一个图、树、矩阵
+
+   1.2 简单图的最短路径(简单图:所有边长一样)
+
+2. 连通块问题
+
+   2.1 通过图中一个点找到其他所有连通的点
+
+   2.2 找到所有方案问题的一种非递归实现
+
+3. 拓扑排序
+
+   3.1 实现起来比DFS容易
+
+### [01 Matrix](https://leetcode.com/problems/01-matrix/)
 
 重复更新上下左右
 
@@ -133,5 +151,81 @@ vector<vector<string>> findLadders(string beginWord, string endWord, vector<stri
         }
     }
     return res;
+}
+```
+
+### [1625. Lexicographically Smallest String After Applying Operations](https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/)
+
+```cpp
+string add(string s, int a) {
+  int n = s.size();
+  bool flag = true;
+  for(int i = n-1; i >= 0; i--) {
+    if(flag) {
+      int val = a + (s[i] - '0');
+      val = val % 10;
+      s[i] = val + '0';
+      flag = false;
+    }
+    else
+      flag = true;
+  }
+  return s;
+}
+void dfs(string s, int a, int b, string& ans, unordered_set<string>& mark) {
+  if(mark.find(s) != mark.end())
+    return;
+  mark.insert(s);
+  ans = min(ans, s);
+  dfs(s.substr(b) + s.substr(0, b), a, b, ans, mark);
+  dfs(add(s, a), a, b, ans, mark);
+}
+string findLexSmallestString(string s, int a, int b) {
+  unordered_set<string> mark;
+  string ans = s;
+  dfs(s, a, b, ans, mark);
+  return ans;
+
+}
+```
+
+### 开锁
+
+```cpp
+vector<string> neighbors(const string& code) {
+    vector<string> result;
+    for (int i = 0; i < 4; i++) {
+        for (int diff = -1; diff <= 1; diff += 2) {
+            string nei = code;
+            nei[i] = (nei[i] - '0' + diff + 10) % 10 + '0';
+            result.push_back(nei);
+        }
+    }
+    return result;
+}
+
+int openLock(vector<string>& deadends, string target) {
+    unordered_set<string> deadSet(deadends.begin(), deadends.end());
+    if (deadSet.count("0000")) return -1;
+    queue<string> q;
+    q.push("0000");
+    int res =0;
+    while (!q.empty()) {
+        int level = q.size();
+        while (level > 0) {
+            string cur = q.front();
+            q.pop();
+            cout<<cur<<endl;
+            if (cur == target) return res;
+            for (auto nei : neighbors(cur)) {
+                if (deadSet.count(nei)) continue;
+                deadSet.insert(nei); // Marked as visited
+                q.push(nei);
+            }
+            --level;
+        }
+        res += 1;
+    }
+    return -1;
 }
 ```

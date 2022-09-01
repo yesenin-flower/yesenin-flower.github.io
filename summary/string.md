@@ -1,4 +1,4 @@
-## [重复叠加字符串匹配](https://leetcode-cn.com/problems/repeated-string-match/)
+# [重复叠加字符串匹配](https://leetcode-cn.com/problems/repeated-string-match/)
 
 ```cpp
 int repeatedStringMatch(string A, string B) {

@@ -48,6 +48,46 @@ ListNode *detectCycle(ListNode *head) {
     return fast;
 }
 ```
+#### 287. Find the Duplicate Number
+
+Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive.
+
+There is only **one repeated number** in `nums`, return *this repeated number*.
+
+You must solve the problem **without** modifying the array `nums` and uses only constant extra space.
+
+All the integers in `nums` appear only **once** except for **precisely one integer** which appears **two or more** times.
+
+![](https://tva1.sinaimg.cn/large/e6c9d24egy1h0qkb76kiyj20dg0620sr.jpg)
+
+
+
+使用俩指针fast和slow, slow扫描的步长为1, fast扫描的步长为2.它们的相遇点**和环的入口的距离一定等于环外起点到环入口距离 : C-a = F**.
+
+那么当fast和slow在meet处相遇的时候, 从head处再发出一个步长为1的指针r, 可以知道, r和slow会在entry处相遇!
+
+```cpp
+int findDuplicate(vector<int>& nums) {
+    // Find the intersection point of the two runners.
+    int tortoise = nums[0];
+    int hare = nums[0];
+
+    do {
+        tortoise = nums[tortoise];
+        hare = nums[nums[hare]];
+    } while (tortoise != hare);
+
+    // Find the "entrance" to the cycle.
+    tortoise = nums[0];
+    while (tortoise != hare) {
+        tortoise = nums[tortoise];
+        hare = nums[hare];
+    }
+
+    return hare;
+}
+```
+
 ## 判断两个单链表是否相交
 
 [算法来源：](https://github.com/hit9/oldblog/blob/gh-pages/blog-src/blog/C/posts/25.mkd)

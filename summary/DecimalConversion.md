@@ -20,6 +20,80 @@ int reverse(int x) {
 }
 ```
 
+### [Counting Bits](https://leetcode.com/problems/counting-bits/)
+
+For every numbers **i** in the range **0 ≤ i ≤ num** calculate the number of 1's in their binary representation and return them as an array.
+
+eg let X = 7and Y = 3, then 7 / 2 = 3;
+
+7 -> 1 1 1 **number of set bit are 3**
+3 -> 0 1 1 **number of set bit are 2**
+
+another eg X = 12 and y = 6, then 12 / 2 = 6;
+
+12 -> 1100 **number of set bit are 2**
+6 -> 0110 **number of set bit are 2**
+
+**if X is ODD**
+
+- then the (LSB) Least Significant Bit will always be set and dividing by 2 means right shifting the number by 1 bit.
+- so if last bit is set and right shift it by 1 bit than the last set bit will be lost.
+- so when X is ODD, no of set bit in X = 1 + no of set bit in Y
+
+**if X is Even**
+
+- then *LSB will be equal to 0*, therefore even we do right shift by1 bit then only this 0 bit will be lost and no set bit got lost
+
+- When we have X has Even, no of set bit in X = no of set bit in Y
+
+```cpp
+vector<int> countBits(int num) {
+  vector<int>res(num+1);
+  res[0]=0;
+  for(int i=1;i<num+1;i++)
+  {
+    if(i%2!=0)
+      res[i]=res[i/2]+1;
+    else
+      res[i]=res[i/2];
+  }
+  return res;
+}
+```
+
+```cpp
+vector<int> countBits(int num) {
+    vector<int> res(num+1,0);
+    for(int i=1;i<=num;i++){
+        res[i]=res[i&(i-1)]+1;
+    }
+    return res; 
+}
+```
+
+二进制长度
+
+(int)log2(i)+1
+
+###[Minimum Numbers of Function Calls to Make Target Array](https://zxi.mytechroad.com/blog/bit/leetcode-1558-minimum-numbers-of-function-calls-to-make-target-array/)
+
+两种操作：1、对某一位+1；2、所有数*2
+
+```cpp
+  int minOperations(vector<int>& nums) {
+    int ans = 0;
+    int high = 0;
+    for (int x : nums) {
+        if (x!=0)
+            high = max(high, (int)log2(x));
+        ans += std::bitset<32>(x).count();
+    }
+    return ans + high;
+  }
+```
+
+
+
 ##  颠倒二进制位
 
 ```cpp
@@ -38,7 +112,7 @@ uint32_t reverseBits(uint32_t n) {
 
 （2）|（或）–有1则1，无1则0； 
 
-（3）^（亦或）–相同为0，不同为1； 
+（3）^（亦或xor）–相同为0，不同为1； 
 
 （4）>>右移（最右边的位被抛弃） 
 
@@ -71,15 +145,6 @@ int NumberOf1(int n)//有符号的n
 }
 ```
 
-```cpp
-vector<int> countBits(int num) {
-    vector<int> res(num+1,0);
-    for(int i=1;i<=num;i++){
-        res[i]=res[i&(i-1)]+1;
-    }
-    return res; 
-}
-```
 ##  数组中只出现一次的数
 
 ```cpp
@@ -89,6 +154,33 @@ int singleNumber(vector<int>& nums) {
         ret ^= nums[i];
     }
     return ret;
+}
+```
+
+```cpp
+vector<int> singleNumber(vector<int>& nums) {
+  vector<int> result(2,0);
+  int xor_res  = 0;
+  for (int i = 0; i < nums.size();++i){
+    xor_res ^= nums[i]; 
+  }
+
+  int mask = xor_res ^ ( xor_res & (xor_res-1) );
+
+  int p=0;
+  int q=0;
+  for (int i=0;i<nums.size();++i){
+    if ( (nums[i] & mask) == 0){
+      p ^= nums[i];
+    }else{
+      q ^= nums[i];
+    }
+  }
+
+  result[0] = p;
+  result[1] = q;
+
+  return result;
 }
 ```
 
@@ -263,6 +355,21 @@ vector<bool> prefixesDivBy5(vector<int>& A) {
 ```
 
 ###[1442. Count Triplets That Can Form Two Arrays of Equal XOR](https://blog.csdn.net/qq_39378221/article/details/107054473)
+
+给你一个整数数组 arr 。
+
+现需要从数组中取三个下标 i、j 和 k ，其中 (0 <= i < j <= k < arr.length) 。
+
+a 和 b 定义如下：
+
+- a = arr[i] ^ arr[i + 1] ^ … ^ arr[j - 1]
+- b = arr[j] ^ arr[j + 1] ^ … ^ arr[k]
+
+注意：^ 表示 按位异或 操作。
+
+请返回能够令 a == b 成立的三元组 (i, j , k) 的数目
+
+
 
 我们将a,b同时异或b就会发现，只要i到k的元素异或等于0，那么j取i,k之间的任意值都可以满足条件。
 

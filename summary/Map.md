@@ -1,4 +1,4 @@
-##[Two Sum](https://leetcode.com/problems/two-sum/)
+### [Two Sum](https://leetcode.com/problems/two-sum/)
 
 #### Two-pass Hash Table
 
@@ -68,6 +68,28 @@ vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
         result.push_back(mp[nums[i]] > 0 ? mp[nums[i] - 1] : 0); 
     }
     return result;
+}
+```
+
+### [\1366. Rank Teams by Votes](https://leetcode.com/problems/rank-teams-by-votes/)
+
+```cpp
+string rankTeams(vector<string>& v) {
+  int n = v.size();
+  int l = v[0].size();
+  vector<vector<int>>a(26,vector<int>(l,0));
+  for(int i =0;i<n;i++){
+    for(int j = 0;j<l;j++){
+      a[v[i][j]-'A'][j]+=1;
+    }
+  }
+  sort(v[0].begin(),v[0].end(),[&l,&a](char x,char y)->bool{
+    for(int i = 0;i<l;i++){
+      if(a[x-'A'][i]!= a[y-'A'][i])
+        return a[x-'A'][i]>a[y-'A'][i];
+    }
+    return x<y;
+  });
 }
 ```
 

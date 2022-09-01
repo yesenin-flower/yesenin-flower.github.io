@@ -1,3 +1,15 @@
+# 二叉树性质
+
+一棵深度为k，且有 $2^{k+1}-1$ 个节点的二叉树，称为满二叉树（Full Binary Tree）。 这种树的特点是每一层上的节点数都是最大节点数。
+
+而在一棵二叉树中，除最后一层外，若其余层都是满的，并且最后一层或者是满的，或者是在右边缺少连续若干节点，则此二叉树为完全二叉树（Complete Binary Tree）。
+
+1. 具有n个节点的完全二叉树的深度为 $𝑘=𝑙𝑜𝑔_2n $。
+2. 【满二叉树】𝑖层的节点数目为：$2^𝑖$
+3. 【满二叉树】节点总数和深度的关系：$𝑛=∑^𝑘_{𝑖=0}2^𝑖=2^{𝑘+1}−1$
+4. 【完全二叉树】最后一层的节点数为：$𝑛−(2^𝑘−1)=𝑛+1−2^𝑘$ （因为除最后一层外，为【满二叉树】）
+5. 【完全二叉树】左子树的节点数为（总节点为n）
+
 ## 对称二叉树
 
 ```cpp
@@ -410,3 +422,113 @@ TreeNode* dfs(TreeNode* root, TreeNode* pre) {
     return tmp;
 }
 ```
+
+### [先序遍历构建二叉树]()
+
+```cpp
+class Solution {
+public:
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        cur = 0;
+        TreeNode* root = dfs(preorder, INT_MAX);
+        return root;
+    }
+private:
+    int cur;
+    TreeNode* dfs(vector<int>& preorder, int maximum) {
+        if (cur >= preorder.size() || preorder[cur] > maximum) {
+            return NULL;
+        }
+        TreeNode* root = new TreeNode(preorder[cur]);
+        cur += 1;
+        root->left = dfs(preorder, root->val);
+        root->right = dfs(preorder, maximum);
+        return root;
+    }
+};
+```
+
+先序+后序
+
+```cpp
+class Solution {
+public:
+    TreeNode* constructFromPrePost(vector<int>& pre, vector<int>& post) {
+        return dfs(pre, post,  0, post.size());
+    }
+private:
+    int cur = 0;
+    TreeNode* dfs(vector<int>& pre, vector<int>& post, int start, int end) {
+        if (start >= end) return NULL;
+        if (cur >= pre.size()) return NULL;
+        TreeNode* root = new TreeNode(pre[cur++]);
+        if (cur >= pre.size()) return root;
+        for (int i = start; i < end; ++i) {
+            if (post[i] == pre[cur]) {
+                root->left = dfs(pre, post, start, i+1);
+                root->right = dfs(pre, post, i+1, end-1);
+                break;
+            }
+        }
+        return root;
+    }
+};
+```
+
+
+
+###[894. All Possible Full Binary Trees]()
+
+```cpp
+    map<int, vector<TreeNode*> > size2tree;
+public:    
+    vector<TreeNode*> allPossibleFBT(int N) {
+        if(size2tree.find(N)!=size2tree.end()){
+            return size2tree.at(N);
+        }else{
+            vector<TreeNode*> ans;
+            if(N==1){
+                TreeNode* node = new TreeNode(0);
+                ans.push_back(node);
+            }else if(N%2==1){
+                for(int lnum=1; lnum<=N-1-1; lnum+=2){
+                    int rnum = N-1-lnum;
+                    vector<TreeNode*> ltree = allPossibleFBT(lnum);
+                    vector<TreeNode*> rtree = allPossibleFBT(rnum);
+                    for(int ltreeix = 0; ltreeix < ltree.size(); ltreeix++){
+                        for(int rtreeix = 0; rtreeix < rtree.size(); rtreeix++){
+                            TreeNode* node = new TreeNode(0);
+                            node->left = ltree[ltreeix];
+                            node->right = rtree[rtreeix];
+                            ans.push_back(node);
+                        }
+                    }
+                }
+            }
+            size2tree.insert(make_pair(N, ans));
+            return ans;
+        }
+    }
+```
+
+###[Distribute Coins in Binary Tree](https://leetcode.com/problems/distribute-coins-in-binary-tree/)
+
+```cpp
+class Solution {
+public:
+    int distributeCoins(TreeNode* root) {
+        dfs(root);
+        return ans;
+    }
+private:
+    int ans = 0;
+    int dfs(TreeNode* node) {
+        if (node == NULL) return 0;
+        int L = dfs(node->left);
+        int R = dfs(node->right);
+        ans += abs(L) + abs(R);
+        return node->val + L + R - 1;
+    }
+};
+```
+

@@ -109,15 +109,39 @@ vector<int> plusOne(vector<int>& digits) {
 
 递归，记录计算过的C(n, m)，以减少重复计算。
 
+```cpp
+int nCr(int n, int r) 
+{ 
+    return fact(n) / (fact(r) * fact(n - r)); 
+} 
+  
+// Returns factorial of n 
+int fact(int n) 
+{ 
+    int res = 1; 
+    for (int i = 2; i <= n; i++) 
+        res = res * i; 
+    return res; 
+} 
+```
+
 OR
 
 ```cpp
-long long c(long long n, long long m) {
-  long long ans = 1;
-  for (long long i = 1; i <= m; i++) {
-    ans = ans * (n - m + 1) / i;
-  }
+int comb(int n, int r) {
+  long ans = 1;
+  for (int i = 1, j = n - r + 1; i <= r; ++i, ++j) ans = ans * j / i;
   return ans;
+}
+```
+
+### [排列数]()
+
+```cpp
+int permutation(int n,int m)
+{
+    int perm=factorial(n)/factorial(n-m);
+    return perm;
 }
 ```
 
@@ -208,7 +232,7 @@ B. 两个生成随机数的函数Randa， Randb。Randa和Randb分别产生1到a
 
 1. 用Randa 构造Randak，如3就构造3\*1，3\*2...3\*k。
 
-   构造方法是  Randa2 = a * (Randa – 1) + Randa， 表示生成1到a2 随机数的函数。如果a2 仍小于b，继教构造 Randa3 = a * (Randa2 – 1) + Randa…直到ak > b。
+   构造方法是  Randa2 = 2 * (Randa – 1) + Randa， 表示生成1到a2 随机数的函数。如果a2 仍小于b，继教构造 Randa3 = a * (Randa – 1) + Randa…直到ak > b。
 
 2. 用下面这个生成randb，一直摇Randak，直到出现的值是b的倍数
 
@@ -240,6 +264,33 @@ Randabk = (b-a+q) * (Randab - a) + Randab - a + 1;
 
 ![{\displaystyle \mathbf {A} ={\frac {1}{2}}{\begin{vmatrix}1&1&1\\x_{1}&x_{2}&x_{3}\\y_{1}&y_{2}&y_{3}\end{vmatrix}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/940282e9e70fada00cd4eba14532d09c6c9d3c54)
 
+###[Valid Triangle Number]()
+
+```cpp
+int triangleNumber(vector<int>& v) {
+    if (v.size() <3) return 0;
+    sort(v.begin(), v.end());
+    int res = 0;
+    for (int i = 0; i < v.size() ; ++i) {
+        for (int j = i+1; j < v.size(); ++j) {
+            int target = v[i] + v[j];
+            int l = j + 1, r = v.size()-1;
+            while(l < r) {
+                int med = (l + r) / 2;
+                if (v[med] < target) l = med+1;
+                else r = med;
+            }
+            if (r <= j) continue;
+            if (v[r] >= target)
+                res += r - j - 1;
+            else if (v[r] < target)
+                res += r - j;
+            //cout<<i<<" "<<v[i]<<" "<<j<<" "<<v[j]<<" "<<r<<" "<<v[r]<<" "<<res<<endl;
+        }
+    }
+    return res;
+}
+```
 ## 两个矩形重叠
 
 ```cpp
@@ -347,6 +398,25 @@ void rotate(vector<vector<int>>& matrix) {
     }
 }
 ```
+### 1260. Shift 2D Grid
+
+- Element at `grid[i][j]` moves to `grid[i][j + 1]`.
+- Element at `grid[i][n - 1]` moves to `grid[i + 1][0]`.
+- Element at `grid[m - 1][n - 1]` moves to `grid[0][0]`.
+
+```cpp
+vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
+    int m = grid.size(),  n = grid[0].size(), mn = (m * n);
+    if (k % mn == 0) return grid;
+    vector<vector<int>> res(m, vector<int>(n, 0));
+    for (int i = 0; i < mn; ++i) {
+        int tmp = (i + k) % (mn);
+        res[tmp/n][tmp%n] = grid[i/n][i%n]; 
+    }
+    return res;
+}
+```
+
 ## [平方数之和](https://leetcode-cn.com/problems/sum-of-square-numbers/)
 
 ```cpp
@@ -532,3 +602,126 @@ int smallestRangeI(vector<int>& A, int K) {
 ###[Pancake Sorting](https://blog.csdn.net/Orientliu96/article/details/103273797)
 
 逐一将目前list中的最大数移到list的最后一位，最终完成变换。
+
+###[Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)
+
+Given an array of integers `nums` containing `n + 1` integers where each integer is in the range `[1, n]` inclusive.
+
+There is only **one duplicate number** in `nums`, return *this duplicate number*.
+
+龟兔赛跑
+
+```java
+  public int findDuplicate(int[] nums) {
+    // Find the intersection point of the two runners.
+    int tortoise = nums[0];
+    int hare = nums[0];
+    do {
+      tortoise = nums[tortoise];
+      hare = nums[nums[hare]];
+    } while (tortoise != hare);
+
+    // Find the "entrance" to the cycle.
+    tortoise = nums[0];
+    while (tortoise != hare) {
+      tortoise = nums[tortoise];
+      hare = nums[hare];
+    }
+
+    return hare;
+  }
+```
+
+### [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
+
+1. 如果有两种或两种以上的任务具有相同的最多的任务数，如：AAAABBBBCCDE，n=3。那么我们将具有相同个数的任务A和B视为一个任务对，最终满足要求的分配为：ABXXABXXABXXAB，剩余的任务在不违背要求间隔的情况下穿插进间隔位置即可，空缺位置补idle。
+2. 由上面的分析我们可以得到最终需要最少的任务时间：**（最多任务数-1）\*（n + 1） + （相同最多任务的任务个数）**。
+
+有上面的例子来说就是：(num(A)-1) * (3+1) + (2)。
+
+其中，（最多任务数-1）*（n + 1）代表的是ABXXABXXABXX，（相同最多任务的任务个数）代表的是最后的AB.
+
+最后，别忘了要对任务数求最大值，毕竟每个任务都是要调度一遍的
+
+```cpp
+    int leastInterval(vector<char>& tasks, int n) {
+        if (n == 0) return tasks.size();
+        vector<int> count(26, 0);        
+        for (const char task : tasks) 
+            ++count[task - 'A'];
+        const int max_count = *max_element(count.begin(), count.end());
+        size_t ans = (max_count - 1) * (n + 1);
+        ans += count_if(count.begin(), count.end(),
+                        [max_count](int c){ return c == max_count; });
+        return max(tasks.size(), ans);
+    }
+```
+
+###[Maximum Binary String After Change](https://leetcode.com/problems/maximum-binary-string-after-change/)
+
+```
+Operation 1: If the number contains the substring "00", you can replace it with "10".
+For example, "00010" -> "10010"
+Operation 2: If the number contains the substring "10", you can replace it with "01".
+For example, "00010" -> "00001"
+// 1) shift all '1's to right 
+// 00000011
+// 2) convert each '00' pair to '10',
+//    only 1 '0' remains and and z-1 '0' change to '1'
+string ans = string(st, '1') + string(z-1, '1') + "0" + string(en-st+1-z, '1') + string(n-1-en, '1');
+//            prefix of '1's  +  z-1 '1's +  remaining '0' + remaining 1's    + suffix of 1's'        
+```
+
+```cpp
+string maximumBinaryString(string binary) {
+        int n = binary.size();
+        string result = string(n, '1');
+        int zero_count = count(binary.begin(), binary.end(), '0');
+        if (zero_count == 0) {
+            return result;
+        }
+        int first_zero = binary.find('0');
+        result[first_zero+zero_count-1] = '0';
+        return result;
+}
+```
+
+### 29. Divide Two Integers
+
+```cpp
+int divide(int dividend, int divisor) {
+  if (divisor == 1) return dividend;
+  else if (dividend == INT_MIN && divisor == -1)  return INT_MAX;
+  else if (dividend == INT_MAX && divisor == -1) return -INT_MAX;
+  bool neg = (dividend < 0) ^ (divisor < 0);
+  long _dividend = abs(dividend);
+  long _divisor = abs(divisor);
+  if (_divisor > _dividend) return 0;
+  else if (_divisor == _dividend) return neg ? -1 :  1;
+  int res = 0;
+  for (int x = 31; x >= 0; --x) {
+    if (_dividend >> x >= _divisor) {
+      res += 1 << x;
+      _dividend -= _divisor << x;
+    }
+  }
+  //cout<<res<<" "<<_divisor<<endl;
+  return neg ? -res :  res;
+}
+```
+
+### 858. Mirror Reflection
+
+```cpp
+class Solution {
+public:
+    int mirrorReflection(int p, int q) {
+        while (p % 2 == 0 && q % 2 == 0){ 
+            p/=2;
+            q/=2;
+        }
+        return 1 - p % 2 + q % 2;
+    }
+};
+```
+

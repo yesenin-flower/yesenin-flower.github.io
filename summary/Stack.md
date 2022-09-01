@@ -82,3 +82,155 @@ TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     return root;
 }
 ```
+
+###[Online Stock Span]()
+
+```cpp
+class StockSpanner {
+public:
+    StockSpanner() {
+        
+    }
+    
+    int next(int price) {
+        pair<int,int> temp;
+        temp.first = price;
+        temp.second = count;
+        int ans =0;
+        bool flag = false;
+        // stack.push(temp);
+        while(!st.empty() && price >= st.top().first){
+            st.pop();
+            flag = true;
+        }
+        if(!st.empty()){
+            ans = temp.second - st.top().second;
+        }else{
+            if(flag){
+                ans = temp.second + 1;
+            }else{
+                ans = 1;
+            }
+        }
+        st.push(temp);
+        count++;
+        return ans;
+    }
+private:
+    stack<pair<int,int>> s;
+    int count=0;
+};
+```
+
+### 最大频率stack
+
+```
+Input: 
+["FreqStack","push","push","push","push","push","push","pop","pop","pop","pop"],
+[[],[5],[7],[5],[7],[4],[5],[],[],[],[]]
+Output: [null,null,null,null,null,null,null,5,7,5,4]
+Explanation:
+After making six .push operations, the stack is [5,7,5,7,4,5] from bottom to top.  Then:
+
+pop() -> returns 5, as 5 is the most frequent.
+The stack becomes [5,7,5,7,4].
+
+pop() -> returns 7, as 5 and 7 is the most frequent, but 7 is closest to the top.
+The stack becomes [5,7,5,4].
+
+pop() -> returns 5.
+The stack becomes [5,7,4].
+
+pop() -> returns 4.
+The stack becomes [5,7].
+```
+
+```cpp
+
+class FreqStack {
+public:
+    int max_frequency; // keep note of the current maximum frequency
+    unordered_map<int, int> freq_mp; // to store the freq of numbers
+    unordered_map<int, stack<int>> freq_stack_mp; // to store the numbers with same freq in a stack
+    
+    FreqStack() {
+        // initially maximum frequency is 0
+        max_frequency=0;
+    }
+    
+    void push(int x) {
+        // increase the freq of x in frequency map
+        ++freq_mp[x];
+        
+        // update max_frequency
+        if(max_frequency<freq_mp[x]) max_frequency = freq_mp[x];
+        
+        // push x to its freq stack
+        freq_stack_mp[freq_mp[x]].push(x);
+    }
+    
+    int pop() {
+        // get the top element from the stack of maximum frequency
+        // here stack is used for taking care of the "frequency tie" condition
+        int curr_top = freq_stack_mp[max_frequency].top();
+        
+        // update both the maps
+        freq_stack_mp[max_frequency].pop();
+        --freq_mp[curr_top];
+        //cout<<freq_stack_mp[max_frequency].size()<<" "<<max_frequency<<" ";
+        // if the stack of maximum element becomes empty, then delete it from "freq_stack_mp" along with decreasing "max_frequency"
+        if(freq_stack_mp[max_frequency].empty()) {
+            freq_stack_mp.erase(max_frequency);
+            --max_frequency;
+        }
+        //cout<<max_frequency<<endl;
+        // return the current top element
+        return curr_top;
+    }
+};
+```
+
+### Remove K Digits
+
+Given string num representing a non-negative integer `num`, and an integer `k`, return *the smallest possible integer after removing* `k` *digits from* `num`.
+
+1231 (1) -> 121
+
+```cpp
+string removeKdigits(string num, int k) {
+    if (k >= num.size()) return "0";
+    if (k == 0) return num;
+    stack<char> minimal;
+    minimal.push('0');
+    for (auto n: num) {
+        char tmp = minimal.top();
+        while (tmp > n && k > 0) {
+            minimal.pop();
+            k -= 1;
+            tmp = minimal.top();
+        }
+        minimal.push(n);
+    }
+    while(k && !minimal.empty())
+    {
+        --k;
+        minimal.pop();
+    }
+    string res;
+    while(!minimal.empty())
+    {
+        res = minimal.top() + res; // pushing stack top to string
+        minimal.pop(); // pop the top element
+    }
+    int idx = 0;
+    while (idx < res.size()) {
+        if (res[idx] != '0')
+            break;
+        idx += 1;
+    }
+    res = res.substr(idx, res.size()-idx);
+    if(res.size() == 0)
+        return "0";
+    return res;
+}
+```

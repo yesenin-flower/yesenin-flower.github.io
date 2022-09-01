@@ -35,6 +35,32 @@ var partitionDisjoint = function(A) {
 };
 ```
 
+### Subarray Sum Equals K
+
+Given an array of integers `nums` and an integer `k`, return *the total number of subarrays whose sum equals to `k`*.
+
+```
+Input: nums = [1,1,1], k = 2
+Output: 2
+```
+
+```cpp
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int> mp;
+        int sum=0,ans=0;
+        mp[sum] = 1;
+        for(auto it:nums){
+            sum += it;
+            int find = sum - k;
+            if(mp.find(find) != mp.end()){
+                ans += mp[find];
+            }
+            mp[sum]++;
+        }
+        return ans;
+    }
+```
+
 
 
 ## Two Sum 输入有序数组
@@ -132,3 +158,28 @@ vector<int> sortedSquares(vector<int>& A) {
     return result;
 }
 ```
+
+### [删掉一个元素以后全为 1 的最长子数组](https://blog.csdn.net/grllery/article/details/107165319)
+
+滑窗，双指针。保证窗口中最多只有一个zero
+
+```cpp
+    int longestSubarray(vector<int>& nums) {
+        int n = nums.size();
+        int res = 0;
+        for(int i = 0, j = 0, zero = 0; j < n; ++j){
+            if(nums[j] == 0){
+                zero += 1;
+                while(zero > 1){
+                    if(nums[i] == 0)
+                        zero -= 1;
+                    i += 1;
+                }
+            }
+            // You must delete one element.
+            res = max(res, j - i);
+        }
+        return res;
+    }
+```
+
