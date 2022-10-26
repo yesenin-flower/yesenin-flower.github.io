@@ -167,7 +167,34 @@ Lagrange  dual function
 
 
 
+---
 
+1. RL的bellman equation怎么推的，
+2. SVM vs logistic regression
+3. 描述 logistic regression的loss是什么意思，和cross entropy联系，和MLE的联系
+4. 写gradient decent
+5. how to avoid overfitting 
+6. write L2 norm equation
+7. k-fold cross-validation
+8. precision, recall, F1 score, 
+9. binary classification loss
+10. word2vec 
+11. adam vs sgd 
+12. mean, variance
+13. missing data
+14. Activation function
+15. 先问不平衡分类问题怎么解决，我说了一个cost sensitive，一个对负样本下采样然后ensemble，然后追问ensemble的基本原理，和boosting的区别，简单说rf和gdbt的区别，问了我很多xgboost的细节，会的我就答了，不会的我就说我不记得这一个细节了，最后回过头来问我不平衡问题选什么metric，为什么
+16. 然后聊regularization，我举了L0, L1, L2, L_infinity，让我说了首尾两个的定义，对比了一下中间两个，问我什么情况下用什么
+17. 然后问我dropout在inference的时候怎么实现
+18. batch norm
+19. 接着问DL怎么调参，如果要调学习率怎么调，怎么防止很差的局部最优
+20. 还问了Q-Learning的具体原理
+21. Gaussian Mixture Model (GMM) & Hidden Markov Model (HMM)
+22. GRU & LSTM & RNN
+
+----
+
+pandas常见的一些功能, 现在有印象的就是groupby还有sort
 
 
 

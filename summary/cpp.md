@@ -140,7 +140,7 @@ priority_queue<typename, vector<typename>, greater<int> > gpq;
 priority_queue<typename, vector<typename>, less<int> > lpq;
 lpq.push();
 lpq.top();
-lpq.top();
+lpq.pop();
 //结构体定义
 struct name {
 	typename t1;
@@ -267,7 +267,8 @@ sqrt(pow(a, 2) + pow(b, 2));
 reverse(it1, it2);
 fill(a, a + k, value);
 sort(it1, it2, cmp);
-lower_bound(data.begin(), data.end(), val); //[first, last) 第一个值>= val的元素
+std::vector<int>::iterator it = lower_bound(data.begin(), data.end(), val); //[first, last) 第一个值>= val的元素
+idx = it - data.begin();
 upper_bound(first, last, val); //[first, last) 第一个值> val的元素
 count(s.begin(),s.end(),'char');
 rand(); //0-INTMAX
@@ -298,6 +299,98 @@ struct blocknode
               blocknode *p = 0, blocknode *n = 0) :
               bsize(sz), free(f), bptr(b), prev(p), next(n) {}
 };
+```
+
+
+
+### Exception
+
+```cpp
+class MyCustomException : public std::exception {
+    public:
+char * what () {
+        return "Custom C++ Exception";
+    }
+};
+
+try {
+  std::string().at(1); // this generates an std::out_of_range
+} catch(MyCustomException& e) {
+  std::cout << e.what();
+} catch(const std::exception& e) //it would not work if you pass by value
+{
+  std::cout << e.what();
+} catch(...) {
+  eptr = std::current_exception(); // capture
+}
+```
+
+
+
+### class
+
+```cpp
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+class Person {
+public:
+    Person() {}
+    Person(string _n, int _a): name(_n), age(_a) {}
+    virtual void getdata() {};
+    virtual void putdata() {};
+protected:
+    string name;
+    int age;
+};
+
+class Professor : public Person {
+public:
+    Professor() {}
+    static int id1;
+protected:
+    int publications = 0, cur_id = 0;
+    
+    void getdata() {
+        cin>>name>>age>>publications;
+        cur_id = id1;
+        id1 += 1;
+    }
+    void putdata() {
+        std::cout<<this->name<<" "<<this->age<<" "<<publications<<" "<<cur_id<<endl;
+    }
+};
+
+class Student : public Person {
+public:
+    Student() {}
+    static int id2;
+protected:
+    int marks[6];
+    int cur_id;
+    
+    void getdata() {
+        cin>>name>>age;
+        for (int i = 0; i < 6; ++i) {
+            cin>>marks[i];
+        }
+        cur_id = id2;
+        id2 += 1;
+    }
+    void putdata() {
+        int ans = 0;
+        for (auto m: marks) {
+            ans += m;
+        }
+        std::cout<<this->name<<" "<<this->age<<" "<<ans<<" "<<cur_id<<endl;
+    }
+};
+int Professor::id1 = 1;
+int Student::id2 = 1;
 ```
 
 

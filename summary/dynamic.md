@@ -437,24 +437,127 @@ int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
 
 ## 左上角到右下角的总路径
 
-```cpp
-int uniquePaths(int m, int n) {
-  int dp[m][n];
-  memset(dp, 0, sizeof(dp));
-  dp[0][0] = 1;
-  int dir[][2] = {{0,-1},{-1,0}};
-  for (int i =0; i < m; ++i) {
-    for (int j = 0; j < n; ++j) {
-      for (int k = 0; k < 2; ++k) {
-        int r = dir[k][0] + i, c= dir[k][1]+j;
-        if(r >=0 && c>=0 && r<m && c<n) {
-          dp[i][j] += dp[r][c];
+方法1:时间复杂度O(mn) 空间复杂度O(mn)
+
+```python
+import numpy as np
+def left_to_right(m,n):
+    d=np.zeros(dtype=int,shape=(m,n))
+    d[0][0]=0
+    for i in range(1,m):
+        d[i][0]=1
+    for j in range(1,n):
+        d[0][j]=1
+    for i in range(1,m):
+        for j in range(1,n):
+            d[i][j]=d[i-1][j]+d[i][j-1]
+    return d[m-1][n-1]
+  
+if __name__=='__main__':
+    res=left_to_right(7,5)
+    print res
+```
+
+```java
+class Solution {
+    public int uniquePaths(int m, int n) {
+      //既是上一行， 又是当前行
+      //1，1，1，1
+      //1，2，3，4
+        int[] cur = new int[n];
+        Arrays.fill(cur,1);
+        for (int i = 1; i < m;i++){
+            for (int j = 1; j < n; j++){
+                cur[j] += cur[j-1] ;
+            }
         }
-      }
-      //cout<<i<<" "<<j<<" "<<dp[i][j]<<endl;
+        return cur[n-1];
+    }
+}
+```
+
+这道题也可以看作是数学中的组合问题，因为从左上角到右下角，总共需要走n+m-2步（左上角和右下角的元素不考虑在内），每次都可以选择向下走，向下走总共需要m-1步，所以在n+m-2步中选m-1步。即C(n+m-2，m-1).
+
+```java
+public static int getTraversal(int m, int n)
+{
+	int N = n + m - 2;
+	int K = n - 1;
+	double num = 1.0;
+	for (int i = 1; i <= K; ++i)
+	{
+		num = num * (N - K + i) / i;
+	}
+	return (int)num;
+}
+```
+
+## 重叠的子字符串
+
+Given two integer arrays `nums1` and `nums2`, return *the maximum length of a subarray that appears in **both** arrays*.
+
+```cpp
+int findLength(vector<int>& A, vector<int>& B) {
+    int maximum = 0;
+    int dp[A.size()+1][B.size()+1];
+    memset(dp, 0, sizeof(dp));
+    for (int i = A.size()-1; i > -1; --i) {
+        for (int j = B.size()-1; j > -1; --j) {
+            if(A[i] == B[j]) {
+                dp[i][j] = dp[i+1][j+1]+1;
+                maximum = max(maximum, dp[i][j]);
+            }
+        }
+    }
+    return maximum;
+}
+```
+
+## Longest Arithmetic Subsequence
+
+最长等差子序列
+
+```cpp
+int longestArithSeqLength(vector<int>& nums) {
+  int n = nums.size();
+  int dp[n][1001];
+  memset(dp, 0, sizeof(dp));
+
+  int ans = 0;
+
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < i; j++)
+    {
+      int d = nums[i] - nums[j] + 500;  //to handle negative difference add 500
+
+      dp[i][d] = dp[j][d] + 1;
+
+      ans = max(ans, dp[i][d]);
     }
   }
-  return dp[m-1][n-1];
+  return ans + 1;
+}
+```
+
+## 91. Decode Ways
+
+```cpp
+int numDecodings(string s) {
+    int n = s.size();
+    int dp[n+1];
+    memset(dp, 0, sizeof(dp));
+    dp[n] = 1;
+    if (s[n - 1] != '0')
+        dp[n - 1] = 1;
+    for (int i = n-2; i >= 0; --i) {
+        if (s[i] == s[i+1] && s[i] == '0') return 0;
+        if (s[i] == '0') continue;
+        dp[i] = dp[i + 1];
+        if (s[i] == '1' || (s[i] == '2' && s[i+1]<='6')) dp[i] += dp[i+2];
+        //cout<<s[i]<<" "<<dp[i]<<endl;
+    }
+    return dp[0];
 }
 ```
 

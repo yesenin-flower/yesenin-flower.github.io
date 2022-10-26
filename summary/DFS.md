@@ -1,4 +1,36 @@
-### Matchsticks to Square
+## subset
+
+### 重复元素的数组，求子集
+
+先排序，然后dfs，for循环里如果（和前一个相同）且（idx比当前dfs的第一个idx大）就跳过，不同就加入当前自己，继续迭代
+
+### 求和
+
+给一个数组，取任意数得到target
+
+### 排列式搜索
+
+TSP问题：给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。
+
+**暴力搜索**
+
+用DFS遍历所有的路，visited记录走过的路
+
+**最优性剪枝**
+
+**状态压缩动态规划**
+
+状态用binary表示，经过了的是1
+
+dp\[state\]\[city\]经过了某些state当前city用的距离
+
+dp\[state\]\[i\] = min{dp\[state\]\[i\] , dp\[prev_state\]\[j\] + graph\[j\]\[i\]}
+
+**随机化算法**
+
+
+
+## Matchsticks to Square
 
 You are given an integer array `matchsticks` where `matchsticks[i]` is the length of the `ith` matchstick. You want to use **all the matchsticks** to make one square. You **should not break** any stick, but you can link them up, and each matchstick must be used **exactly one time**.
 
@@ -27,7 +59,7 @@ private:
 };
 ```
 
-### 576. Out of Boundary Paths
+## 576. Out of Boundary Paths
 
 Recursion with Memoization
 
@@ -62,7 +94,7 @@ private:
 };
 ```
 
-### Combination Sum IV
+## Combination Sum IV
 
 Given an array of **distinct** integers `nums` and a target integer `target`, return *the number of possible combinations that add up to* `target`.
 

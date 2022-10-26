@@ -15,6 +15,14 @@
 3. 拓扑排序
 
    3.1 实现起来比DFS容易
+   
+   ​	统计结点的入度
+   
+   ​	将入度为0的放入队列
+   
+   ​	取入度为0的结点，把它指向的结点的度-1
+   
+   ​	如果又有0，再加入队列
 
 ### [01 Matrix](https://leetcode.com/problems/01-matrix/)
 
@@ -51,6 +59,8 @@ vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
 ```
 
 ### [Word Ladder](https://leetcode.com/problems/word-ladder/)
+
+先构建只修改一个地方就可以到达的图
 
 
 ```cpp
@@ -229,3 +239,4 @@ int openLock(vector<string>& deadends, string target) {
     return -1;
 }
 ```
+
